@@ -4,7 +4,7 @@ permalink: /:year/:month/:day/:title.html
 exclude: [ _posts/source/, _posts/_private/, assets/less ]
 lunr_excludes: [atom.xml, _404.html, search.html]
 
-markdown: pandoc
+markdown: rdiscount
 
 pandoc:
   format: html5
