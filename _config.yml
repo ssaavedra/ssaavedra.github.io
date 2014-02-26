@@ -1,0 +1,63 @@
+pygments: true
+permalink: /:year/:month/:day/:title.html
+
+exclude: [ _posts/source/, _posts/_private/, assets/less ]
+lunr_excludes: [atom.xml, _404.html, search.html]
+
+markdown: pandoc
+
+pandoc:
+  format: html5
+  extensions: [smart, mathjax]
+
+title: Synthetic Silice
+
+author:
+  name: Santiago Saavedra
+  givenName: Santiago
+  familyName: Saavedra
+  github: ssaavedra
+  twitter: ssice
+  gplus: 113784949537624348716
+
+comments:
+  provider: static
+# provider: disqus
+#disqus:
+#  short_name: syntheticsilice
+
+analytics:
+  provider: google
+  google:
+    tracking_id: 'UA-672505-10'
+
+repo: http://github.com/ssaavedra/blog
+
+blogroll:
+  friends:
+    aquelando.info:
+      title: Aquelando
+      author: Marcos Chavarría
+      rel: met colleague co-resident friend
+      url: http://aquelando.info
+    sinveniracuento:
+      title: Sin Venir a Cuento
+      author: Daniel Valcarce
+      rel: met colleague neighbor friend
+      url: http://sinveniracuento.com
+    linealibre:
+      title: LineaLibre
+      author: Darío Penas
+      rel: met colleague friend
+      url: http://linealibre.com
+    quieroiralcine:
+      title: Quiero ir al cine
+      author: Sofía Prosper
+      rel: met sweetheart
+      url: http://quieroiralcine.wordpress.com/author/sofipros/
+    sahib:
+      title: Sahib.es
+      author: Sahib Vazquez
+      rel: met friend
+      url: http://sahib.es
+
