@@ -9,10 +9,10 @@
  <br />
 
   {% if page.previous %}
-    <p><a class="btn btn-mini" rel="prev" href='{{ page.previous.url }}'><i class="icon-chevron-left"></i> prev</a>
+    <p><a class="btn btn-mini" rel="prev" href='{{ page.previous.url }}'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
   {% endif %}
   {% if page.next %}
-  <a class="btn btn-mini" rel="next" href='{{ page.next.url }}'>next <i class="icon-chevron-right"></i></a></p>
+  <a class="btn btn-mini" rel="next" href='{{ page.next.url }}'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
   {% else %}
     </p>
     {% endif %}
@@ -28,13 +28,13 @@
   <br />
   -->
   
-  <p><i class="icon-list"></i> Posted in
+  <p><i class="glyphicon glyphicon-list"></i> Posted in
     {% for category in page.categories %}
       <a rel="dc:subject" class="category"
          href="/categories.html#{{ category | cgi_escape }}">{{ category }}</a>{% unless page.categories.last == category %}, {% endunless %}{% endfor %}.</p>
 
   <p>
-    <i class="icon-tag"></i>
+    <i class="glyphicon glyphicon-tag"></i>
     {% if page.tags[0] %}
      tags
       {% for tag in page.tags %}

@@ -5,9 +5,32 @@ date: 2013-01-01 23:05:00
 
 <div id="home">
   <h1>Blog Posts</h1>
+  <div class="posts">
+	  {% for post in site.posts %}
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>{{ post.date | date_to_string }}</time>
+			<a class="panel-title" href="{{ post.url }}">{{ post.title }}</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  {% if post.use_more %}
+			  {{ post.content | split: '<!-- more -->' | first }}
+			  {% else %}
+			  {{ post.excerpt }}
+			  {% endif %}
+
+			  <a href="{{ post.url }}">Read it</a>
+		  </div>
+
+	  </div>
+	  {% endfor %}
+  </div>
+  <!--
   <ul class="posts">
     {% for post in site.posts %}
       <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
     {% endfor %}
   </ul>
+  -->
 </div>

@@ -3,16 +3,16 @@ layout: default
 ---
 
 <div class="row">
-  <div class="span7 offset1">
-    <article>
-    {{ content }}
-    </article>
-  </div>
-  <div class="span4">
-    <div class="sidebar">
-      {% include sidebar.html %}
-    </div>
-  </div>
+	<div class="col-md-8">
+		<article>
+			{{ content }}
+		</article>
+        </div>
+	<div class="col-md-4">
+		<div class="sidebar">
+			{% include sidebar.html %}
+		</div>
+	</div>
 </div>
 
 {% include static_comments.html %}
