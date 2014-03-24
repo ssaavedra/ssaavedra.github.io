@@ -76,44 +76,55 @@ clean, expressive, and harmless.
 
 An assertion in this style is set as follows:
 
-    var something = null;
-	expect (something).to.be.null;
+{% highlight javascript %}
 
-	something = 5;
-	expect (something).to.equal (5);
-	expect (something).to.be.typeof ('number');
-	expect (new Error).to.be.instanceof (Error);
+var something = null;
+expect (something).to.be.null;
+
+something = 5;
+expect (something).to.equal (5);
+expect (something).to.be.typeof ('number');
+expect (new Error).to.be.instanceof (Error);
+
+{% endhighlight %}
 
 And (with chai-as-promised) it works great with promises, such as:
 
-	var promise = when (42);
+{% highlight javascript %}
+var promise = when (42);
 
-	// Assert that the promise is not rejected
-	expect (promise).to.be.eventually.fulfilled;
+// Assert that the promise is not rejected
+expect (promise).to.be.eventually.fulfilled;
 
-	// Assert things about the result given in the promise
-	expect (promise).to.be.eventually.typeof ('number');
-	expect (promise).to.eventually.equal (42);
+// Assert things about the result given in the promise
+expect (promise).to.be.eventually.typeof ('number');
+expect (promise).to.eventually.equal (42);
 
-	var promise = when ([]);
-	expect (promise).to.eventually.respondTo ('slice');
+var promise = when ([]);
+expect (promise).to.eventually.respondTo ('slice');
 
-	// Assert properties about objects created from a specified constructor
-	expect (Object).to.have.property ('prototype');
+// Assert properties about objects created from a specified constructor
+expect (Object).to.have.property ('prototype');
 
-    // Use on constructors themselves, not on created objects:
-	expect (Object).itself.to.respondTo ('create');
+// Use on constructors themselves, not on created objects:
+expect (Object).itself.to.respondTo ('create');
+{% endhighlight %}
+
 
 Don't you find it expressive?
 
 There's another flavour, called "should" which would go like this:
 
-	something = [];
+{% highlight javascript %}
 
-	something.should.be.an.instanceof (Array);
-	something.should.be.empty;
+something = [];
 
-	// And so on
+something.should.be.an.instanceof (Array);
+something.should.be.empty;
+
+// And so on
+
+{% endhighlight %}
 
 But I like that approach less because it pollutes the global namespace
 (making should a property of everything), and I am enlisted against
