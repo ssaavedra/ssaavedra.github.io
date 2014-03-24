@@ -66,6 +66,11 @@
         type="text/css" title="dark" />
   <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet"
         type="text/css"/>
+
+  <link href="/assets/css/hilight-light.css" rel="stylesheet"
+        type="text/css" />
+  <link href="/assets/css/hilight-light.css" rel="alternate stylesheet"
+        type="text/css" />
   <!-- Javascript needed for theme toggle, load immediately -->
   <script type="text/javascript" src="/assets/js/switch-css.js"></script>
   <script type="text/javascript">
@@ -76,16 +81,19 @@
 
   <body>
     <!-- Navbar  ================================================== -->
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" class="#">Synthetic Silice</a>
+    <div class="navbar-header">
       <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </a>
-      <div class="nav-collapse">
-        <ul class="nav">
+    </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
           <li class="active">
           <a href="/index.html">Home</a></li>
 
@@ -93,14 +101,14 @@
           <a rel="me" href="/about.html">About</a></li>
 
         </ul>
-      </div><!--/.nav-collapse -->
 
       <!-- Search site using Google's index -->
-      <form class="navbar-search pull-right" method="get" action="http://google.com/search">
-        <p>
+      <form class="navbar-form navbar-right" method="get" action="http://google.com/search">
           <input type="hidden" name="q" value="site:ssaavedra.github.io" />
-          <input type="text" class="search-query" name="q" />
-          <button class="btn btn-mini" type="submit"><i class="icon-search"></i></button>
+	  <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search..." name="q" />
+          </div>
+          <button class="btn btn-mini" type="submit"><i class="glyphicon glyphicon-search"></i></button>
         </p>
       </form>
       <!--
@@ -113,6 +121,7 @@
       </form>
       </div>
       -->
+      </div><!--/.nav-collapse -->
      </div> <!-- /container -->
    </div> <!-- /navbar-inner -->
  </div> <!-- /navbar -->
@@ -121,15 +130,114 @@
 
     <div class="container"> <!-- Responsive grid layout -->
 
-      <header class="jumbotron">
-  
-</header>
+      
 
 
 
 <div id="home">
   <h1>Blog Posts</h1>
+  <div class="posts">
+	  
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>24 Mar 2014</time>
+			<a class="panel-title" href="/2014/03/24/dont-use-vows.html">Reasons you should never use vows</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  
+			  <p>Dealing with a dynamic scripting language is great at some point, for
+prototyping and agile development; but, what about testing?</p>
+
+<p>You will need a testing framework, a JUnit/TestNG of sorts if you come
+from the Java world, and you want to rely on it for your testing,
+i.e., you want the testing framework to <em>just work</em>. I'll tell you now
+my experiences with VowsJS and how it failed miraculously in its duty
+for me.</p>
+
+
+			  
+
+			  <a href="/2014/03/24/dont-use-vows.html">Read it</a>
+		  </div>
+
+	  </div>
+	  
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>14 Feb 2014</time>
+			<a class="panel-title" href="/2014/02/14/gpul-board.html">New Board at GPUL</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  
+			  <p>Hi, today I'm honoured to let you all know that I have just been
+democraticlly elected President of <a href="http://gpul.org">GPUL</a>.</p>
+
+			  
+
+			  <a href="/2014/02/14/gpul-board.html">Read it</a>
+		  </div>
+
+	  </div>
+	  
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>04 Feb 2014</time>
+			<a class="panel-title" href="/2014/02/04/fosdem.html">FOSDEM 2014</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  
+			  <p>It's been an intense journey in this edition.  Last edition didn't
+generate a blogpost from me, I was too busy doing class stuff, and I
+when I managed it it was already too late.</p>
+
+			  
+
+			  <a href="/2014/02/04/fosdem.html">Read it</a>
+		  </div>
+
+	  </div>
+	  
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>19 Jun 2013</time>
+			<a class="panel-title" href="/2013/06/19/watch_dogs.html">Watch_Dogs (videojuego)</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  
+			  <p>Ya dije el año pasado <a href="https://twitter.com/ssice/status/209788244479578113">[1]</a> <a href="https://twitter.com/ssice/status/210001046452445186">[2]</a> que lo quería, pues ahora lo quiero más y más rápido.</p>
+
+			  
+
+			  <a href="/2013/06/19/watch_dogs.html">Read it</a>
+		  </div>
+
+	  </div>
+	  
+	  <div class="post panel panel-default">
+		  <div class="panel-heading">
+			<time>12 Jun 2013</time>
+			<a class="panel-title" href="/2013/06/12/welcome-to-jekyll.html">New Blog!</a>
+		  </div>
+
+		  <div class="my-excerpt panel-body">
+			  
+			  Hello world
+			  
+
+			  <a href="/2013/06/12/welcome-to-jekyll.html">Read it</a>
+		  </div>
+
+	  </div>
+	  
+  </div>
+  <!--
   <ul class="posts">
+    
+      <li><span>24 Mar 2014</span> &raquo; <a href="/2014/03/24/dont-use-vows.html">Reasons you should never use vows</a></li>
     
       <li><span>14 Feb 2014</span> &raquo; <a href="/2014/02/14/gpul-board.html">New Board at GPUL</a></li>
     
@@ -140,11 +248,13 @@
       <li><span>12 Jun 2013</span> &raquo; <a href="/2013/06/12/welcome-to-jekyll.html">New Blog!</a></li>
     
   </ul>
+  -->
 </div>
 
 
 <footer class="footer">
   <!-- ************* Buttons to toggle theme CSS ********************** -->
+  <!-- THIS IS NOT YET WORKING
     <div class="row">
       <div class="span12">
         <form style="font-size:10px" class="pull-right">
@@ -153,7 +263,7 @@
                       return false;"
              name="theme" value="dark" id="dark"
              class="btn btn-mini"><span class="showtooltip"
-                                        title="switch to dark theme"><i class="icon-adjust"></i>
+                                        title="switch to dark theme"><i class="glyphicon glyphicon-adjust"></i>
                                    </span></a>
 
           <a onclick="switch_style('light');
@@ -161,18 +271,19 @@
                       return false;"
              name="theme" value="light" id="light"
              class="btn btn-mini"><span class="showtooltip"
-                                        title="switch to light theme"><i class="icon-certificate"></i>
+                                        title="switch to light theme"><i class="glyphicon glyphicon-certificate"></i>
            <a onclick="switch_style('white');
                       recordOutboundLink(this, 'Outbound Links', 'white theme');
                       return false;"
              name="theme" value="white" id="white"
              class="btn btn-mini"><span class="showtooltip"
-                                        title="switch to white theme"><i class="icon-circle-blank"></i>
+                                        title="switch to white theme"><i class="glyphicon glyphicon-eye-open"></i>
                                   </span></a>
                                  </span></a>
         </form>
       </div>
     </div>
+    -->
 
 <!--************** FOAF information to social networks ***************************** -->
   <div class="row">

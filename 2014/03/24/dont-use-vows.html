@@ -8,7 +8,7 @@
 	xml:lang="en">
   <head>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-  <title>FOSDEM 2014</title>
+  <title>Reasons you should never use vows</title>
   <meta name="author" content="Santiago Saavedra" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -28,28 +28,28 @@
 <!-- Ideally we would want date originally created from the _oldest_ git commit too...-->
 
 <!-- HTML5 metadata -->
-<meta name="keywords" content="fosdem, free-software, open-source, event" />
+<meta name="keywords" content="javascript, flame, nodejs" />
 <meta name="description" content="" />
 <meta name="resource_type" content="website"/>
 <!-- RDFa Metadata (in DublinCore) -->
-<meta property="dc:title" content="FOSDEM 2014" />
+<meta property="dc:title" content="Reasons you should never use vows" />
 <meta property="dc:creator" content="Santiago Saavedra" />
-<meta property="dc:date" content="2014-02-04T16:05:00Z" />
+<meta property="dc:date" content="2014-03-24T13:01:00Z" />
 <meta property="dc:format" content="text/html" />
 <meta property="dc:language" content="en" />
-<meta property="dc:identifier" content="/2014/02/04/fosdem.html" />
+<meta property="dc:identifier" content="/2014/03/24/dont-use-vows.html" />
 <meta property="dc:rights" content="CC-By v3.0" />
 <meta property="dc:source" content="Synthetic Silice" />
 <meta property="dc:subject" content="Technology" />
 <meta property="dc:type" content="text" />
 <!-- RDFa Metadata (in OpenGraph) -->
-<meta property="og:title" content="FOSDEM 2014" />
+<meta property="og:title" content="Reasons you should never use vows" />
 <meta property="og:author" content="/index.html#me" />  <!-- Should be Liquid? URI? -->
 <meta property="http://ogp.me/ns/profile#first_name" content="Santiago"/>
 <meta property="http://ogp.me/ns/profile#last_name" content="Saavedra"/>
-<meta property="http://ogp.me/ns/article#published_time" content="2014-02-04T16:05:00Z" />
+<meta property="http://ogp.me/ns/article#published_time" content="2014-03-24T13:01:00Z" />
 <meta property="og:site_name" content="Synthetic Silice" /> <!-- Same as dc:source? -->
-<meta property="og:url" content="/2014/02/04/fosdem.html" />
+<meta property="og:url" content="/2014/03/24/dont-use-vows.html" />
 <meta property="og:type" content="website" />
 
 <!--NOTE: see also the COinS Metadata in span element in footer -->
@@ -132,7 +132,7 @@
 
       
 <!-- <header class="jumbotron"> -->
-  	<h1 class="entry-title">FOSDEM 2014</h1>
+  	<h1 class="entry-title">Reasons you should never use vows</h1>
   	
 <!-- </header> -->
 
@@ -142,49 +142,139 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>It's been an intense journey in this edition.  Last edition didn't
-generate a blogpost from me, I was too busy doing class stuff, and I
-when I managed it it was already too late.</p>
+			<p>Dealing with a dynamic scripting language is great at some point, for
+prototyping and agile development; but, what about testing?</p>
 
-<p>So, this year I'm committed to doing it.</p>
+<p>You will need a testing framework, a JUnit/TestNG of sorts if you come
+from the Java world, and you want to rely on it for your testing,
+i.e., you want the testing framework to <em>just work</em>. I'll tell you now
+my experiences with VowsJS and how it failed miraculously in its duty
+for me.</p>
 
-<p>FOSDEM is a MASSIVE event.</p>
+<!-- more -->
 
-<p>ULB is a large venue, but its classrooms are not as big (well, there
-are auditoriums, but there are not many).</p>
 
-<p>Anyway, in more than 500 speeches total, it's impossible to go to all
-of them.</p>
+<p>This hereby is my personal opinion and it may or may not represent the
+absolute reality.</p>
 
-<p>On the first day I went to the H.1302 talks in the morning, and to the
-Mozilla (UD2.218A) devroom after lunch. Then to Janson (Who ate my
-battery?) and then to the last talk in the Configuration Management
-track, about NixOS, which I think is a great project idea, although
-it's quite messy to rewrite all paths to all dependencies in the
-tree. (Info at nixos.org)</p>
+<p>I'm making a project which contains a lot of JavaScript for the server
+side, and I'm testing it on Node.js, because it's quite fast to do. Of
+course, as a Computer Science literate, or sort of, I <em>know</em> tests are
+meaningful, necessary and great for development itself, to test
+regressions and all of your workings. Even subconsciously, tests are
+great, because when you break something you may think "you've done
+work as to interfere in your previous work", but if you don't you may
+still think "your work is awesome: you didn't break anything".</p>
 
-<p>On the second day I met some guys working at CouchDB, RCouch and the
-maintainer of couchdb-python, who was very friendly to me.</p>
+<p>Use whatever phrase it feels for congratulating yourself: you're
+making progress.</p>
 
-<p>That was all informal and was possible thanks to Twitter :)</p>
+<p>But what happens when a test goes wrong?</p>
 
-<p>Anyway, that was after I was kicked from the JavaScript room when it
-went full while I went for a Kinder Bueno (I hadn't had breakfast that
-morning before).</p>
+<p>Well, different frameworks are different worlds, but I'll tell you
+what I think should happen.</p>
 
-<p>And after all of that I managed to get inside the Python room (which
-was very crowded all the time) (guys, next time make a bit more room
-for Python and Javascript).</p>
+<p>First, the test should be reported failing, or erroring, depending on whether
+assertions failed or unexpected stuff happened outside the testing
+environment (such as an API change, or a DB connection problem if we
+don't mock the storage layer when we're testing other stuff).</p>
 
-<p>Later I went to some other talks (Valgrind and GDB, etc.) and in the
-night, all GPUL members (and some others invited) had dinner together
-in a Belgian Restaurant. Quite expensive (IMHO) but the food was fine
-and I managed to meet Sebastian Dröge (thanks to Xavier R. Calvar),
-who actually did something related to my Master's Thesis for his, and
-we talked a bit about it.</p>
+<p>That sounds very obvious: the purporse of tests is to be known whether
+they pass.</p>
 
-<p>The next day FOSDEM was over, Sebastian was on his way by train and we
-used the day to take a ride around the city.</p>
+<p>But second, and I think it's of most importance, the reporter <strong>MUST</strong>
+tell you <em>what</em>'s failing, and <em>where</em>.</p>
+
+<p>Even if they don't tell you how to fix it (ha, that would be awesome
+BDD), knowing <strong>what</strong> fails is very important.</p>
+
+<p>So, well, Vows (currently) fails so much at it: advertised as a
+promise-friendly and asynchronous test framework, errors on async
+calls are not reported, and if you manage to get some reporting, it
+won't tell you where did the call come from (which is absolute
+nonsense if you have more than, let's say, two tests).</p>
+
+<p>I spent so much time actually <em>debugging</em> my test framework that it
+should just not happen. A testing framework is supposed to be a tool
+for others to use (when it's ready), and that's why I changed.</p>
+
+<p>I didn't research too much into it, but I went to mocha with chai and
+chai-as-promised to deal with promises in BDD-style, and I find it
+quite comfortable.</p>
+
+<p>Migrating my test battery took me like 15-20 minutes, most of which
+was making more assertions and in a better way, and a bit of changing
+the structure and then it just worked great.</p>
+
+<p>Besides, I like a lot more Chai's "expect" BDD idiom; I find it quite
+clean, expressive, and harmless.</p>
+
+<p>An assertion in this style is set as follows:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">null</span><span class="p">;</span>
+
+<span class="nx">something</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">5</span><span class="p">);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Error</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>And (with chai-as-promised) it works great with promises, such as:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+
+<span class="c1">// Assert that the promise is not rejected</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">;</span>
+
+<span class="c1">// Assert things about the result given in the promise</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">([]);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">&#39;slice&#39;</span><span class="p">);</span>
+
+<span class="c1">// Assert properties about objects created from a specified constructor</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span> <span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span>
+
+<span class="c1">// Use on constructors themselves, not on created objects:</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">itself</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">);</span>
+</code></pre></div>
+
+
+<p>Don't you find it expressive?</p>
+
+<p>There's another flavour, called "should" which would go like this:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="nx">something</span> <span class="o">=</span> <span class="p">[];</span>
+
+<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">empty</span><span class="p">;</span>
+
+<span class="c1">// And so on</span>
+</code></pre></div>
+
+
+<p>But I like that approach less because it pollutes the global namespace
+(making should a property of everything), and I am enlisted against
+the Global-Namespace Warming, for which the Global-Namespace Pollution
+and their greenhouse effect are quite to blame :)</p>
+
+<p>Anyway, I still think that polluting the namespaces in the tests is
+still less troublesome than using Vows. But yeah, there might be
+caveats, and that's why you should use expect instead ;)</p>
+
+<p>End of the rant.</p>
+
+<p>I really hope (seriously) for these words to be nonsense on some
+day. I hope vows gets more mature, bugs cleaned and features provided
+so that it can be used by people in my situation, who have not enough
+time to deal with the project plus the test framework at the same
+time; but currently this is how I felt when I tried to use it
+properly, and asynchronous.</p>
+
+<p>Cheers!</p>
 
 		</article>
         </div>
@@ -192,20 +282,20 @@ used the day to take a ride around the city.</p>
 		<div class="sidebar">
 			<aside xmlns:og="http://ogp.me/ns/article#">
   <p> <i class="icon-calendar"></i>
-    <time datetime="2014-02-04T16:05:00Z"
-    property="dc:created">04 Feb 2014</time></p>
+    <time datetime="2014-03-24T13:01:00Z"
+    property="dc:created">24 Mar 2014</time></p>
   <p><small> modified: <time
-            datetime="2014-02-04T00:00:00+01:00"
-            property="dc:modified">04 Feb 2014</time></small></p>
+            datetime="2014-03-24T00:00:00+01:00"
+            property="dc:modified">24 Mar 2014</time></small></p>
 
  <br />
 
   
-    <p><a class="btn btn-mini" rel="prev" href='/2013/06/19/watch_dogs.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
+    <p><a class="btn btn-mini" rel="prev" href='/2014/02/14/gpul-board.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
   
   
-  <a class="btn btn-mini" rel="next" href='/2014/02/14/gpul-board.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
-  
+    </p>
+    
 
   <br />
 
@@ -213,7 +303,7 @@ used the day to take a ride around the city.</p>
   <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
             return false;"
           class="btn btn-mini"
-          href="http://github.com/ssaavedra/blog/commits/master/_posts/2014-02-04-fosdem.markdown"><i class="icon-time"></i> history</a></p>
+          href="http://github.com/ssaavedra/blog/commits/master/_posts/2014-03-24-dont-use-vows.md"><i class="icon-time"></i> history</a></p>
 
   <br />
   -->
@@ -221,7 +311,7 @@ used the day to take a ride around the city.</p>
   <p><i class="glyphicon glyphicon-list"></i> Posted in
     
       <a rel="dc:subject" class="category"
-         href="/categories.html#event">event</a>.</p>
+         href="/categories.html#pfc">pfc</a>.</p>
 
   <p>
     <i class="glyphicon glyphicon-tag"></i>
@@ -230,19 +320,15 @@ used the day to take a ride around the city.</p>
       
       <!-- http://schema.org/BlogPosting/keywords -->
       <a rel="og:tag" class="tag"
-         href="/tags.html#fosdem">#fosdem</a>, 
+         href="/tags.html#javascript">#javascript</a>, 
       
       <!-- http://schema.org/BlogPosting/keywords -->
       <a rel="og:tag" class="tag"
-         href="/tags.html#free-software">#free-software</a>, 
+         href="/tags.html#flame">#flame</a>, 
       
       <!-- http://schema.org/BlogPosting/keywords -->
       <a rel="og:tag" class="tag"
-         href="/tags.html#open-source">#open-source</a>, 
-      
-      <!-- http://schema.org/BlogPosting/keywords -->
-      <a rel="og:tag" class="tag"
-         href="/tags.html#event">#event</a>
+         href="/tags.html#nodejs">#nodejs</a>
       
     
   </p>
@@ -251,7 +337,7 @@ used the day to take a ride around the city.</p>
 
   <!--
   Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/2014-02-04-fosdem.markdown/_posts/2014-02-04-fosdem.markdown"> _posts/2014-02-04-fosdem.markdown</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/2014-03-24-dont-use-vows.md/_posts/2014-03-24-dont-use-vows.md"> _posts/2014-03-24-dont-use-vows.md</a></small></p>
   -->
 
   <br/>
@@ -270,7 +356,7 @@ used the day to take a ride around the city.</p>
   
 
 
-<i class=icon-comments"></i> <a href="mailto:address?subject=Comment&body=%0D+From+post+/2014/02/04/fosdem.html", class="showtooltip", title="Comments are submitted by email and will appear when they are approved. Markdown & mathjax syntax welcome.">Leave a comment</a>
+<i class=icon-comments"></i> <a href="mailto:address?subject=Comment&body=%0D+From+post+/2014/03/24/dont-use-vows.html", class="showtooltip", title="Comments are submitted by email and will appear when they are approved. Markdown & mathjax syntax welcome.">Leave a comment</a>
 
 
 
@@ -353,7 +439,7 @@ used the day to take a ride around the city.</p>
           <span xmlns:dct="http://purl.org/dc/terms/"
             href="http://purl.org/dc/dcmitype/Text"
             property="dct:title"
-            rel="dct:type">FOSDEM 2014</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/2014/02/04/fosdem.html" property="cc:attributionName" rel="cc:attributionURL">Santiago Saavedra</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+            rel="dct:type">Reasons you should never use vows</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/2014/03/24/dont-use-vows.html" property="cc:attributionName" rel="cc:attributionURL">Santiago Saavedra</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
 
         </span>
       </p>
