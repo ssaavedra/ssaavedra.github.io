@@ -63,6 +63,48 @@ I spent so much time actually *debugging* my test framework that it
 should just not happen. A testing framework is supposed to be a tool
 for others to use (when it's ready), and that's why I changed.
 
+Besides, the style you use for testing is quite horrible (i.e., for a
+testing framework that is supposed to be async-friendly).
+
+Example:
+
+{% highlight javascript %}
+var unpromise = function (promise) {
+	var evt = new events.EventEmitter();
+	promise.then(function (v) {
+		evt.emit('success', v);
+	}, function (e) {
+		evt.emit('error', e);
+	});
+	return evt;
+}
+
+vows.describe('Create Identity')
+
+	.addBatch({
+		'when creating a new identity and generating keys first': {
+			topic: function () {
+				var v = new Identity();
+				console.log("I'm here!");
+				return v.generateKeys().then(v);
+			},
+
+			'we can now save it to the db': function (err, val) {
+				return unpromise(
+					val.then(function (doc) {
+						return doc.save();
+					}).then(function (doc) {
+						assert.isTrue (doc._id);
+					}));
+			}
+		},
+// ...
+{% endhighlight %}
+
+And yes, I had to write an "unpromise" method so that promises were
+sort of "converted" to events, or the test framework would silently
+fail or assume everything was OK without even testing the assertions.
+
 I didn't research too much into it, but I went to mocha with chai and
 chai-as-promised to deal with promises in BDD-style, and I find it
 quite comfortable.
