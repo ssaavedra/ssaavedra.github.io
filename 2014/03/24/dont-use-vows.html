@@ -198,6 +198,48 @@ nonsense if you have more than, let's say, two tests).</p>
 should just not happen. A testing framework is supposed to be a tool
 for others to use (when it's ready), and that's why I changed.</p>
 
+<p>Besides, the style you use for testing is quite horrible (i.e., for a
+testing framework that is supposed to be async-friendly).</p>
+
+<p>Example:</p>
+
+<div class="highlight"><pre><code class="javascript"><span class="kd">var</span> <span class="nx">unpromise</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">events</span><span class="p">.</span><span class="nx">EventEmitter</span><span class="p">();</span>
+    <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+    <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="k">return</span> <span class="nx">evt</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Create Identity&#39;</span><span class="p">)</span>
+
+    <span class="p">.</span><span class="nx">addBatch</span><span class="p">({</span>
+        <span class="s1">&#39;when creating a new identity and generating keys first&#39;</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">topic</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+                <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Identity</span><span class="p">();</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;I&#39;m here!&quot;</span><span class="p">);</span>
+                <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">generateKeys</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
+            <span class="p">},</span>
+
+            <span class="s1">&#39;we can now save it to the db&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">return</span> <span class="nx">unpromise</span><span class="p">(</span>
+                    <span class="nx">val</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">return</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
+                    <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="nx">assert</span><span class="p">.</span><span class="nx">isTrue</span> <span class="p">(</span><span class="nx">doc</span><span class="p">.</span><span class="nx">_id</span><span class="p">);</span>
+                    <span class="p">}));</span>
+            <span class="p">}</span>
+        <span class="p">},</span>
+<span class="c1">// ...</span>
+</code></pre></div>
+
+
+<p>And yes, I had to write an "unpromise" method so that promises were
+sort of "converted" to events, or the test framework would silently
+fail or assume everything was OK without even testing the assertions.</p>
+
 <p>I didn't research too much into it, but I went to mocha with chai and
 chai-as-promised to deal with promises in BDD-style, and I find it
 quite comfortable.</p>
