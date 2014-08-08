@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:dc="http://purl.org/dc/terms/"
+	xmlns:foaf="http://xmlns.com/foaf/0.1/"
+	xmlns:og="http://ogp.me/ns#"
+	lang="en"
+	xml:lang="en">
+  <head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <title>Why packs make git even greater</title>
+  <meta name="author" content="Santiago Saavedra" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+
+<!-- Get date last modified from git log. (Uses current time if file entry not found, e.g. projects/)  -->
+
+
+
+<!-- For posts, page.date is the date they are published under, which we use as their 'canonical' dc:date -->
+
+  
+  
+
+<!-- Posts declare modified timestamps in the sidebar, so would be redundant to put here. But then
+     pages don't have a dc:modified... unless we give them their own (modified) sidebar?
+-->
+<!-- Ideally we would want date originally created from the _oldest_ git commit too...-->
+
+<!-- HTML5 metadata -->
+<meta name="keywords" content="git, internals" />
+<meta name="description" content="" />
+<meta name="resource_type" content="website"/>
+<!-- RDFa Metadata (in DublinCore) -->
+<meta property="dc:title" content="Why packs make git even greater" />
+<meta property="dc:creator" content="Santiago Saavedra" />
+<meta property="dc:date" content="2014-04-05T18:01:00+02:00" />
+<meta property="dc:format" content="text/html" />
+<meta property="dc:language" content="en" />
+<meta property="dc:identifier" content="/2014/04/05/git-packs.html" />
+<meta property="dc:rights" content="CC-By v3.0" />
+<meta property="dc:source" content="Synthetic Silice" />
+<meta property="dc:subject" content="Technology" />
+<meta property="dc:type" content="text" />
+<!-- RDFa Metadata (in OpenGraph) -->
+<meta property="og:title" content="Why packs make git even greater" />
+<meta property="og:author" content="/index.html#me" />  <!-- Should be Liquid? URI? -->
+<meta property="http://ogp.me/ns/profile#first_name" content="Santiago"/>
+<meta property="http://ogp.me/ns/profile#last_name" content="Saavedra"/>
+<meta property="http://ogp.me/ns/article#published_time" content="2014-04-05T18:01:00+02:00" />
+<meta property="og:site_name" content="Synthetic Silice" /> <!-- Same as dc:source? -->
+<meta property="og:url" content="/2014/04/05/git-packs.html" />
+<meta property="og:type" content="website" />
+
+<!--NOTE: see also the COinS Metadata in span element in footer -->
+
+
+
+
+  <!-- CSS Stylesheets (toggled with javascript) -->
+  <link href="/assets/css/bootstrap.css" rel="stylesheet"
+        type="text/css" title="white" />
+  <link href="/assets/css/light.css" rel="alternate stylesheet"
+        type="text/css" id="stl" title="light" />
+  <link href="/assets/css/dark.css" rel="alternate stylesheet"
+        type="text/css" title="dark" />
+  <link href="/assets/css/bootstrap-responsive.css" rel="stylesheet"
+        type="text/css"/>
+
+  <link href="/assets/css/hilight-light.css" rel="stylesheet"
+        type="text/css" />
+  <link href="/assets/css/hilight-light.css" rel="alternate stylesheet"
+        type="text/css" />
+  <!-- Javascript needed for theme toggle, load immediately -->
+  <script type="text/javascript" src="/assets/js/switch-css.js"></script>
+  <script type="text/javascript">
+    set_style_from_cookie();
+  </script>
+</head>
+
+
+  <body>
+    <!-- Navbar  ================================================== -->
+<div class="navbar navbar-default">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" class="#">Synthetic Silice</a>
+    <div class="navbar-header">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+          <li>
+          <a href="/index.html">Home</a></li>
+
+          <li>
+          <a rel="me" href="/about.html">About</a></li>
+
+        </ul>
+
+      <!-- Search site using Google's index -->
+      <form class="navbar-form navbar-right" method="get" action="http://google.com/search">
+          <input type="hidden" name="q" value="site:ssaavedra.github.io" />
+	  <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search..." name="q" />
+          </div>
+          <button class="btn btn-mini" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+        </p>
+      </form>
+      <!--
+      <div id="search">
+      <form method="get" class="navbar-search pull-right form-search">
+        <p>
+        <input type="text" name="search-text" id="search-text">
+         <button class="btn btn-mini" type="submit"><i class="icon-search"></i></button>
+        </p>
+      </form>
+      </div>
+      -->
+      </div><!--/.nav-collapse -->
+     </div> <!-- /container -->
+   </div> <!-- /navbar-inner -->
+ </div> <!-- /navbar -->
+
+
+
+    <div class="container"> <!-- Responsive grid layout -->
+
+      
+<!-- <header class="jumbotron"> -->
+  	<h1 class="entry-title">Why packs make git even greater</h1>
+  	
+<!-- </header> -->
+
+
+
+
+<div class="row">
+	<div class="col-md-8">
+		<article>
+			<p>Ok, so Git is an astounding version control system, and there's no
+doubt about is speed, but what's beneath the trunk so that it can get
+so fast?</p>
+
+<p>Well, many things are greatly optimized, starting with the object
+structure, but today let's talk about git packs.</p>
+
+<!-- more -->
+
+
+<p>Git packs are files that are automatically created by git in order to
+reduce space and I/O bandwidth in ways that should be very notorious
+in any large-history project, but also in some other edge cases.</p>
+
+<p>To understand where do git packs fit let's first look at how are
+changes in git tracked in the first place.</p>
+
+<p>Plainly, git's backing store for content itself is a folder structure
+in <code>.git/objects</code>.</p>
+
+<p>Git stores mainly 3 kinds of objects: <code>commit</code>s, <code>blob</code>s, and <code>tree</code>s.</p>
+
+<p>Let's explain each a little bit:</p>
+
+<dl>
+<dt>commit</dt>
+<dd>
+A commit is a type of object containing the author, date, the commit
+message, the parent (or parents, in case of a merge), and one or more
+`tree`s, which represent folders of changes.
+</dd>
+<dt>tree</dt>
+<dd>
+There's at least one tree per non-empty commit, and a tree is a
+structure used to group more trees and blobs. Think of trees as git's
+representation of folders. Trees contain hash references to other
+trees and blobs, as well as the subtree/blob name and its access mode
+(i.e., if it is a symlink, an executable file, a regular file...)
+</dd>
+<dt>blob</dt>
+<dd>
+A blob represents a non-structured content. Git expects files' contents
+to be saved as blobs.
+</dd>
+</dl>
+
+
+<p>So, given these definitions, and a repository such as this:</p>
+
+<div class="highlight"><pre><code class="language-text" data-lang="text">% ls -a
+
+.  ..  .git  file1 file2 file3
+%</code></pre></div>
+
+
+<p>Let's suppose we have just done a <code>git init .</code>, but we haven't done
+anything yet.</p>
+
+<p>Now you can ask yourself what will happen to git's object store if you do
+<code>git add . &amp;&amp; git commit -m "Initial commit"</code>.</p>
+
+<p>Well, some objects will be created, namely:</p>
+
+<ul>
+<li>Three blobs, one per file, with the contents of each file</li>
+<li>A tree for the <code>/</code> folder of the repository, which will encapsulate the three former blobs</li>
+<li>One commit with the "Initial commit" message, date, author and an entry to the tree</li>
+</ul>
+
+
+<p>Now, git will seem to be fast enough, becase our computers are
+actually quite fast, but it's not the best way of tracking files.</p>
+
+<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit
+-m "file1 mod"</code>, we would be storing both versions of file1 fully.</p>
+
+<p>But modifications usually don't alter much the file completely, so that's a waste of space!</p>
+
+<p>Git can perform a lot better in this.</p>
+
+<p>Each time we add a file git computes the blob object that corresponds
+to that file, as well as the necessary tree to keep the staging area
+consistent (the staging area has the "root tree" of the next commit).</p>
+
+<p>When the files are stored in that way, we say they are "loose
+objects", because they are not packed.</p>
+
+<p>But then, there would be a waste, both of physical space and bandwidth
+whenever we pushed some refs, because transfering files involves a lot
+of metadata which isn't important for the commit.</p>
+
+<p>So there are git packs, which is a format that can store several
+objects in a single file, and index it by object in a separate index
+file.</p>
+
+<p>Packs can be computed either for references missing from a repo (when
+pushing, so that only missing references are transmitted, and that's
+done in a way that at the receiving end the packs can be more
+efficiently repacked), or for existing references, in order to save
+space.</p>
+
+<p>Part of the packing mechanics also split the blobs in deltas, in a way
+such that a blob can be resolved as <em>baseblob</em> + <em>delta</em>. Then, a
+single-line change in a 10KB source file will just result in a
+line-change blob plus one 10KB blob, and not two 10KB blob.</p>
+
+<p>Git can also apply deltas to already-deltaified blobs, with a depth
+chain that is customizable, but that is usually limited by default to
+50 when running <code>git repack</code> by default so that the unpacking side is
+not too hard.</p>
+
+<p>Oh, and besides, the packs are compressed with zlib, so text gets
+<strong>really</strong> compressed.</p>
+
+<!--
+
+For the sake of a better demonstration, I'll lend you here a script
+which will create 10, 5 and 4 folders, nested, and then 100 files on
+each of ~5kb, all text.
+
+
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="k">for</span> f in <span class="sb">`</span>seq <span class="m">1</span> 10<span class="sb">`</span><span class="p">;</span> <span class="k">do</span> mkdir <span class="nv">$f</span><span class="p">;</span>
+        <span class="k">for</span> ff in <span class="sb">`</span>seq <span class="m">1</span> 100<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+            dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>.txt
+        <span class="k">done</span>
+        <span class="k">for</span> ff in <span class="sb">`</span>seq <span class="m">1</span> 5<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+            mkdir <span class="nv">$f</span>/<span class="nv">$ff</span>
+            <span class="k">for</span> fff in <span class="sb">`</span>seq <span class="m">1</span> 100<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+                dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>.txt
+            <span class="k">done</span>
+            <span class="k">for</span> fff in <span class="sb">`</span>seq <span class="m">1</span> 4<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+                mkdir <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>
+                <span class="k">for</span> ffff in <span class="sb">`</span>seq <span class="m">1</span> 100<span class="sb">`</span><span class="p">;</span> <span class="k">do</span>
+                    dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span><span class="m">2</span> <span class="p">|</span> base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>/<span class="nv">$ffff</span>.txt
+                <span class="k">done</span>
+            <span class="k">done</span>
+        <span class="k">done</span>
+    <span class="k">done</span></code></pre></div>
+
+
+A structure such as this will be of a rough 100 MB.
+
+Let's create a repo with this. Git add . will take a painful
+lot. Well, because it's 100MB to read from disk and in tiny bits, so
+lot's of blocks to read, which can be allocated over the surface of
+the plates.
+
+Let's commit it. The commit is fairly quick, because the changes are already created in the index.
+
+Let's look at git's object database size:
+
+    % du -hs .git/objects
+    103M     .git/objects
+    %
+
+Ok, so it's mostly a 1:1 size.
+
+Why?
+
+Well, because we actually have one tree per folder and one blob per file, with the full contents of each.
+
+Let's pack it all in the efficient's way.
+
+    % git repack -a -d -f -F
+    Counting objects: 26262, done.
+    Delta compression using up to 2 threads.
+    Compressing objects: 100% (26262/26262), done.
+    Writing objects: 100% (26262/26262), done.
+    Total 26262 (delta 0), reused 0 (delta 0)
+    % du -hs .git/objects
+    55M      .git/objects
+    %
+
+Woah.
+
+So, yes. Git can in some cases actually save *all* the history and
+your whole files while using *less* space than the single working copy
+you have; i.e., git can pack its files in an efficient, lossless, and
+equally safe way.
+
+How can git do such magic?
+
+Well, it's not *so* magic, in fact, if you tar and gz the repo files
+that's roughly the size you'd get, because that's part of what git
+does behind the scenes. However, with multiple commits git does even
+more than gz. It's more like gz + incremental-tar in steroids.
+
+We happened to have generated our files in a random fashion, which
+will usually not happen (i.e., variable names will repeat, the
+licensing block at the top of the code will repeat and so on). In
+those cases, the blob which creates those headers can be only put
+once, saving even more space.
+
+-->
+
+
+<p>So, what makes packs fast?</p>
+
+<ol>
+<li>Space. As they use less space than uncompressed blobs, they are read from disk much faster.</li>
+<li>Indexing. Packs consist on two files (X.pack and X.idx), and the index file allows for random-access to the pack as if it were a list of files in the filesystem, except the index is already computed, so no jumping between inodes.</li>
+<li>Deduplication. Changes that can be reduced as deltas to other changes are arranged in that way, so that the base change is not duplicated, and thus improving file space.</li>
+</ol>
+
+
+<p>For most operations in git, the worst part of it is traversing the
+object store and finding the related links. With packs, most of that
+can be random-accessed much faster due to the index.</p>
+
+<p>Besides, there's a lot less space wasted in internal fragmentation due
+to filesystem's block size (even if ext4 and company help with that in
+some cases with their inline extents), but by using a single file for
+the whole pack, a 50MB pack file is a lot more efficient than 15000
+random-size-not-multiple-of-4kb objects.</p>
+
+		</article>
+        </div>
+	<div class="col-md-4">
+		<div class="sidebar">
+			<aside xmlns:og="http://ogp.me/ns/article#">
+  <p> <i class="icon-calendar"></i>
+    <time datetime="2014-04-05T18:01:00+02:00"
+    property="dc:created">05 Apr 2014</time></p>
+  <p><small> modified: <time
+            datetime="2014-04-05T00:00:00+02:00"
+            property="dc:modified">05 Apr 2014</time></small></p>
+
+ <br />
+
+  
+    <p><a class="btn btn-mini" rel="prev" href='/2014/03/24/dont-use-vows.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
+  
+  
+  <a class="btn btn-mini" rel="next" href='/2014/08/07/no-problem-amdefine.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
+  
+
+  <br />
+
+  <!--
+  <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
+            return false;"
+          class="btn btn-mini"
+          href="http://github.com/ssaavedra/blog/commits/master/_posts/2014-04-05-git-packs.md"><i class="icon-time"></i> history</a></p>
+
+  <br />
+  -->
+  
+  <p><i class="glyphicon glyphicon-list"></i> Posted in
+    
+      <a rel="dc:subject" class="category"
+         href="/categories.html#vcs">vcs</a>.</p>
+
+  <p>
+    <i class="glyphicon glyphicon-tag"></i>
+    
+     tags
+      
+      <!-- http://schema.org/BlogPosting/keywords -->
+      <a rel="og:tag" class="tag"
+         href="/tags.html#git">#git</a>, 
+      
+      <!-- http://schema.org/BlogPosting/keywords -->
+      <a rel="og:tag" class="tag"
+         href="/tags.html#internals">#internals</a>
+      
+    
+  </p>
+
+  <br/>
+
+  <!--
+  Not working without git_sha plugin
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/2014-04-05-git-packs.md/_posts/2014-04-05-git-packs.md"> _posts/2014-04-05-git-packs.md</a></small></p>
+  -->
+
+  <br/>
+
+  
+
+
+</aside>
+
+		</div>
+	</div>
+</div>
+
+
+
+  
+
+
+<i class=icon-comments"></i> <a href="mailto:address?subject=Comment&body=%0D+From+post+/2014/04/05/git-packs.html", class="showtooltip", title="Comments are submitted by email and will appear when they are approved. Markdown & mathjax syntax welcome.">Leave a comment</a>
+
+
+
+<!--
+{X include disqus.html %}
+-->
+
+
+
+<footer class="footer">
+  <!-- ************* Buttons to toggle theme CSS ********************** -->
+  <!-- THIS IS NOT YET WORKING
+    <div class="row">
+      <div class="span12">
+        <form style="font-size:10px" class="pull-right">
+          <a onclick="switch_style('dark');
+                      recordOutboundLink(this, 'Outbound Links', 'dark theme');
+                      return false;"
+             name="theme" value="dark" id="dark"
+             class="btn btn-mini"><span class="showtooltip"
+                                        title="switch to dark theme"><i class="glyphicon glyphicon-adjust"></i>
+                                   </span></a>
+
+          <a onclick="switch_style('light');
+                      recordOutboundLink(this, 'Outbound Links', 'light theme');
+                      return false;"
+             name="theme" value="light" id="light"
+             class="btn btn-mini"><span class="showtooltip"
+                                        title="switch to light theme"><i class="glyphicon glyphicon-certificate"></i>
+           <a onclick="switch_style('white');
+                      recordOutboundLink(this, 'Outbound Links', 'white theme');
+                      return false;"
+             name="theme" value="white" id="white"
+             class="btn btn-mini"><span class="showtooltip"
+                                        title="switch to white theme"><i class="glyphicon glyphicon-eye-open"></i>
+                                  </span></a>
+                                 </span></a>
+        </form>
+      </div>
+    </div>
+    -->
+
+<!--************** FOAF information to social networks ***************************** -->
+  <div class="row">
+    <div class="span3 socialicons" style="font-size:20px" typeof="foaf:Person" about="#me">
+      <p>
+          <span class='showtooltip' title='DM me via Twitter if you need my email'><i class='icon-envelope-alt'></i></span></a>
+          <a rel="foaf:account" alt="twitter" href="https://twitter.com/ssice"
+             onclick="recordOutboundLink(this, 'Outbound Links', 'Twitter');
+             return false;"><span class="showtooltip" title="follow me on twitter (mostly in spanish)"><i class="icon-twitter"></i></span></a>
+          <a rel="foaf:account" alt="github" href="https://github.com/ssaavedra"
+             onclick="recordOutboundLink(this, 'Outbound Links', 'Github');
+             return false;"><span class="showtooltip" title="follow me on Github (code, research)"><i class="icon-github"></i></span></a>
+
+          <a rel="foaf:account" href="https://plus.google.com/113784949537624348716"
+             onclick="recordOutboundLink(this, 'Outbound Links', 'GPlus');
+             return false;"><i class="icon-google-plus"></i></a>
+      <a alt="rss" type="application/atom+xml" href="/atom.xml"
+         class="showtooltip" title="subscribe to RSS feeds for my open lab notebook"
+         onclick="recordOutboundLink(this, 'Outbound Links', 'RSS');
+         return false;"><i class="icon-rss"></i></a>
+       </p>
+    </div>
+    <!--**************** End social links **************************** -->
+    <div class="span1">
+      <br />
+    </div>
+
+    <div class="span5">
+      <a href="http://gmpg.org/xfn"> <img src="http://gmpg.org/xfn/xfn-btn.gif" alt="XFN Friendly" /> </a>
+      <br />
+    </div>
+    <div class="span3">
+      <p>
+
+        <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/" onclick="recordOutboundLink(this, 'Outbound Links', 'CC'); return false;"><img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-sa/3.0/88x31.png" /></a><br />
+
+        <span style="opacity: 0.9; font-size: 0.8em">
+
+          <span xmlns:dct="http://purl.org/dc/terms/"
+            href="http://purl.org/dc/dcmitype/Text"
+            property="dct:title"
+            rel="dct:type">Why packs make git even greater</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/2014/04/05/git-packs.html" property="cc:attributionName" rel="cc:attributionURL">Santiago Saavedra</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+
+        </span>
+      </p>
+    </div>
+
+  </div>
+</footer>
+
+
+
+
+    <!-- Le javascript
+    ================================================== -->
+
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!-- JQuery, used on a few pages -->
+    <script type="text/javascript" src="/assets/js/jquery.js"></script>
+    <!-- Equations using MathJax -->
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config"> MathJax.Hub.Config({ TeX: { equationNumbers: {autoNumber: "all"} } });       </script>
+    <!-- Twitter Bootstrap Javascript -->
+    <script src="/assets/js/bootstrap.min.js"></script>
+    <!-- Tooltip javascript -->
+    <script type="text/javascript">
+      $(document).ready(function (){
+        $(".showtooltip").tooltip();
+      });
+    </script>
+
+    <!-- Marran's Search Javascript -->
+    <script type="text/javascript" src="/assets/js/porter-stemmer.js"></script>
+    <script type="text/javascript" src="/assets/js/site-search.js"></script>
+
+    <!-- Code collapse Javascript -->
+    <script type="text/javascript">
+    $(document).ready(function(){
+      $("#toggle_code").click(function(){
+        $(".highlight").toggle();
+        $(".sourceCode").toggle();
+      });
+    });
+    </script>
+
+
+
+  <script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-672505-10', 'ssaavedra.github.io');
+	ga('require', 'linkid', 'linkid.js');
+	ga('require', 'displayfeatures');
+	ga('send', 'pageview');
+  </script>
+
+
+
+<script type="text/javascript">
+function recordOutboundLink(link, category, action) {
+  try {
+    ga('send', 'event', category, action);
+  }catch(err){}
+}
+</script>
+
+
+
+    
+
+
+    </div>
+  </body>
+</html>
+
