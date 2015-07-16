@@ -1,9 +1,12 @@
 ---
 layout: post
-title:  "What we do in the shadows"
-date:   2015-07-16 00:38:00
-categories: movies
-tags: movie review
+title: "What we do in the shadows"
+date: 2015-07-16T00:38:00
+categories:
+  - movies
+tags:
+  - movie
+  - review
 
 ---
 
