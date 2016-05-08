@@ -6,38 +6,73 @@ date: 2013-01-01 23:05:00
 ---
 
 <foaf:Person
-	xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-	xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#">
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   rdf:id="self">
 <p>
-My name is <foaf:name>Santiago Saavedra</foaf:name> (aka <foaf:nick>ssaavedra</foaf:nick> in <a rel="me" href="https://github.com/ssaavedra">GitHub</a> and <foaf:nick>ssice</foaf:nick> in <a rel="me" href="https://twitter.com/ssice">Twitter</a>). I'm a 4th year student of <foaf:interest><rdf:Description rdf:about="http://acm.org" rdfs:label="Computer Science" /></foaf:interest> in the <foaf:schoolHomepage><a href="http://www.udc.es">University of A Coruña</a></foaf:schoolHomepage>.
+  My name is <foaf:name>Santiago Saavedra</foaf:name> (aka <foaf:nick>ssaavedra</foaf:nick> in <a rel="me" href="https://github.com/ssaavedra">GitHub</a> and <foaf:nick>ssice</foaf:nick> in <a rel="me" href="https://twitter.com/ssice">Twitter</a>). I'm a <foaf:interest><rdf:Description rdf:about="http://acm.org" rdfs:label="Computer Science" />Computer Scientist</foaf:interest> graduated at <foaf:schoolHomepage><a href="http://www.udc.es">University of A Coruña</a></foaf:schoolHomepage>.
 </p>
 
-<p>
-I'm a member of the <foaf:member><foaf:Group><foaf:name>Group of Linux Users and Programmers (GPUL)</foaf:name></foaf:Group></foaf:member> and I've been part of the Local Team during the GUADEC 2012 organization in A Coruña.
-</p>
+<foaf:currentProject>
+<foaf:Project>
+    <foaf:Organization>
+      <p>I'm currently a Research Assistant
+	at
+	<foaf:workplaceHomepage rdf:resource="http://gdp.sip.ucm.es">
+	  <a href="http://gpd.sip.ucm.es">
+	    GPD - Complutense University of Madrid
+	  </a>
+	</foaf:workplaceHomepage>
 
-<p>
-I have a passion for computer science, technology, instrumental music and information.</p>
+	for a project called
+	<foaf:name>CAVI-ART</foaf:name>, where I work on a validation
+	assistant for formally proving programs.
+      </p>
+    </foaf:Organization>
+</foaf:Project>
 
-<p>
-	I have some friends with blogs too!
-
-	{% if site.blogroll %}
-	<ul>
-	{% for ablog in site.blogroll.friends %}
-	{% assign name = ablog[0] %}
-	{% assign blog = ablog[1] %}
-	<li>
-		<a rel="{{blog.rel}}" href="{{blog.url}}">
-			{{ blog.title }}
-		</a>
-	</li>
-	{% endfor %}
-	</ul>
-	{% endif %}
-</p>
-
+<foaf:Project>
+  <p>
+    I'm also the President of the
+    <foaf:Organization>
+      <foaf:name>
+	<a href="https://gpul.org">Group of Linux Users and Programmers (GPUL)</a>
+      </foaf:name>
+      <foaf:workpaceHomepage rdf:resource="https://gpul.org" /> , a
+      non-profit based in A Coruña where we try to educate and
+      promote free software and free culture initiatives. Our latest
+      project is <a href="https://labs.gpul.org">GPUL Labs</a>, a space to
+      foster collective imagination and incubate free software projects.
+    </foaf:Organization>
+  </p>
+</foaf:Project>
+</foaf:currentProject>
 </foaf:Person>
+
+
+<p>
+I have a passion for computer science, technology, instrumental music
+and information.</p>
+
+<p>My favourite text editor is GNU Emacs.</p>
+
+<p>
+  My friends with blogs are these:
+
+  {% if site.blogroll %}
+  <ul>
+    {% for ablog in site.blogroll.friends %}
+    {% assign name = ablog[0] %}
+    {% assign blog = ablog[1] %}
+    <li>
+      <a rel="{{blog.rel}}" href="{{blog.url}}">
+	{{ blog.title }}
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+</p>
 
 <aside class="alert alert-info">
 	Note that this content is RDF/<a href="http://www.foaf-project.org/" class="showtooltip" title="Friend of a Friend">FOAF</a> and <a href="http://gmpg.org/xfn/" class="showtooltip" title="XHTML Friends Network">XFN</a>-annotated.
