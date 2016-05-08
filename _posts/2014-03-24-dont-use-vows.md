@@ -80,7 +80,6 @@ var unpromise = function (promise) {
 }
 
 vows.describe('Create Identity')
-
 	.addBatch({
 		'when creating a new identity and generating keys first': {
 			topic: function () {
@@ -88,7 +87,6 @@ vows.describe('Create Identity')
 				console.log("I'm here!");
 				return v.generateKeys().then(v);
 			},
-
 			'we can now save it to the db': function (err, val) {
 				return unpromise(
 					val.then(function (doc) {
