@@ -38,7 +38,7 @@
 <meta property="dc:format" content="text/html" />
 <meta property="dc:language" content="en" />
 <meta property="dc:identifier" content="/2014/03/24/dont-use-vows.html" />
-<meta property="dc:rights" content="CC-By v3.0" />
+<meta property="dc:rights" content="CC-By-SA v3.0" />
 <meta property="dc:source" content="Synthetic Silice" />
 <meta property="dc:subject" content="Technology" />
 <meta property="dc:type" content="text" />
@@ -203,27 +203,25 @@ testing framework that is supposed to be async-friendly).</p>
 
 <p>Example:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unpromise</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unpromise</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">events</span><span class="p">.</span><span class="nx">EventEmitter</span><span class="p">();</span>
     <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;success&#39;</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
+        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'success'</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
     <span class="p">},</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">&#39;error&#39;</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+        <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="k">return</span> <span class="nx">evt</span><span class="p">;</span>
-<span class="p">}</span>
+<span class="p">}</span></p>
 
-<span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">&#39;Create Identity&#39;</span><span class="p">)</span>
-
+<p><span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">'Create Identity'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">addBatch</span><span class="p">({</span>
-        <span class="s1">&#39;when creating a new identity and generating keys first&#39;</span><span class="o">:</span> <span class="p">{</span>
-            <span class="nx">topic</span><span class="o">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="s1">'when creating a new identity and generating keys first'</span><span class="p">:</span> <span class="p">{</span>
+            <span class="nl">topic</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Identity</span><span class="p">();</span>
-                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;I&#39;m here!&quot;</span><span class="p">);</span>
+                <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"I'm here!"</span><span class="p">);</span>
                 <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">generateKeys</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
             <span class="p">},</span>
-
-            <span class="s1">&#39;we can now save it to the db&#39;</span><span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
+            <span class="s1">'we can now save it to the db'</span><span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">val</span><span class="p">)</span> <span class="p">{</span>
                 <span class="k">return</span> <span class="nx">unpromise</span><span class="p">(</span>
                     <span class="nx">val</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">doc</span><span class="p">)</span> <span class="p">{</span>
                         <span class="k">return</span> <span class="nx">doc</span><span class="p">.</span><span class="nx">save</span><span class="p">();</span>
@@ -232,8 +230,7 @@ testing framework that is supposed to be async-friendly).</p>
                     <span class="p">}));</span>
             <span class="p">}</span>
         <span class="p">},</span>
-<span class="c1">// ...</span></code></pre></div>
-
+<span class="c1">// ...</span></code></pre></figure></p>
 
 <p>And yes, I had to write an "unpromise" method so that promises were
 sort of "converted" to events, or the test framework would silently
@@ -252,47 +249,44 @@ clean, expressive, and harmless.</p>
 
 <p>An assertion in this style is set as follows:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">null</span><span class="p">;</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">null</span><span class="p">;</span></p>
 
-<span class="nx">something</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<p><span class="nx">something</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">5</span><span class="p">);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Error</span><span class="p">);</span></code></pre></div>
-
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Error</span><span class="p">);</span></code></pre></figure></p>
 
 <p>And (with chai-as-promised) it works great with promises, such as:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span></p>
 
-<span class="c1">// Assert that the promise is not rejected</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">;</span>
+<p><span class="c1">// Assert that the promise is not rejected</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">;</span></p>
 
-<span class="c1">// Assert things about the result given in the promise</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">&#39;number&#39;</span><span class="p">);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
+<p><span class="c1">// Assert things about the result given in the promise</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span></p>
 
-<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">([]);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">&#39;slice&#39;</span><span class="p">);</span>
+<p><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">([]);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'slice'</span><span class="p">);</span></p>
 
-<span class="c1">// Assert properties about objects created from a specified constructor</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span> <span class="p">(</span><span class="s1">&#39;prototype&#39;</span><span class="p">);</span>
+<p><span class="c1">// Assert properties about objects created from a specified constructor</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span> <span class="p">(</span><span class="s1">'prototype'</span><span class="p">);</span></p>
 
-<span class="c1">// Use on constructors themselves, not on created objects:</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">itself</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">&#39;create&#39;</span><span class="p">);</span></code></pre></div>
-
+<p><span class="c1">// Use on constructors themselves, not on created objects:</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">itself</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'create'</span><span class="p">);</span></code></pre></figure></p>
 
 <p>Don't you find it expressive?</p>
 
 <p>There's another flavour, called "should" which would go like this:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">something</span> <span class="o">=</span> <span class="p">[];</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">something</span> <span class="o">=</span> <span class="p">[];</span></p>
 
-<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
-<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">empty</span><span class="p">;</span>
+<p><span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">empty</span><span class="p">;</span></p>
 
-<span class="c1">// And so on</span></code></pre></div>
-
+<p><span class="c1">// And so on</span></code></pre></figure></p>
 
 <p>But I like that approach less because it pollutes the global namespace
 (making should a property of everything), and I am enlisted against
@@ -341,7 +335,7 @@ properly, and asynchronous.</p>
   <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
             return false;"
           class="btn btn-mini"
-          href="http://github.com/ssaavedra/blog/commits/master/_posts/2014-03-24-dont-use-vows.md"><i class="icon-time"></i> history</a></p>
+          href="http://github.com/ssaavedra/blog/commits/master/_posts/_posts/2014-03-24-dont-use-vows.md"><i class="icon-time"></i> history</a></p>
 
   <br />
   -->
@@ -375,7 +369,7 @@ properly, and asynchronous.</p>
 
   <!--
   Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/2014-03-24-dont-use-vows.md/_posts/2014-03-24-dont-use-vows.md"> _posts/2014-03-24-dont-use-vows.md</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/_posts/2014-03-24-dont-use-vows.md/_posts/_posts/2014-03-24-dont-use-vows.md"> _posts/_posts/2014-03-24-dont-use-vows.md</a></small></p>
   -->
 
   <br/>

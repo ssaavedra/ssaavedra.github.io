@@ -38,7 +38,7 @@
 <meta property="dc:format" content="text/html" />
 <meta property="dc:language" content="en" />
 <meta property="dc:identifier" content="/2014/08/07/no-problem-amdefine.html" />
-<meta property="dc:rights" content="CC-By v3.0" />
+<meta property="dc:rights" content="CC-By-SA v3.0" />
 <meta property="dc:source" content="Synthetic Silice" />
 <meta property="dc:subject" content="Technology" />
 <meta property="dc:type" content="text" />
@@ -183,23 +183,21 @@ provide both interfaces. And that's actually quite simple.</p>
 does, precisely. In short, let's assume you were developing
 node-style. The following could be a module.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span> <span class="p">};</span>
-<span class="cm">/* more code */</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="nx">spaghetti</span><span class="o">:</span> <span class="nx">code</span> <span class="p">};</span></code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
+<span class="cm">/<em> more code </em>/</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span></code></pre></figure></p>
 
 <p>Well, this module could be written in AMD style, this way:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
-<span class="p">}</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span></p>
 
-<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span> <span class="p">};</span>
-    <span class="cm">/* more code */</span>
-    <span class="k">return</span> <span class="p">{</span> <span class="nx">spaghetti</span><span class="o">:</span> <span class="nx">code</span> <span class="p">};</span>
-<span class="p">});</span></code></pre></div>
-
+<p><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
+    <span class="cm">/<em> more code </em>/</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
+<span class="p">});</span></code></pre></figure></p>
 
 <p>Easy enough. In short, you wrap all of your code inside a closure,
 which gets as an argument your  usual "require" function.</p>
@@ -213,18 +211,17 @@ code <strong>does</strong> depend on amdefine to work.</p>
 any module loader that you wish to work with, you could wrap your
 code, instead, with a function such as the following.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">define</span><span class="p">)</span> <span class="p">{</span>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">define</span><span class="p">)</span> <span class="p">{</span>
 <span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;fs&#39;</span><span class="p">);</span> <span class="p">};</span>
-    <span class="cm">/* more code */</span>
-    <span class="k">return</span> <span class="p">{</span> <span class="nx">spaghetti</span><span class="o">:</span> <span class="nx">code</span> <span class="p">};</span>
+    <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
+    <span class="cm">/<em> more code </em>/</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
 <span class="p">});</span>
-<span class="p">})(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">===</span> <span class="s1">&#39;function&#39;</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span>
-    <span class="o">?</span> <span class="nx">define</span>
-    <span class="o">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">})(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">===</span> <span class="s1">'function'</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span>
+    <span class="p">?</span> <span class="nx">define</span>
+    <span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">factory</span> <span class="p">(</span><span class="nx">require</span><span class="p">);</span>
-    <span class="p">});</span></code></pre></div>
-
+    <span class="p">});</span></code></pre></figure></p>
 
 <p>Ok, what this does is immediately on requiring of the module, the
 latest line is evaluated, and if <em>define</em> is already a function, then
@@ -258,17 +255,13 @@ read a few paragraphs above.</p>
 <p>I will reproduce the above code, and then I'll reproduce inverted's
 conditional.</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Sample amdefine code</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
-<span class="p">}</span></code></pre></div>
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Sample amdefine code</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span></code></pre></figure></p>
 
-
-
-
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// inverted&#39;s conditional</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span><span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span></code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// inverted's conditional</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span></code></pre></figure></p>
 
 <p>You may have required several attempts to find the missing <code>var</code>
 before <code>define =</code>.</p>
@@ -300,10 +293,9 @@ this old define.</p>
 
 <p>That is, you <strong>cannot</strong>, in the same file, do this:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">&#39;function&#39;</span><span class="p">)</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">define</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s1">&#39;amdefine&#39;</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span>
-<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">magic</span><span class="o">:</span> <span class="s1">&#39;code&#39;</span> <span class="p">};</span> <span class="p">});</span>
-<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="nx">nonmagic</span><span class="o">:</span> <span class="kc">null</span> <span class="p">};});</span></code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">define</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">magic</span><span class="p">:</span> <span class="s1">'code'</span> <span class="p">};</span> <span class="p">});</span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">nonmagic</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};});</span></code></pre></figure></p>
 
 <p>That is because <em>in node</em>, you declare and define the <code>define</code>
 function <strong>in each module</strong>, independently. You don't reuse
@@ -363,9 +355,8 @@ scope. As <em>var</em> declarations in JavaScript are independent of position
 respective scope and produce an equivalent program, the previous
 conditional is equivalent to:</p>
 
-<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">define</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s2">&quot;function&quot;</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre></div>
-
+<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">define</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre></figure></p>
 
 <p>And that magically performs two things:</p>
 
@@ -399,7 +390,7 @@ loader, as expected.</p>
     <p><a class="btn btn-mini" rel="prev" href='/2014/04/05/git-packs.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
   
   
-  <a class="btn btn-mini" rel="next" href='/2015/07/16/what-we-do-in-the-shadows.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
+  <a class="btn btn-mini" rel="next" href='/2015/07/16/on-organizing-the-akademy.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
   
 
   <br />
@@ -408,7 +399,7 @@ loader, as expected.</p>
   <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
             return false;"
           class="btn btn-mini"
-          href="http://github.com/ssaavedra/blog/commits/master/_posts/2014-08-08-no-problem-amdefine.md"><i class="icon-time"></i> history</a></p>
+          href="http://github.com/ssaavedra/blog/commits/master/_posts/_posts/2014-08-08-no-problem-amdefine.md"><i class="icon-time"></i> history</a></p>
 
   <br />
   -->
@@ -438,7 +429,7 @@ loader, as expected.</p>
 
   <!--
   Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/2014-08-08-no-problem-amdefine.md/_posts/2014-08-08-no-problem-amdefine.md"> _posts/2014-08-08-no-problem-amdefine.md</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/_posts/2014-08-08-no-problem-amdefine.md/_posts/_posts/2014-08-08-no-problem-amdefine.md"> _posts/_posts/2014-08-08-no-problem-amdefine.md</a></small></p>
   -->
 
   <br/>
