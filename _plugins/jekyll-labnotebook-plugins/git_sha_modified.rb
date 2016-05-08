@@ -38,7 +38,7 @@ module Jekyll
       if(!File.exists?("gitdata.json"))
 
         ## Loop over posts 
-        site.posts.each do |post|
+        site.posts.docs.each do |post|
           begin
             path = '_posts/' + post.name
             modified = g.log(1).object(path).first.date
