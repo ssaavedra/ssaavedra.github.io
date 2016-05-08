@@ -8,7 +8,7 @@
 	xml:lang="en">
   <head>
   <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
-  <title>What we do in the shadows</title>
+  <title>What makes Common Lisp so great a language?</title>
   <meta name="author" content="Santiago Saavedra" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
@@ -28,28 +28,28 @@
 <!-- Ideally we would want date originally created from the _oldest_ git commit too...-->
 
 <!-- HTML5 metadata -->
-<meta name="keywords" content="movie, review" />
+<meta name="keywords" content="Opinion-based" />
 <meta name="description" content="" />
 <meta name="resource_type" content="website"/>
 <!-- RDFa Metadata (in DublinCore) -->
-<meta property="dc:title" content="What we do in the shadows" />
+<meta property="dc:title" content="What makes Common Lisp so great a language?" />
 <meta property="dc:creator" content="Santiago Saavedra" />
-<meta property="dc:date" content="2015-07-16T02:38:00+02:00" />
+<meta property="dc:date" content="2016-05-08T02:00:00+02:00" />
 <meta property="dc:format" content="text/html" />
 <meta property="dc:language" content="en" />
-<meta property="dc:identifier" content="/2015/07/16/what-we-do-in-the-shadows.html" />
+<meta property="dc:identifier" content="/2016/05/08/what-makes-common-lisp-so-great.html" />
 <meta property="dc:rights" content="CC-By-SA v3.0" />
 <meta property="dc:source" content="Synthetic Silice" />
 <meta property="dc:subject" content="Technology" />
 <meta property="dc:type" content="text" />
 <!-- RDFa Metadata (in OpenGraph) -->
-<meta property="og:title" content="What we do in the shadows" />
+<meta property="og:title" content="What makes Common Lisp so great a language?" />
 <meta property="og:author" content="/index.html#me" />  <!-- Should be Liquid? URI? -->
 <meta property="http://ogp.me/ns/profile#first_name" content="Santiago"/>
 <meta property="http://ogp.me/ns/profile#last_name" content="Saavedra"/>
-<meta property="http://ogp.me/ns/article#published_time" content="2015-07-16T02:38:00+02:00" />
+<meta property="http://ogp.me/ns/article#published_time" content="2016-05-08T02:00:00+02:00" />
 <meta property="og:site_name" content="Synthetic Silice" /> <!-- Same as dc:source? -->
-<meta property="og:url" content="/2015/07/16/what-we-do-in-the-shadows.html" />
+<meta property="og:url" content="/2016/05/08/what-makes-common-lisp-so-great.html" />
 <meta property="og:type" content="website" />
 
 <!--NOTE: see also the COinS Metadata in span element in footer -->
@@ -132,7 +132,7 @@
 
       
 <!-- <header class="jumbotron"> -->
-  	<h1 class="entry-title">What we do in the shadows</h1>
+  	<h1 class="entry-title">What makes Common Lisp so great a language?</h1>
   	
 <!-- </header> -->
 
@@ -142,40 +142,164 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>Hi there! Long time since my last blog update.</p>
+			<p>I've recently come to a somewhat real use of Common Lisp for a project
+I work on.  I've always been attracted to somewhat esoterical and
+not-so-commonly-used languages, because they have always given me
+insights on programming that are so hard to realize anywhere else.</p>
 
-<p>I'd rather be asleep, but I think I should note this before I sleep it
-away. Today I've gone to the cinema and see
-<a href="http://trakt.tv/movies/what-we-do-in-the-shadows-2014">What We Do in the Shadows</a>.</p>
+<p>You don't usually understand functional programming until you are
+forced out of side effects, and you may not fully comprehend side
+effects until you meet Haskell's Monads, or the importance of
+referencial transparency until you write a functional language
+compiler.</p>
 
-<p>I have to say I come to consider it a really well filmed and scripted
-film among the vampire world. Sincerely.</p>
+<p>With Common Lisp, it's all about <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> <sup>(from
+Greek: homo=same + icon=representation)</sup>. Briefly, this refers to
+the fact that in lisp dialects code is first-order.</p>
 
-<p>Although the comedy itself is not that particularly brilliant (for my
-taste, a friend of mine couldn't stop laughing anyway), I have to say
-that the vampirism/lycanthropism folklore has been kept almost intact
-and quite in sync with pieces I find very canonical, such as Vampire:
-The Masquerade (the role playing game books).</p>
+<p>Well, in Common Lisp there are so many first order things, but let's
+start with code.</p>
 
-<p>The only exception to what I consider canonical is the fact that
-inside the film the vampires can be photographed with cell
-phones. However, I think that is absolutely coherent with the sprit of
-the film, and I think it's awesome they realized that too.</p>
+<h1>Homoiconicity</h1>
 
-<p>If you think that should not happen, then consider this:</p>
+<p>As said before, code and data homoiconicity refer to the property that
+they are represented the same. Both are represented in a syntax called Symbolic
+expressions (S-expressions or sexps for short). Sexps are very simple
+pieces of syntax: they are either symbols, or they are lists.</p>
 
-<p>How do you film a vampire film (where the vampires are actually shown)
-in a world where you cannot record vampires?</p>
+<ul>
+<li>symbol</li>
+<li>(sub-sexp1 sub-sexp2 ...)</li>
+</ul>
 
-<p>Besides, as the film itself is written with the cameramen being part
-of the story being told, so are the cameras. Therefore, in order to
-manufacture such a film, this license is absolutely compulsory. I did
-not realize that before going to the cinema, but I think it is
-impossible to be more coherent.</p>
 
-<p>I hope I'll be updating this blog a bit more often from now on ;)</p>
+<p>So, the symbolic expression:</p>
 
-<p>Till then, cheers!</p>
+<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure></p>
+
+<p>Is the list of three elements, which are the symbols <code>floor</code>, <code>5</code> and
+<code>2</code>. That is data. But that data is also code.</p>
+
+<h2>Data as code</h2>
+
+<p>If we evaluate that previous expression, it returns two values (because,
+yes, Common Lisp can return multiple values, and that is not the same
+as returning tuples), the first one being the division 5/2 and the
+second one being the remainder.</p>
+
+<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="nv">1</span></code></pre></figure></p>
+
+<p>That list can be generated from the following code:</p>
+
+<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure></p>
+
+<p>That function, list, builds a list with the rest of the elements. As
+CL is a call-by-value language, the quote in floor will avoid it being
+evaluated as a variable.</p>
+
+<p>However, entering the first value directly on the REPL (how the
+interactive loop is called) will compute 5/2, so it is fundamentally code.</p>
+
+<p>But lisp data can be turned into lisp code easily, via eval.</p>
+
+<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">))</span>
+<span class="mi">2</span>
+<span class="nv">1</span></code></pre></figure></p>
+
+<p>Not only that, lisp code can be manipulated as if it were lisp data,
+by using macros.</p>
+
+<blockquote><p>Macros in lisp have nothing to do with C macros.</p></blockquote>
+
+<h2>Code as data</h2>
+
+<p>That's the other part of the equation. Fortunately, it is a quite
+symmetric relationship: code can be manipulated as if it were a
+regular sexp.</p>
+
+<p>How so? Well, in Common Lisp, when a file is loaded into the
+evaluator, three stages happen:</p>
+
+<dl class="dl-horizontal">
+<dt>read</dt>
+<dd>The file is read into s-expressions, and several intricate things
+may happen, due to something called reader-macros</dd>
+
+<dt>compile</dt>
+<dd>The read expressions are macroexpand-ed and compiled into a bytecode or object code for later evaluation</dd>
+<dt>evaluation</dt>
+<dd>The compiled expressions are evaluated</dd>
+</dl>
+
+
+<p>In the first stage, the environment makes sense of the input stream
+data (e.g., characters) as s-expressions, so here we can influence the
+lexer (i.e., the reader algorithm) in order to extend our syntax
+beyond s-expressions.</p>
+
+<p>But it is the second stage the one that allows code to be manipulated
+as data. As we already have read the file, we now have s-expressions
+representing our code which are in their way to being compiled.</p>
+
+<p>Thus, macros in lisp can be <em>semantic macros</em>, and not just <em>lexical
+macros</em>, e.g., the textual substitutions that happen with the C
+Preprocessor and similar.</p>
+
+<p>Besides, the Common Lisp compiler is first-order itself, which means
+that during compilation, <strong>the full Common Lisp runtime is
+accessible</strong>. That means that regular functions can be called inside
+macros, therefore a macro is a compile-time run function operating on
+your program's AST, and which should return another AST for
+compilation. Effectively, by using macros in Common Lisp, you are
+writing <em>programs that write other programs at compile time</em>.</p>
+
+<p>This macro mechanism is so flexible and extensible that the language
+continuously encourages you to write your own
+mini-DSLs<sup>Domain-Specific Language</sup> for every
+problem. Because it is so easy and straightforward.</p>
+
+<h2>The meta level</h2>
+
+<p>The project I'm using Common Lisp with at the time involves writing
+some code that can mean two different things, depending on how the
+code is reached. As I can introduce definitions for a DSL on-demand, I
+can give different semantics to my data by directly writing macros for
+each case, instead of me manually interpreting the code. That is,
+instead of writing my own two interpreters for the code, I leverage
+the existing Common Lisp EVAL function, and I just introduce the
+needed definitions into the EVAL environment in each case.</p>
+
+<h1>Why is Lisp still useful when we have X?</h1>
+
+<p>Well, consider the language features of your recent X.</p>
+
+<p>Let's consider if it is up to par with a language designed in the late 1950s.</p>
+
+<ul>
+<li>Does it have a function type? (i.e., functions as first-class objects)</li>
+<li>recursion? (how about tail-call optimization?)</li>
+<li>garbage collection?</li>
+<li>programs composed of expressions? (i.e., no distinction with statements?)</li>
+<li>a symbol type? (symbols are not strings, and can be tested for
+equality by comparing pointers)</li>
+<li>a notation for code using trees for symbols?</li>
+<li>the whole language always available? (at read-time/compile-time/eval-time?)</li>
+<li>a multiple-inheritance multiple-dispatch class-based object oriented
+mechanism? (Common Lisp has the CLOS, or Common Lisp Object System)</li>
+<li>A MetaObject Protocol (MOP)?</li>
+<li>First-order continuations?</li>
+<li>Non-local exits?</li>
+<li>Constructors and destructors?</li>
+<li>dynamic variables?</li>
+</ul>
+
+
+<p>I'm going to leave this post here, but if you have some time and
+curiosity, give Common Lisp a look. I have yet to encounter a more
+expressive language.</p>
 
 		</article>
         </div>
@@ -183,20 +307,20 @@ impossible to be more coherent.</p>
 		<div class="sidebar">
 			<aside xmlns:og="http://ogp.me/ns/article#">
   <p> <i class="icon-calendar"></i>
-    <time datetime="2015-07-16T02:38:00+02:00"
-    property="dc:created">16 Jul 2015</time></p>
+    <time datetime="2016-05-08T02:00:00+02:00"
+    property="dc:created">08 May 2016</time></p>
   <p><small> modified: <time
-            datetime="2015-07-16T00:00:00+02:00"
-            property="dc:modified">16 Jul 2015</time></small></p>
+            datetime="2016-05-08T00:00:00+02:00"
+            property="dc:modified">08 May 2016</time></small></p>
 
  <br />
 
   
-    <p><a class="btn btn-mini" rel="prev" href='/2015/07/16/on-organizing-the-akademy.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
+    <p><a class="btn btn-mini" rel="prev" href='/2015/07/16/what-we-do-in-the-shadows.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
   
   
-  <a class="btn btn-mini" rel="next" href='/2016/05/08/what-makes-common-lisp-so-great.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
-  
+    </p>
+    
 
   <br />
 
@@ -204,7 +328,7 @@ impossible to be more coherent.</p>
   <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
             return false;"
           class="btn btn-mini"
-          href="http://github.com/ssaavedra/blog/commits/master/_posts/_posts/2015-07-16-what-we-do-in-the-shadows.markdown"><i class="icon-time"></i> history</a></p>
+          href="http://github.com/ssaavedra/blog/commits/master/_posts/_posts/2016-05-08-what-makes-common-lisp-so-great.md"><i class="icon-time"></i> history</a></p>
 
   <br />
   -->
@@ -212,7 +336,7 @@ impossible to be more coherent.</p>
   <p><i class="glyphicon glyphicon-list"></i> Posted in
     
       <a rel="dc:subject" class="category"
-         href="/categories.html#movies">movies</a>.</p>
+         href="/categories.html#Programming">Programming</a>.</p>
 
   <p>
     <i class="glyphicon glyphicon-tag"></i>
@@ -221,11 +345,7 @@ impossible to be more coherent.</p>
       
       <!-- http://schema.org/BlogPosting/keywords -->
       <a rel="og:tag" class="tag"
-         href="/tags.html#movie">#movie</a>, 
-      
-      <!-- http://schema.org/BlogPosting/keywords -->
-      <a rel="og:tag" class="tag"
-         href="/tags.html#review">#review</a>
+         href="/tags.html#Opinion-based">#Opinion-based</a>
       
     
   </p>
@@ -234,7 +354,7 @@ impossible to be more coherent.</p>
 
   <!--
   Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/_posts/2015-07-16-what-we-do-in-the-shadows.markdown/_posts/_posts/2015-07-16-what-we-do-in-the-shadows.markdown"> _posts/_posts/2015-07-16-what-we-do-in-the-shadows.markdown</a></small></p>
+  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/_posts/2016-05-08-what-makes-common-lisp-so-great.md/_posts/_posts/2016-05-08-what-makes-common-lisp-so-great.md"> _posts/_posts/2016-05-08-what-makes-common-lisp-so-great.md</a></small></p>
   -->
 
   <br/>
@@ -253,7 +373,7 @@ impossible to be more coherent.</p>
   
 
 
-<i class=icon-comments"></i> <a href="mailto:address?subject=Comment&body=%0D+From+post+/2015/07/16/what-we-do-in-the-shadows.html", class="showtooltip", title="Comments are submitted by email and will appear when they are approved. Markdown & mathjax syntax welcome.">Leave a comment</a>
+<i class=icon-comments"></i> <a href="mailto:address?subject=Comment&body=%0D+From+post+/2016/05/08/what-makes-common-lisp-so-great.html", class="showtooltip", title="Comments are submitted by email and will appear when they are approved. Markdown & mathjax syntax welcome.">Leave a comment</a>
 
 
 
@@ -336,7 +456,7 @@ impossible to be more coherent.</p>
           <span xmlns:dct="http://purl.org/dc/terms/"
             href="http://purl.org/dc/dcmitype/Text"
             property="dct:title"
-            rel="dct:type">What we do in the shadows</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/2015/07/16/what-we-do-in-the-shadows.html" property="cc:attributionName" rel="cc:attributionURL">Santiago Saavedra</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+            rel="dct:type">What makes Common Lisp so great a language?</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="/2016/05/08/what-makes-common-lisp-so-great.html" property="cc:attributionName" rel="cc:attributionURL">Santiago Saavedra</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
 
         </span>
       </p>
