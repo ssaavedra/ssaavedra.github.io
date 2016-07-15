@@ -28,8 +28,7 @@ module Jekyll
      
       puts "Getting date modified and sha data from git"
       start = Time.now
-      g = Git.open("/home/cboettig/Documents/labnotebook")
-      g = Git.open("/home/ssaavedra/Proyectos/blog/ssaavedra")
+      g = Git.open(".")
       ## FIXME takes over a second per post!  
       # That's almost 15 minutes at the moment.... Would be much much faster if we could 
       # generate a data file and read in as a hash containing the path, sha, and commit time
@@ -40,7 +39,7 @@ module Jekyll
         ## Loop over posts 
         site.posts.docs.each do |post|
           begin
-            path = '_posts/' + post.name
+            path = '_posts/' + post.basename
             modified = g.log(1).object(path).first.date
             sha = g.log(1).object(path).first.sha
           rescue Exception => e 
@@ -51,8 +50,8 @@ module Jekyll
           post.data['modified'] = modified
         end
       
-        gitdata = Hash[site.posts.collect{|post| 
-          [post.path, [post.data['sha'], post.data['modified']]]}]
+        gitdata = Hash[site.posts.docs.collect{|post| 
+          ['_posts/' + post.basename, [post.data['sha'], post.data['modified']]]}]
 
         File.open("gitdata.json", "w") do |f|
               f.write(JSON.pretty_generate(gitdata))
@@ -62,8 +61,8 @@ module Jekyll
       if(File.exists?("gitdata.json"))
         buffer = open("gitdata.json")
         gitdata = JSON.load(buffer)
-        site.posts.each do |post|
-            path = '_posts/' + post.name
+        site.posts.docs.each do |post|
+            path = '_posts/' + post.basename
             post.data['sha'] =  niltext(gitdata[path][0])
             post.data['modified'] =  niltext(gitdata[path][1])
         end
@@ -72,7 +71,7 @@ module Jekyll
   ## Loop over pages 
       site.pages.each do |page|
         begin
-          path = File.join(".", page.dir, page.name)
+          path = File.join(".", page.dir, page.basename)
           modified = g.log(1).object(path).first.date
           sha = g.log(1).object(path).first.sha
         rescue Exception => e 

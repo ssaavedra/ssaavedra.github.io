@@ -32,7 +32,7 @@ analytics:
   google:
     tracking_id: 'UA-672505-10'
 
-repo: http://github.com/ssaavedra/blog
+repo: http://github.com/ssaavedra/ssaavedra.github.io
 
 blogroll:
   friends:

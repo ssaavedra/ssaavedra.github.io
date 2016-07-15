@@ -1,33 +1,37 @@
 <aside xmlns:og="http://ogp.me/ns/article#">
   <p> <i class="icon-calendar"></i>
     <time datetime="{{ page.date | date_to_xmlschema }}"
-    property="dc:created">{{ page.date | date_to_string }}</time></p>
+          property="dc:created">{{ page.date | date_to_string }}</time></p>
   <p><small> modified: <time
-            datetime="{{ page.path | prepend:'_posts/' | git_modified | date_to_xmlschema }}"
-            property="dc:modified">{{ page.path | prepend:'_posts/' | git_modified | date_to_string }}</time></small></p>
+                          datetime="{{ page.path | prepend:'_posts/' | git_modified | date_to_xmlschema }}"
+                          property="dc:modified">{{ page.path | prepend:'_posts/' | git_modified | date_to_string }}</time></small></p>
 
- <br />
+  <br />
 
   {% if page.previous %}
-    <p><a class="btn btn-mini" rel="prev" href='{{ page.previous.url }}'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
-  {% endif %}
-  {% if page.next %}
-  <a class="btn btn-mini" rel="next" href='{{ page.next.url }}'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
-  {% else %}
-    </p>
+  <p><a class="btn btn-mini" rel="prev" href='{{ page.previous.url }}'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
     {% endif %}
+    {% if page.next %}
+    <a class="btn btn-mini" rel="next" href='{{ page.next.url }}'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
+    {% else %}
+  </p>
+  {% endif %}
 
   <br />
 
-  <!--
-  <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
-            return false;"
-          class="btn btn-mini"
-          href="{{ site.repo }}/commits/master/_posts/{{page.path}}"><i class="icon-time"></i> history</a></p>
+  <p><small>
+      <i class="glyphicon glyphicon-barcode"></i> SHA Hash:
+      <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
+         href="{{ site.repo }}/commit/{{ page.sha }}/{{ page.path }}"
+         >{{ page.sha | truncate: 8, '' }}</a>
+      |
+      <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
+         href="{{ site.repo }}/commits/source/{{ page.path }}">
+        <i class="glyphicon glyphicon-time"></i> history</a>
+  </small></p>
 
   <br />
-  -->
-  
+
   <p><i class="glyphicon glyphicon-list"></i> Posted in
     {% for category in page.categories %}
       <a rel="dc:subject" class="category"
@@ -49,16 +53,13 @@
 
   <br/>
 
-  <!--
-  Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="{{ site.repo }}/commit/{{page.path | prepend:'_posts/' | git_sha }}/_posts/{{ page.path }}"> {{ page.path | prepend:'_posts/' | git_sha }}</a></small></p>
-  -->
-
-  <br/>
-
   {% if page.code %}
   <p> <input type="button" class="btn btn-mini" value="toggle code" id="toggle_code" /> </p>
   {% endif %}
 
 
 </aside>
+
+<!-- Local Variables: -->
+<!-- indent-tabs-mode: nil -->
+<!-- End: -->
