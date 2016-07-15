@@ -216,7 +216,7 @@ testing framework that is supposed to be async-friendly).</p>
 <p><span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">'Create Identity'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">addBatch</span><span class="p">({</span>
         <span class="s1">'when creating a new identity and generating keys first'</span><span class="p">:</span> <span class="p">{</span>
-            <span class="nl">topic</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="na">topic</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
                 <span class="kd">var</span> <span class="nx">v</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Identity</span><span class="p">();</span>
                 <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">"I'm here!"</span><span class="p">);</span>
                 <span class="k">return</span> <span class="nx">v</span><span class="p">.</span><span class="nx">generateKeys</span><span class="p">().</span><span class="nx">then</span><span class="p">(</span><span class="nx">v</span><span class="p">);</span>
@@ -315,31 +315,35 @@ properly, and asynchronous.</p>
 			<aside xmlns:og="http://ogp.me/ns/article#">
   <p> <i class="icon-calendar"></i>
     <time datetime="2014-03-24T14:01:00+01:00"
-    property="dc:created">24 Mar 2014</time></p>
+          property="dc:created">24 Mar 2014</time></p>
   <p><small> modified: <time
-            datetime="2014-03-24T00:00:00+01:00"
-            property="dc:modified">24 Mar 2014</time></small></p>
-
- <br />
-
-  
-    <p><a class="btn btn-mini" rel="prev" href='/2014/02/14/gpul-board.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
-  
-  
-  <a class="btn btn-mini" rel="next" href='/2014/04/05/git-packs.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
-  
+                          datetime="2014-03-24T00:00:00+01:00"
+                          property="dc:modified">24 Mar 2014</time></small></p>
 
   <br />
 
-  <!--
-  <p> <a  onclick="recordOutboundLink(this, 'Outbound Links', 'history');
-            return false;"
-          class="btn btn-mini"
-          href="http://github.com/ssaavedra/blog/commits/master/_posts/_posts/2014-03-24-dont-use-vows.md"><i class="icon-time"></i> history</a></p>
+  
+  <p><a class="btn btn-mini" rel="prev" href='/2014/02/14/gpul-board.html'><i class="glyphicon glyphicon-chevron-left"></i> prev</a>
+    
+    
+    <a class="btn btn-mini" rel="next" href='/2014/04/05/git-packs.html'>next <i class="glyphicon glyphicon-chevron-right"></i></a></p>
+    
 
   <br />
-  -->
-  
+
+  <p><small>
+      <i class="glyphicon glyphicon-barcode"></i> SHA Hash:
+      <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
+         href="http://github.com/ssaavedra/ssaavedra.github.io/commit/9a02bf83d129e1c291f73525a2a0e93e19232713/_posts/2014-03-24-dont-use-vows.md"
+         >9a02bf83</a>
+      |
+      <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
+         href="http://github.com/ssaavedra/ssaavedra.github.io/commits/source/_posts/2014-03-24-dont-use-vows.md">
+        <i class="glyphicon glyphicon-time"></i> history</a>
+  </small></p>
+
+  <br />
+
   <p><i class="glyphicon glyphicon-list"></i> Posted in
     
       <a rel="dc:subject" class="category"
@@ -367,17 +371,14 @@ properly, and asynchronous.</p>
 
   <br/>
 
-  <!--
-  Not working without git_sha plugin
-  <p><small> <i class="icon-barcode"></i> SHA Hash: <a href="http://github.com/ssaavedra/blog/commit/_posts/_posts/2014-03-24-dont-use-vows.md/_posts/_posts/2014-03-24-dont-use-vows.md"> _posts/_posts/2014-03-24-dont-use-vows.md</a></small></p>
-  -->
-
-  <br/>
-
   
 
 
 </aside>
+
+<!-- Local Variables: -->
+<!-- indent-tabs-mode: nil -->
+<!-- End: -->
 
 		</div>
 	</div>
