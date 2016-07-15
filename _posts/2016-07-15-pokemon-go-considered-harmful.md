@@ -12,7 +12,7 @@ tags:
 ---
 
 These days I raise up from bed knowing that Pokémon Go is one of the
-most download mobile apps.
+most download mobile apps, and that is probably wrong.
 
 Having been born in the 90's, it's an interesting proposal from
 Nintendo to try and have us live like Ash in the most vivid experience
