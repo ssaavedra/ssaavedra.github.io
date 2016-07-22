@@ -28,7 +28,7 @@ proceso electoral sólo permite a los ciudadanos votar la Legislatura,
 no al órgano ejecutivo. Por si no puedo esperar una reflexión por
 parte del lector, aquí le dejo una: democráticamente, el poder
 ejecutivo debería de ser elegido, no impuesto por aquel que “gane” las
-elecciones ¿que es ganar, en cualquier caso, un 34%?).
+elecciones ¿que es ganar, en cualquier caso? ¿llegar al 34%?).
 
 Continuemos.
 
@@ -48,14 +48,15 @@ porqué ellos eran los indicados y mejores para un cambio.
 Pero ninguno obtuvo un apoyo suficiente para legitimizar esa cruzada
 particular. Unos y otros, por diferentes razones individuales de
 estrategia pero que colectivamente y sin perder generalidad llamaré
-Ego, el bloqueo para la formación de gobierno culminó en una necesidad
-de repetir elecciones. A pesar o tal vez debido a la expectación al
-respecto, los segundos resultados no mejoran a los primeros salvo los
-de ese partido contra el que todos estaban.
+Ego, conllevaron a un bloqueo para la formación de gobierno, que
+culminó en una necesidad de repetir elecciones. A pesar o tal vez
+debido a la expectación al respecto, los segundos resultados no
+mejoran a los primeros salvo los de ese partido contra el que todos
+estaban.
 
-Es muy fácil proponer lecturas a posteri de lo ocurrido, pero si fuese
-tan lógica la lectura hubiera sido previsible y no habríamos llegado a
-esto.
+Es muy fácil proponer lecturas a posteri de lo ocurrido, pero si
+fuesen tan lógicas estas lectura, significaría que habrían sido
+previsibles y no habríamos llegado a esto.
 
 En cualquier caso, aquí estamos. Podríamos haber achacado esta
 repetición a la necesidad de Ego de cada partido: determinar que su
@@ -83,9 +84,9 @@ sillones”. Qué putada. Partidos nuevos haciendo vieja política. Menuda
 novedad.
 
 Perdón, que me descentro. Quería dirigir la conversación hacia las
-posibilidades de gobernar democráticamente. Igual esto es algo que
-requiera otro pase para entender lo que va a venir a continuación:
-gobernar democráticamente.
+posibilidades de gobernar democráticamente. Lo voy a repetir, para no
+dejar dudas de lo que he escrito, y entender lo que va a venir a
+continuación: gobernar democráticamente.
 
 ## ¿Qué significa esto?
 
@@ -101,7 +102,7 @@ general**. Y a veces, **transigir** es más razonable que otra cosa.
 
 ## ¿Cómo podrían comerse el rosco todos?
 
-&emdash; Con esos programas tan distintos…
+-- Pero con esos programas tan distintos…
 
 Se ve que usted no se ha leído los programas. En primer lugar, tendría
 que decir que sería razonable que cualquiera de los partidos iniciase
