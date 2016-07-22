@@ -28,7 +28,7 @@ proceso electoral sólo permite a los ciudadanos votar la Legislatura,
 no al órgano ejecutivo. Por si no puedo esperar una reflexión por
 parte del lector, aquí le dejo una: democráticamente, el poder
 ejecutivo debería de ser elegido, no impuesto por aquel que “gane” las
-elecciones ¿que es ganar, en cualquier caso? ¿llegar al 34%?).
+elecciones (¿que es ganar, en cualquier caso? ¿llegar al 34%?).
 
 Continuemos.
 
