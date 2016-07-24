@@ -55,7 +55,7 @@ mejoran a los primeros salvo los de ese partido contra el que todos
 estaban.
 
 Es muy fácil proponer lecturas a posteri de lo ocurrido, pero si
-fuesen tan lógicas estas lectura, significaría que habrían sido
+fuesen tan lógicas estas lecturas, significaría que habrían sido
 previsibles y no habríamos llegado a esto.
 
 En cualquier caso, aquí estamos. Podríamos haber achacado esta
