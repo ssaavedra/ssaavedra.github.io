@@ -19,9 +19,12 @@ Nintendo to try and have us live like Ash in the most vivid experience
 that today's Augmented Reality technology can provide for the masses.
 
 It's also probably the most massive virtual overlay reality that has
-been deployed yet, and it reminds me a bit about Halting State (C.
-Stross). However, now that this is no longer fiction, we must think
-again where are we leading our ways into.
+been deployed yet, and it reminds me a bit about
+[Halting State][stross] (C. Stross). However, now that this is no
+longer fiction, we must think again about where are we leading our
+ways into.
+
+[stross]: http://www.amazon.es/dp/B000W9180A?tag=ss-gh-21
 
 For one, Nintendo has managed to engage a large demographic in their
 experiment. A demographic mostly from the 90's, where the original
