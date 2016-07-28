@@ -14,7 +14,7 @@ written in Spanish because it concerns mainly spanish politics. I can
 translate it to English if there is an interested audience.</div> Bajo
 esta premisa que defiendo existe, al menos, desde la transición
 española, abordaré a continuación la razón por la que nos ha tocado
-repetir elecciones y porqué el proceso electoral en España es tan poco
+repetir elecciones y por qué el proceso electoral en España es tan poco
 responsable con los ciudadanos.
 
 Esto lleva siendo cierto, como digo, desde la transición, pero ahora
@@ -43,7 +43,7 @@ fundamental: el descontento general con la gestión ejecutiva y las
 proposiciones legislativas del Partido Popular.
 
 Todos ellos hablaban en la primera campaña de un enemigo común y de
-porqué ellos eran los indicados y mejores para un cambio.
+por qué ellos eran los indicados y mejores para un cambio.
 
 Pero ninguno obtuvo un apoyo suficiente para legitimizar esa cruzada
 particular. Unos y otros, por diferentes razones individuales de
@@ -155,7 +155,7 @@ conseguir llegar a unas segundas elecciones), cualquier acuerdo al que
 se llegase al respecto, y que llevase a una pluralidad de colores en
 el Ejecutivo sería más razonable que lo que hemos tenido hasta ahora.
 
-## ¿Porqué?
+## ¿Por qué?
 
 Porque **tener un poder ejecutivo monocromo, como resultado de un
 poder legislativo monocromo implica una nefasta separación de
