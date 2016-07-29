@@ -142,119 +142,61 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>Ok, so Git is an astounding version control system, and there's no
-doubt about is speed, but what's beneath the trunk so that it can get
-so fast?</p>
-
-<p>Well, many things are greatly optimized, starting with the object
-structure, but today let's talk about git packs.</p>
-
+			<p>Ok, so Git is an astounding version control system, and there’s no doubt about is speed, but what’s beneath the trunk so that it can get so fast?</p>
+<p>Well, many things are greatly optimized, starting with the object structure, but today let’s talk about git packs.</p>
 <!-- more -->
-
-
-<p>Git packs are files that are automatically created by git in order to
-reduce space and I/O bandwidth in ways that should be very notorious
-in any large-history project, but also in some other edge cases.</p>
-
-<p>To understand where do git packs fit let's first look at how are
-changes in git tracked in the first place.</p>
-
-<p>Plainly, git's backing store for content itself is a folder structure
-in <code>.git/objects</code>.</p>
-
+<p>Git packs are files that are automatically created by git in order to reduce space and I/O bandwidth in ways that should be very notorious in any large-history project, but also in some other edge cases.</p>
+<p>To understand where do git packs fit let’s first look at how are changes in git tracked in the first place.</p>
+<p>Plainly, git’s backing store for content itself is a folder structure in <code>.git/objects</code>.</p>
 <p>Git stores mainly 3 kinds of objects: <code>commit</code>s, <code>blob</code>s, and <code>tree</code>s.</p>
-
-<p>Let's explain each a little bit:</p>
-
+<p>Let’s explain each a little bit:</p>
 <dl>
-<dt>commit</dt>
+<dt>
+commit
+</dt>
 <dd>
-A commit is a type of object containing the author, date, the commit
-message, the parent (or parents, in case of a merge), and one or more
-`tree`s, which represent folders of changes.
+A commit is a type of object containing the author, date, the commit message, the parent (or parents, in case of a merge), and one or more <code>tree</code>s, which represent folders of changes.
 </dd>
-<dt>tree</dt>
+<dt>
+tree
+</dt>
 <dd>
-There's at least one tree per non-empty commit, and a tree is a
-structure used to group more trees and blobs. Think of trees as git's
-representation of folders. Trees contain hash references to other
-trees and blobs, as well as the subtree/blob name and its access mode
-(i.e., if it is a symlink, an executable file, a regular file...)
+There’s at least one tree per non-empty commit, and a tree is a structure used to group more trees and blobs. Think of trees as git’s representation of folders. Trees contain hash references to other trees and blobs, as well as the subtree/blob name and its access mode (i.e., if it is a symlink, an executable file, a regular file…)
 </dd>
-<dt>blob</dt>
+<dt>
+blob
+</dt>
 <dd>
-A blob represents a non-structured content. Git expects files' contents
-to be saved as blobs.
+A blob represents a non-structured content. Git expects files’ contents to be saved as blobs.
 </dd>
 </dl>
-
-
 <p>So, given these definitions, and a repository such as this:</p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">% ls -a
 
-<p><figure class="highlight"><pre><code class="language-text" data-lang="text">% ls -a</p>
-
-<p>.  ..  .git  file1 file2 file3
-%</code></pre></figure></p>
-
-<p>Let's suppose we have just done a <code>git init .</code>, but we haven't done
-anything yet.</p>
-
-<p>Now you can ask yourself what will happen to git's object store if you do
-<code>git add . &amp;&amp; git commit -m "Initial commit"</code>.</p>
-
+.  ..  .git  file1 file2 file3
+%</code></pre>
+</figure>
+<p>Let’s suppose we have just done a <code>git init .</code>, but we haven’t done anything yet.</p>
+<p>Now you can ask yourself what will happen to git’s object store if you do <code>git add . &amp;&amp; git commit -m &quot;Initial commit&quot;</code>.</p>
 <p>Well, some objects will be created, namely:</p>
-
 <ul>
 <li>Three blobs, one per file, with the contents of each file</li>
 <li>A tree for the <code>/</code> folder of the repository, which will encapsulate the three former blobs</li>
-<li>One commit with the "Initial commit" message, date, author and an entry to the tree</li>
+<li>One commit with the “Initial commit” message, date, author and an entry to the tree</li>
 </ul>
-
-
-<p>Now, git will seem to be fast enough, becase our computers are
-actually quite fast, but it's not the best way of tracking files.</p>
-
-<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit
--m "file1 mod"</code>, we would be storing both versions of file1 fully.</p>
-
-<p>But modifications usually don't alter much the file completely, so that's a waste of space!</p>
-
+<p>Now, git will seem to be fast enough, becase our computers are actually quite fast, but it’s not the best way of tracking files.</p>
+<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit -m &quot;file1 mod&quot;</code>, we would be storing both versions of file1 fully.</p>
+<p>But modifications usually don’t alter much the file completely, so that’s a waste of space!</p>
 <p>Git can perform a lot better in this.</p>
-
-<p>Each time we add a file git computes the blob object that corresponds
-to that file, as well as the necessary tree to keep the staging area
-consistent (the staging area has the "root tree" of the next commit).</p>
-
-<p>When the files are stored in that way, we say they are "loose
-objects", because they are not packed.</p>
-
-<p>But then, there would be a waste, both of physical space and bandwidth
-whenever we pushed some refs, because transfering files involves a lot
-of metadata which isn't important for the commit.</p>
-
-<p>So there are git packs, which is a format that can store several
-objects in a single file, and index it by object in a separate index
-file.</p>
-
-<p>Packs can be computed either for references missing from a repo (when
-pushing, so that only missing references are transmitted, and that's
-done in a way that at the receiving end the packs can be more
-efficiently repacked), or for existing references, in order to save
-space.</p>
-
-<p>Part of the packing mechanics also split the blobs in deltas, in a way
-such that a blob can be resolved as <em>baseblob</em> + <em>delta</em>. Then, a
-single-line change in a 10KB source file will just result in a
-line-change blob plus one 10KB blob, and not two 10KB blob.</p>
-
-<p>Git can also apply deltas to already-deltaified blobs, with a depth
-chain that is customizable, but that is usually limited by default to
-50 when running <code>git repack</code> by default so that the unpacking side is
-not too hard.</p>
-
-<p>Oh, and besides, the packs are compressed with zlib, so text gets
-<strong>really</strong> compressed.</p>
-
+<p>Each time we add a file git computes the blob object that corresponds to that file, as well as the necessary tree to keep the staging area consistent (the staging area has the “root tree” of the next commit).</p>
+<p>When the files are stored in that way, we say they are “loose objects”, because they are not packed.</p>
+<p>But then, there would be a waste, both of physical space and bandwidth whenever we pushed some refs, because transfering files involves a lot of metadata which isn’t important for the commit.</p>
+<p>So there are git packs, which is a format that can store several objects in a single file, and index it by object in a separate index file.</p>
+<p>Packs can be computed either for references missing from a repo (when pushing, so that only missing references are transmitted, and that’s done in a way that at the receiving end the packs can be more efficiently repacked), or for existing references, in order to save space.</p>
+<p>Part of the packing mechanics also split the blobs in deltas, in a way such that a blob can be resolved as <em>baseblob</em> + <em>delta</em>. Then, a single-line change in a 10KB source file will just result in a line-change blob plus one 10KB blob, and not two 10KB blob.</p>
+<p>Git can also apply deltas to already-deltaified blobs, with a depth chain that is customizable, but that is usually limited by default to 50 when running <code>git repack</code> by default so that the unpacking side is not too hard.</p>
+<p>Oh, and besides, the packs are compressed with zlib, so text gets <strong>really</strong> compressed.</p>
 <!--
 
 For the sake of a better demonstration, I'll lend you here a script
@@ -335,26 +277,14 @@ those cases, the blob which creates those headers can be only put
 once, saving even more space.
 
 -->
-
-
 <p>So, what makes packs fast?</p>
-
-<ol>
+<ol type="1">
 <li>Space. As they use less space than uncompressed blobs, they are read from disk much faster.</li>
 <li>Indexing. Packs consist on two files (X.pack and X.idx), and the index file allows for random-access to the pack as if it were a list of files in the filesystem, except the index is already computed, so no jumping between inodes.</li>
 <li>Deduplication. Changes that can be reduced as deltas to other changes are arranged in that way, so that the base change is not duplicated, and thus improving file space.</li>
 </ol>
-
-
-<p>For most operations in git, the worst part of it is traversing the
-object store and finding the related links. With packs, most of that
-can be random-accessed much faster due to the index.</p>
-
-<p>Besides, there's a lot less space wasted in internal fragmentation due
-to filesystem's block size (even if ext4 and company help with that in
-some cases with their inline extents), but by using a single file for
-the whole pack, a 50MB pack file is a lot more efficient than 15000
-random-size-not-multiple-of-4kb objects.</p>
+<p>For most operations in git, the worst part of it is traversing the object store and finding the related links. With packs, most of that can be random-accessed much faster due to the index.</p>
+<p>Besides, there’s a lot less space wasted in internal fragmentation due to filesystem’s block size (even if ext4 and company help with that in some cases with their inline extents), but by using a single file for the whole pack, a 50MB pack file is a lot more efficient than 15000 random-size-not-multiple-of-4kb objects.</p>
 
 		</article>
         </div>

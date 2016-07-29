@@ -142,234 +142,97 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>In JavaScript there are many ways of loading modules. But not taking
-care of small details on how the JS standard is written can create
-funny side effects that will prevent your app from running. And you
-can fix the situation, but you may not know how you did it.</p>
-
-<p>This post is about how to work with <code>amdefine</code> and how a module can
-break your other hybrid browser/node-require nicely-created packages.</p>
-
+			<p>In JavaScript there are many ways of loading modules. But not taking care of small details on how the JS standard is written can create funny side effects that will prevent your app from running. And you can fix the situation, but you may not know how you did it.</p>
+<p>This post is about how to work with <code>amdefine</code> and how a module can break your other hybrid browser/node-require nicely-created packages.</p>
 <!-- more -->
-
-
-<p>Hi again. It's been awhile since my last update. I've been working on
-the same project for the time being (coalesced with other work to do),
-and I've come to use lots of JavaScript tools. Many of them I didn't
-hear about until this year. The JS community is getting crazy. And
-some of them aren't properly crazy, but let's let it be that
-way. Today's post is about how to solve an issue, not a rant :)</p>
-
-<p>As some of you, in the JavaScript world, may know, there are lots of
-ways of loading and requiring modules within your
-applications. Node.js has its own, and other standards were created to
-allow more flexibility and to port that practice to the browser, where
-most of JavaScript presence happens still, anyway.</p>
-
-<p>Having package loaders is great, but having different standards for
-loading is not so much. Fortunately, node's way and AMD (short of
-<em>Asynchronous Module Definition</em>) are not incompatible.</p>
-
-<p>In fact, many packages distributed through npm nowadays offer support
-for both loading mechanisms. Although AMD was developed for the
-browser, there are implementations to use it in Node, most
-prominently, the <code>amdefine</code> package.</p>
-
-<p>However, using AMD for your modules would require amdefine as a
-dependency on your package, which is actually not needed if you can
-provide both interfaces. And that's actually quite simple.</p>
-
-<p>That's what modules such as cujojs's <code>when</code> Promises/A+ implementation
-does, precisely. In short, let's assume you were developing
-node-style. The following could be a module.</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
-<span class="cm">/<em> more code </em>/</span>
-<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span></code></pre></figure></p>
-
+<p>Hi again. It’s been awhile since my last update. I’ve been working on the same project for the time being (coalesced with other work to do), and I’ve come to use lots of JavaScript tools. Many of them I didn’t hear about until this year. The JS community is getting crazy. And some of them aren’t properly crazy, but let’s let it be that way. Today’s post is about how to solve an issue, not a rant :)</p>
+<p>As some of you, in the JavaScript world, may know, there are lots of ways of loading and requiring modules within your applications. Node.js has its own, and other standards were created to allow more flexibility and to port that practice to the browser, where most of JavaScript presence happens still, anyway.</p>
+<p>Having package loaders is great, but having different standards for loading is not so much. Fortunately, node’s way and AMD (short of <em>Asynchronous Module Definition</em>) are not incompatible.</p>
+<p>In fact, many packages distributed through npm nowadays offer support for both loading mechanisms. Although AMD was developed for the browser, there are implementations to use it in Node, most prominently, the <code>amdefine</code> package.</p>
+<p>However, using AMD for your modules would require amdefine as a dependency on your package, which is actually not needed if you can provide both interfaces. And that’s actually quite simple.</p>
+<p>That’s what modules such as cujojs’s <code>when</code> Promises/A+ implementation does, precisely. In short, let’s assume you were developing node-style. The following could be a module.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
+<span class="cm">/* more code */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span></code></pre>
+</figure>
 <p>Well, this module could be written in AMD style, this way:</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
-<span class="p">}</span></p>
+<span class="p">}</span>
 
-<p><span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
-    <span class="cm">/<em> more code </em>/</span>
+    <span class="cm">/* more code */</span>
     <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
-<span class="p">});</span></code></pre></figure></p>
-
-<p>Easy enough. In short, you wrap all of your code inside a closure,
-which gets as an argument your  usual "require" function.</p>
-
-<p>In order to work, you must ensure that you are loading the amdefine
-module loader before, with the if clause provided in the beginning of
-the code. This must be present in all your files, and this way, your
-code <strong>does</strong> depend on amdefine to work.</p>
-
-<p>However, if you wanted to be flexible in terms of the AMD loader, or
-any module loader that you wish to work with, you could wrap your
-code, instead, with a function such as the following.</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">define</span><span class="p">)</span> <span class="p">{</span>
+<span class="p">});</span></code></pre>
+</figure>
+<p>Easy enough. In short, you wrap all of your code inside a closure, which gets as an argument your usual “require” function.</p>
+<p>In order to work, you must ensure that you are loading the amdefine module loader before, with the if clause provided in the beginning of the code. This must be present in all your files, and this way, your code <strong>does</strong> depend on amdefine to work.</p>
+<p>However, if you wanted to be flexible in terms of the AMD loader, or any module loader that you wish to work with, you could wrap your code, instead, with a function such as the following.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">define</span><span class="p">)</span> <span class="p">{</span>
 <span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">);</span> <span class="p">};</span>
-    <span class="cm">/<em> more code </em>/</span>
+    <span class="cm">/* more code */</span>
     <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
 <span class="p">});</span>
 <span class="p">})(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">===</span> <span class="s1">'function'</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span>
     <span class="p">?</span> <span class="nx">define</span>
     <span class="p">:</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nx">factory</span> <span class="p">(</span><span class="nx">require</span><span class="p">);</span>
-    <span class="p">});</span></code></pre></figure></p>
-
-<p>Ok, what this does is immediately on requiring of the module, the
-latest line is evaluated, and if <em>define</em> is already a function, then
-we can assume that an AMD-style loader is in place and we can pass on
-define to our closure, and if it's not, we can place ad-hoc our own
-loader for node: just making our <em>define</em> function to be a wrapper so
-that the result of the callback we get (on <code>define(callback)</code>) is
-assigned to <code>module.exports</code>, and thus, exported.</p>
-
+    <span class="p">});</span></code></pre>
+</figure>
+<p>Ok, what this does is immediately on requiring of the module, the latest line is evaluated, and if <em>define</em> is already a function, then we can assume that an AMD-style loader is in place and we can pass on define to our closure, and if it’s not, we can place ad-hoc our own loader for node: just making our <em>define</em> function to be a wrapper so that the result of the callback we get (on <code>define(callback)</code>) is assigned to <code>module.exports</code>, and thus, exported.</p>
 <p>Seems easy, huh?</p>
-
-<p>Well, there's a caveat with this approach.</p>
-
-<p>You must trust all your modules <strong>not to pollute</strong> the <em>Globals</em>
-namespace.</p>
-
-<p>Yeah, that should never happen. But sometimes it does. There are
-malformed packages, and due to the way some things in JavaScript are
-standarized, it may not be completely trivial to know what happened.</p>
-
-<p>Now that I have introduced you to how stuff works, let's expose the
-problem I faced.</p>
-
-<p>I was using an Inversion-of-Control (IOC) module, called <code>inverted</code>,
-which in turn uses amdefine, because this way it works both in the
-browser and server. However, there is a typo in the latest published
-version (0.2.4 at the time of this writing, although I've already sent
-a pull-request for a fix) in the first conditional, that you have just
-read a few paragraphs above.</p>
-
-<p>I will reproduce the above code, and then I'll reproduce inverted's
-conditional.</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Sample amdefine code</span>
+<p>Well, there’s a caveat with this approach.</p>
+<p>You must trust all your modules <strong>not to pollute</strong> the <em>Globals</em> namespace.</p>
+<p>Yeah, that should never happen. But sometimes it does. There are malformed packages, and due to the way some things in JavaScript are standarized, it may not be completely trivial to know what happened.</p>
+<p>Now that I have introduced you to how stuff works, let’s expose the problem I faced.</p>
+<p>I was using an Inversion-of-Control (IOC) module, called <code>inverted</code>, which in turn uses amdefine, because this way it works both in the browser and server. However, there is a typo in the latest published version (0.2.4 at the time of this writing, although I’ve already sent a pull-request for a fix) in the first conditional, that you have just read a few paragraphs above.</p>
+<p>I will reproduce the above code, and then I’ll reproduce inverted’s conditional.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Sample amdefine code</span>
 <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
-<span class="p">}</span></code></pre></figure></p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="c1">// inverted's conditional</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span></code></pre></figure></p>
-
-<p>You may have required several attempts to find the missing <code>var</code>
-before <code>define =</code>.</p>
-
+<span class="p">}</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="c1">// inverted's conditional</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="nx">define</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span></code></pre>
+</figure>
+<p>You may have required several attempts to find the missing <code>var</code> before <code>define =</code>.</p>
 <p>Does this affect us?</p>
-
-<p>You may imagine that it doesn't because node must have a way of
-capturing all non-declared vars before polluting the global namespace
-between modules... but it doesn't.</p>
-
-<p>The author of this --and any other modules-- could do (and should)
-have written their code as <strong>strict</strong>, by using the 'use strict'
-pragma at the beginning of the file. This would have told them that a
-variable was not being defined and it would crash their program. But
-people does not still use strict mode as extensively as we might
-want. And there are cross-browser compatibility issues with strict
-mode, and if you want to support older browsers, well, it's all a
-mess.</p>
-
-<p>Anyway, this little problem would deal no harm on other modules that
-<strong>require</strong> amdefine's behaviour, and that use the second form of
-writing modules that we introduced earlier in the post. However, if
-you use code that is adapted to both cases of the story, and as node
-is not the browser and AMD has no way of supporting a double
-definition in the same module, it will break with an error saying
-<strong>amdefine with no module ID cannot be called more than once per
-file</strong> will appear, because we will be referring in the next files to
-this old define.</p>
-
+<p>You may imagine that it doesn’t because node must have a way of capturing all non-declared vars before polluting the global namespace between modules… but it doesn’t.</p>
+<p>The author of this –and any other modules– could do (and should) have written their code as <strong>strict</strong>, by using the ‘use strict’ pragma at the beginning of the file. This would have told them that a variable was not being defined and it would crash their program. But people does not still use strict mode as extensively as we might want. And there are cross-browser compatibility issues with strict mode, and if you want to support older browsers, well, it’s all a mess.</p>
+<p>Anyway, this little problem would deal no harm on other modules that <strong>require</strong> amdefine’s behaviour, and that use the second form of writing modules that we introduced earlier in the post. However, if you use code that is adapted to both cases of the story, and as node is not the browser and AMD has no way of supporting a double definition in the same module, it will break with an error saying <strong>amdefine with no module ID cannot be called more than once per file</strong> will appear, because we will be referring in the next files to this old define.</p>
 <p>That is, you <strong>cannot</strong>, in the same file, do this:</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">define</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s1">'function'</span><span class="p">)</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">define</span><span class="o">=</span><span class="nx">require</span><span class="p">(</span><span class="s1">'amdefine'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span>
 <span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">magic</span><span class="p">:</span> <span class="s1">'code'</span> <span class="p">};</span> <span class="p">});</span>
-<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">nonmagic</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};});</span></code></pre></figure></p>
-
-<p>That is because <em>in node</em>, you declare and define the <code>define</code>
-function <strong>in each module</strong>, independently. You don't reuse
-define. That's why node modules, if they want to be AMD compliant,
-they must have this test. Because amdefine can only know <em>who</em> called
-him by giving it the current <code>module</code> instance. The <code>module</code> variable
-in Node contains information such as the filename loaded, which
-amdefine uses to plug the appropriate loaded code in the required
-statements; that is, when you do <code>define(function (require) {a =
-require('./smth'); /* more code */ })</code>.</p>
-
-<p>I first avoided this issue by using an experimental feature in
-amdefine, called <code>amdefine/interceptor</code>.</p>
-
-<p>The interceptor mangles Node's require hook for JavaScript files, so
-that all of them are prepended as the first line the correct
-conditional written above on this post. That is great news, because
-you don't have to do it in every file; but if you do it manually in
-every file it will work anyway. This is just a faster lane.</p>
-
-<p>However, you should not touch other people's modules, or you won't be
-able to deploy your work safely with npm, and then you'd have a lot of
-pain for maintenance. So, in order to save kittens from being killed
-whilst doing maintenance later, it's clear we should not touch other
-people's modules --unless we fork them, carefully.</p>
-
-<p>Then, I would like to propose the reader what would happen if after
-loading inverted one was to load a module which used the third
-approach?</p>
-
-<p>I'd rather remind here that the third, hybrid approach does not have a
-defining if.</p>
-
-<p>The answer is that it would break. Define would be introduced before,
-and it would have an outdated module definition, so the later
-<code>define(cb)</code> would fail because it has already been called before.</p>
-
+<span class="nx">define</span><span class="p">(</span><span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">nonmagic</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};});</span></code></pre>
+</figure>
+<p>That is because <em>in node</em>, you declare and define the <code>define</code> function <strong>in each module</strong>, independently. You don’t reuse define. That’s why node modules, if they want to be AMD compliant, they must have this test. Because amdefine can only know <em>who</em> called him by giving it the current <code>module</code> instance. The <code>module</code> variable in Node contains information such as the filename loaded, which amdefine uses to plug the appropriate loaded code in the required statements; that is, when you do <code>define(function (require) {a = require('./smth'); /* more code */ })</code>.</p>
+<p>I first avoided this issue by using an experimental feature in amdefine, called <code>amdefine/interceptor</code>.</p>
+<p>The interceptor mangles Node’s require hook for JavaScript files, so that all of them are prepended as the first line the correct conditional written above on this post. That is great news, because you don’t have to do it in every file; but if you do it manually in every file it will work anyway. This is just a faster lane.</p>
+<p>However, you should not touch other people’s modules, or you won’t be able to deploy your work safely with npm, and then you’d have a lot of pain for maintenance. So, in order to save kittens from being killed whilst doing maintenance later, it’s clear we should not touch other people’s modules –unless we fork them, carefully.</p>
+<p>Then, I would like to propose the reader what would happen if after loading inverted one was to load a module which used the third approach?</p>
+<p>I’d rather remind here that the third, hybrid approach does not have a defining if.</p>
+<p>The answer is that it would break. Define would be introduced before, and it would have an outdated module definition, so the later <code>define(cb)</code> would fail because it has already been called before.</p>
 <p>We already knew it because I told you a while earlier.</p>
-
-<p>But then, a more interesting question is <strong>why does it not fail on AMD
-modules</strong>?</p>
-
-<p>There is a conditional stating that <code>if (typeof define !== "function")
-{...}</code>. As per hybrid modules, we <em>know</em> that in that particular
-moment, <code>define</code> should be a function. But the sentence inside the if
-clause gets executed shamelessly anyway.</p>
-
+<p>But then, a more interesting question is <strong>why does it not fail on AMD modules</strong>?</p>
+<p>There is a conditional stating that <code>if (typeof define !== &quot;function&quot;) {...}</code>. As per hybrid modules, we <em>know</em> that in that particular moment, <code>define</code> should be a function. But the sentence inside the if clause gets executed shamelessly anyway.</p>
 <p>How?</p>
-
-<p>I'd like it to be an exercise to the reader, but here's the answer
-anyway. If you'd like to think about it, don't continue reading yet.</p>
-
-<p>It happens that in JavaScript, the <code>if</code> clause <em>does not</em> create a
-scope. So all <em>var</em> declarations <em>actually happen</em> in the same
-scope. As <em>var</em> declarations in JavaScript are independent of position
-(that is, all vars could be declared at the beginning of their
-respective scope and produce an equivalent program, the previous
-conditional is equivalent to:</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">define</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre></figure></p>
-
+<p>I’d like it to be an exercise to the reader, but here’s the answer anyway. If you’d like to think about it, don’t continue reading yet.</p>
+<p>It happens that in JavaScript, the <code>if</code> clause <em>does not</em> create a scope. So all <em>var</em> declarations <em>actually happen</em> in the same scope. As <em>var</em> declarations in JavaScript are independent of position (that is, all vars could be declared at the beginning of their respective scope and produce an equivalent program, the previous conditional is equivalent to:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">define</span><span class="p">;</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="s2">"function"</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre>
+</figure>
 <p>And that magically performs two things:</p>
-
-<p>If define was already a var, declared within the same scope, then
-nothing happens: var declarations are idempotent.</p>
-
-<p>However, if define was a global variable, declaring a var in this
-restricted scope will shadow the global variable. The new var has been
-declared but not yet defined, so it has type (and value) of
-<code>undefined</code>, which is definitely not <em>function</em>. Thus, the code
-execution gets inside the conditional clause and requires the module
-loader, as expected.</p>
-
+<p>If define was already a var, declared within the same scope, then nothing happens: var declarations are idempotent.</p>
+<p>However, if define was a global variable, declaring a var in this restricted scope will shadow the global variable. The new var has been declared but not yet defined, so it has type (and value) of <code>undefined</code>, which is definitely not <em>function</em>. Thus, the code execution gets inside the conditional clause and requires the module loader, as expected.</p>
 <p>I hope this can enlighten your JavaScript-fu.</p>
 
 		</article>

@@ -142,164 +142,98 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>I've recently come to a somewhat real use of Common Lisp for a project
-I work on.  I've always been attracted to somewhat esoterical and
-not-so-commonly-used languages, because they have always given me
-insights on programming that are so hard to realize anywhere else.</p>
-
-<p>You don't usually understand functional programming until you are
-forced out of side effects, and you may not fully comprehend side
-effects until you meet Haskell's Monads, or the importance of
-referencial transparency until you write a functional language
-compiler.</p>
-
-<p>With Common Lisp, it's all about <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> <sup>(from
-Greek: homo=same + icon=representation)</sup>. Briefly, this refers to
-the fact that in lisp dialects code is first-order.</p>
-
-<p>Well, in Common Lisp there are so many first order things, but let's
-start with code.</p>
-
-<h1>Homoiconicity</h1>
-
-<p>As said before, code and data homoiconicity refer to the property that
-they are represented the same. Both are represented in a syntax called Symbolic
-expressions (S-expressions or sexps for short). Sexps are very simple
-pieces of syntax: they are either symbols, or they are lists.</p>
-
+			<p>I’ve recently come to a somewhat real use of Common Lisp for a project I work on. I’ve always been attracted to somewhat esoterical and not-so-commonly-used languages, because they have always given me insights on programming that are so hard to realize anywhere else.</p>
+<p>You don’t usually understand functional programming until you are forced out of side effects, and you may not fully comprehend side effects until you meet Haskell’s Monads, or the importance of referencial transparency until you write a functional language compiler.</p>
+<p>With Common Lisp, it’s all about <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> <sup>(from Greek: homo=same + icon=representation)</sup>. Briefly, this refers to the fact that in lisp dialects code is first-order.</p>
+<p>Well, in Common Lisp there are so many first order things, but let’s start with code.</p>
+<h1 id="homoiconicity">Homoiconicity</h1>
+<p>As said before, code and data homoiconicity refer to the property that they are represented the same. Both are represented in a syntax called Symbolic expressions (S-expressions or sexps for short). Sexps are very simple pieces of syntax: they are either symbols, or they are lists.</p>
 <ul>
-<li>symbol</li>
-<li>(sub-sexp1 sub-sexp2 ...)</li>
+<li>
+symbol
+</li>
+<li>
+(sub-sexp1 sub-sexp2 …)
+</li>
 </ul>
-
-
 <p>So, the symbolic expression:</p>
-
-<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure></p>
-
-<p>Is the list of three elements, which are the symbols <code>floor</code>, <code>5</code> and
-<code>2</code>. That is data. But that data is also code.</p>
-
-<h2>Data as code</h2>
-
-<p>If we evaluate that previous expression, it returns two values (because,
-yes, Common Lisp can return multiple values, and that is not the same
-as returning tuples), the first one being the division 5/2 and the
-second one being the remainder.</p>
-
-<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</figure>
+<p>Is the list of three elements, which are the symbols <code>floor</code>, <code>5</code> and <code>2</code>. That is data. But that data is also code.</p>
+<h2 id="data-as-code">Data as code</h2>
+<p>If we evaluate that previous expression, it returns two values (because, yes, Common Lisp can return multiple values, and that is not the same as returning tuples), the first one being the division 5/2 and the second one being the remainder.</p>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
 <span class="mi">2</span>
-<span class="nv">1</span></code></pre></figure></p>
-
+<span class="nv">1</span></code></pre>
+</figure>
 <p>That list can be generated from the following code:</p>
-
-<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
-<span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre></figure></p>
-
-<p>That function, list, builds a list with the rest of the elements. As
-CL is a call-by-value language, the quote in floor will avoid it being
-evaluated as a variable.</p>
-
-<p>However, entering the first value directly on the REPL (how the
-interactive loop is called) will compute 5/2, so it is fundamentally code.</p>
-
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</figure>
+<p>That function, list, builds a list with the rest of the elements. As CL is a call-by-value language, the quote in floor will avoid it being evaluated as a variable.</p>
+<p>However, entering the first value directly on the REPL (how the interactive loop is called) will compute 5/2, so it is fundamentally code.</p>
 <p>But lisp data can be turned into lisp code easily, via eval.</p>
-
-<p><figure class="highlight"><pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">))</span>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">))</span>
 <span class="mi">2</span>
-<span class="nv">1</span></code></pre></figure></p>
-
-<p>Not only that, lisp code can be manipulated as if it were lisp data,
-by using macros.</p>
-
-<blockquote><p>Macros in lisp have nothing to do with C macros.</p></blockquote>
-
-<h2>Code as data</h2>
-
-<p>That's the other part of the equation. Fortunately, it is a quite
-symmetric relationship: code can be manipulated as if it were a
-regular sexp.</p>
-
-<p>How so? Well, in Common Lisp, when a file is loaded into the
-evaluator, three stages happen:</p>
-
+<span class="nv">1</span></code></pre>
+</figure>
+<p>Not only that, lisp code can be manipulated as if it were lisp data, by using macros.</p>
+<blockquote>
+<p>Macros in lisp have nothing to do with C macros.</p>
+</blockquote>
+<h2 id="code-as-data">Code as data</h2>
+<p>That’s the other part of the equation. Fortunately, it is a quite symmetric relationship: code can be manipulated as if it were a regular sexp.</p>
+How so? Well, in Common Lisp, when a file is loaded into the evaluator, three stages happen:
 <dl class="dl-horizontal">
-<dt>read</dt>
-<dd>The file is read into s-expressions, and several intricate things
-may happen, due to something called reader-macros</dd>
-
-<dt>compile</dt>
-<dd>The read expressions are macroexpand-ed and compiled into a bytecode or object code for later evaluation</dd>
-<dt>evaluation</dt>
-<dd>The compiled expressions are evaluated</dd>
+<dt>
+read
+</dt>
+<dd>
+The file is read into s-expressions, and several intricate things may happen, due to something called reader-macros
+</dd>
+<dt>
+compile
+</dt>
+<dd>
+The read expressions are macroexpand-ed and compiled into a bytecode or object code for later evaluation
+</dd>
+<dt>
+evaluation
+</dt>
+<dd>
+The compiled expressions are evaluated
+</dd>
 </dl>
-
-
-<p>In the first stage, the environment makes sense of the input stream
-data (e.g., characters) as s-expressions, so here we can influence the
-lexer (i.e., the reader algorithm) in order to extend our syntax
-beyond s-expressions.</p>
-
-<p>But it is the second stage the one that allows code to be manipulated
-as data. As we already have read the file, we now have s-expressions
-representing our code which are in their way to being compiled.</p>
-
-<p>Thus, macros in lisp can be <em>semantic macros</em>, and not just <em>lexical
-macros</em>, e.g., the textual substitutions that happen with the C
-Preprocessor and similar.</p>
-
-<p>Besides, the Common Lisp compiler is first-order itself, which means
-that during compilation, <strong>the full Common Lisp runtime is
-accessible</strong>. That means that regular functions can be called inside
-macros, therefore a macro is a compile-time run function operating on
-your program's AST, and which should return another AST for
-compilation. Effectively, by using macros in Common Lisp, you are
-writing <em>programs that write other programs at compile time</em>.</p>
-
-<p>This macro mechanism is so flexible and extensible that the language
-continuously encourages you to write your own
-mini-DSLs<sup>Domain-Specific Language</sup> for every
-problem. Because it is so easy and straightforward.</p>
-
-<h2>The meta level</h2>
-
-<p>The project I'm using Common Lisp with at the time involves writing
-some code that can mean two different things, depending on how the
-code is reached. As I can introduce definitions for a DSL on-demand, I
-can give different semantics to my data by directly writing macros for
-each case, instead of me manually interpreting the code. That is,
-instead of writing my own two interpreters for the code, I leverage
-the existing Common Lisp EVAL function, and I just introduce the
-needed definitions into the EVAL environment in each case.</p>
-
-<h1>Why is Lisp still useful when we have X?</h1>
-
+<p>In the first stage, the environment makes sense of the input stream data (e.g., characters) as s-expressions, so here we can influence the lexer (i.e., the reader algorithm) in order to extend our syntax beyond s-expressions.</p>
+<p>But it is the second stage the one that allows code to be manipulated as data. As we already have read the file, we now have s-expressions representing our code which are in their way to being compiled.</p>
+<p>Thus, macros in lisp can be <em>semantic macros</em>, and not just <em>lexical macros</em>, e.g., the textual substitutions that happen with the C Preprocessor and similar.</p>
+<p>Besides, the Common Lisp compiler is first-order itself, which means that during compilation, <strong>the full Common Lisp runtime is accessible</strong>. That means that regular functions can be called inside macros, therefore a macro is a compile-time run function operating on your program’s AST, and which should return another AST for compilation. Effectively, by using macros in Common Lisp, you are writing <em>programs that write other programs at compile time</em>.</p>
+<p>This macro mechanism is so flexible and extensible that the language continuously encourages you to write your own mini-DSLs<sup>Domain-Specific Language</sup> for every problem. Because it is so easy and straightforward.</p>
+<h2 id="the-meta-level">The meta level</h2>
+<p>The project I’m using Common Lisp with at the time involves writing some code that can mean two different things, depending on how the code is reached. As I can introduce definitions for a DSL on-demand, I can give different semantics to my data by directly writing macros for each case, instead of me manually interpreting the code. That is, instead of writing my own two interpreters for the code, I leverage the existing Common Lisp EVAL function, and I just introduce the needed definitions into the EVAL environment in each case.</p>
+<h1 id="why-is-lisp-still-useful-when-we-have-x">Why is Lisp still useful when we have X?</h1>
 <p>Well, consider the language features of your recent X.</p>
-
-<p>Let's consider if it is up to par with a language designed in the late 1950s.</p>
-
+<p>Let’s consider if it is up to par with a language designed in the late 1950s.</p>
 <ul>
 <li>Does it have a function type? (i.e., functions as first-class objects)</li>
 <li>recursion? (how about tail-call optimization?)</li>
 <li>garbage collection?</li>
 <li>programs composed of expressions? (i.e., no distinction with statements?)</li>
-<li>a symbol type? (symbols are not strings, and can be tested for
-equality by comparing pointers)</li>
+<li>a symbol type? (symbols are not strings, and can be tested for equality by comparing pointers)</li>
 <li>a notation for code using trees for symbols?</li>
 <li>the whole language always available? (at read-time/compile-time/eval-time?)</li>
-<li>a multiple-inheritance multiple-dispatch class-based object oriented
-mechanism? (Common Lisp has the CLOS, or Common Lisp Object System)</li>
+<li>a multiple-inheritance multiple-dispatch class-based object oriented mechanism? (Common Lisp has the CLOS, or Common Lisp Object System)</li>
 <li>A MetaObject Protocol (MOP)?</li>
 <li>First-order continuations?</li>
 <li>Non-local exits?</li>
 <li>Constructors and destructors?</li>
 <li>dynamic variables?</li>
 </ul>
-
-
-<p>I'm going to leave this post here, but if you have some time and
-curiosity, give Common Lisp a look. I have yet to encounter a more
-expressive language.</p>
+<p>I’m going to leave this post here, but if you have some time and curiosity, give Common Lisp a look. I have yet to encounter a more expressive language.</p>
 
 		</article>
         </div>

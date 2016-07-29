@@ -142,68 +142,24 @@
 <div class="row">
 	<div class="col-md-8">
 		<article>
-			<p>Dealing with a dynamic scripting language is great at some point, for
-prototyping and agile development; but, what about testing?</p>
-
-<p>You will need a testing framework, a JUnit/TestNG of sorts if you come
-from the Java world, and you want to rely on it for your testing,
-i.e., you want the testing framework to <em>just work</em>. I'll tell you now
-my experiences with VowsJS and how it failed miraculously in its duty
-for me.</p>
-
+			<p>Dealing with a dynamic scripting language is great at some point, for prototyping and agile development; but, what about testing?</p>
+<p>You will need a testing framework, a JUnit/TestNG of sorts if you come from the Java world, and you want to rely on it for your testing, i.e., you want the testing framework to <em>just work</em>. I’ll tell you now my experiences with VowsJS and how it failed miraculously in its duty for me.</p>
 <!-- more -->
-
-
-<p>This hereby is my personal opinion and it may or may not represent the
-absolute reality.</p>
-
-<p>I'm making a project which contains a lot of JavaScript for the server
-side, and I'm testing it on Node.js, because it's quite fast to do. Of
-course, as a Computer Science literate, or sort of, I <em>know</em> tests are
-meaningful, necessary and great for development itself, to test
-regressions and all of your workings. Even subconsciously, tests are
-great, because when you break something you may think "you've done
-work as to interfere in your previous work", but if you don't you may
-still think "your work is awesome: you didn't break anything".</p>
-
-<p>Use whatever phrase it feels for congratulating yourself: you're
-making progress.</p>
-
+<p>This hereby is my personal opinion and it may or may not represent the absolute reality.</p>
+<p>I’m making a project which contains a lot of JavaScript for the server side, and I’m testing it on Node.js, because it’s quite fast to do. Of course, as a Computer Science literate, or sort of, I <em>know</em> tests are meaningful, necessary and great for development itself, to test regressions and all of your workings. Even subconsciously, tests are great, because when you break something you may think “you’ve done work as to interfere in your previous work”, but if you don’t you may still think “your work is awesome: you didn’t break anything”.</p>
+<p>Use whatever phrase it feels for congratulating yourself: you’re making progress.</p>
 <p>But what happens when a test goes wrong?</p>
-
-<p>Well, different frameworks are different worlds, but I'll tell you
-what I think should happen.</p>
-
-<p>First, the test should be reported failing, or erroring, depending on whether
-assertions failed or unexpected stuff happened outside the testing
-environment (such as an API change, or a DB connection problem if we
-don't mock the storage layer when we're testing other stuff).</p>
-
-<p>That sounds very obvious: the purporse of tests is to be known whether
-they pass.</p>
-
-<p>But second, and I think it's of most importance, the reporter <strong>MUST</strong>
-tell you <em>what</em>'s failing, and <em>where</em>.</p>
-
-<p>Even if they don't tell you how to fix it (ha, that would be awesome
-BDD), knowing <strong>what</strong> fails is very important.</p>
-
-<p>So, well, Vows (currently) fails so much at it: advertised as a
-promise-friendly and asynchronous test framework, errors on async
-calls are not reported, and if you manage to get some reporting, it
-won't tell you where did the call come from (which is absolute
-nonsense if you have more than, let's say, two tests).</p>
-
-<p>I spent so much time actually <em>debugging</em> my test framework that it
-should just not happen. A testing framework is supposed to be a tool
-for others to use (when it's ready), and that's why I changed.</p>
-
-<p>Besides, the style you use for testing is quite horrible (i.e., for a
-testing framework that is supposed to be async-friendly).</p>
-
+<p>Well, different frameworks are different worlds, but I’ll tell you what I think should happen.</p>
+<p>First, the test should be reported failing, or erroring, depending on whether assertions failed or unexpected stuff happened outside the testing environment (such as an API change, or a DB connection problem if we don’t mock the storage layer when we’re testing other stuff).</p>
+<p>That sounds very obvious: the purporse of tests is to be known whether they pass.</p>
+<p>But second, and I think it’s of most importance, the reporter <strong>MUST</strong> tell you <em>what</em>’s failing, and <em>where</em>.</p>
+<p>Even if they don’t tell you how to fix it (ha, that would be awesome BDD), knowing <strong>what</strong> fails is very important.</p>
+<p>So, well, Vows (currently) fails so much at it: advertised as a promise-friendly and asynchronous test framework, errors on async calls are not reported, and if you manage to get some reporting, it won’t tell you where did the call come from (which is absolute nonsense if you have more than, let’s say, two tests).</p>
+<p>I spent so much time actually <em>debugging</em> my test framework that it should just not happen. A testing framework is supposed to be a tool for others to use (when it’s ready), and that’s why I changed.</p>
+<p>Besides, the style you use for testing is quite horrible (i.e., for a testing framework that is supposed to be async-friendly).</p>
 <p>Example:</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unpromise</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">unpromise</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">promise</span><span class="p">)</span> <span class="p">{</span>
     <span class="kd">var</span> <span class="nx">evt</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">events</span><span class="p">.</span><span class="nx">EventEmitter</span><span class="p">();</span>
     <span class="nx">promise</span><span class="p">.</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">v</span><span class="p">)</span> <span class="p">{</span>
         <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'success'</span><span class="p">,</span> <span class="nx">v</span><span class="p">);</span>
@@ -211,9 +167,9 @@ testing framework that is supposed to be async-friendly).</p>
         <span class="nx">evt</span><span class="p">.</span><span class="nx">emit</span><span class="p">(</span><span class="s1">'error'</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
     <span class="p">});</span>
     <span class="k">return</span> <span class="nx">evt</span><span class="p">;</span>
-<span class="p">}</span></p>
+<span class="p">}</span>
 
-<p><span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">'Create Identity'</span><span class="p">)</span>
+<span class="nx">vows</span><span class="p">.</span><span class="nx">describe</span><span class="p">(</span><span class="s1">'Create Identity'</span><span class="p">)</span>
     <span class="p">.</span><span class="nx">addBatch</span><span class="p">({</span>
         <span class="s1">'when creating a new identity and generating keys first'</span><span class="p">:</span> <span class="p">{</span>
             <span class="na">topic</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
@@ -230,82 +186,56 @@ testing framework that is supposed to be async-friendly).</p>
                     <span class="p">}));</span>
             <span class="p">}</span>
         <span class="p">},</span>
-<span class="c1">// ...</span></code></pre></figure></p>
-
-<p>And yes, I had to write an "unpromise" method so that promises were
-sort of "converted" to events, or the test framework would silently
-fail or assume everything was OK without even testing the assertions.</p>
-
-<p>I didn't research too much into it, but I went to mocha with chai and
-chai-as-promised to deal with promises in BDD-style, and I find it
-quite comfortable.</p>
-
-<p>Migrating my test battery took me like 15-20 minutes, most of which
-was making more assertions and in a better way, and a bit of changing
-the structure and then it just worked great.</p>
-
-<p>Besides, I like a lot more Chai's "expect" BDD idiom; I find it quite
-clean, expressive, and harmless.</p>
-
+<span class="c1">// ...</span></code></pre>
+</figure>
+<p>And yes, I had to write an “unpromise” method so that promises were sort of “converted” to events, or the test framework would silently fail or assume everything was OK without even testing the assertions.</p>
+<p>I didn’t research too much into it, but I went to mocha with chai and chai-as-promised to deal with promises in BDD-style, and I find it quite comfortable.</p>
+<p>Migrating my test battery took me like 15-20 minutes, most of which was making more assertions and in a better way, and a bit of changing the structure and then it just worked great.</p>
+<p>Besides, I like a lot more Chai’s “expect” BDD idiom; I find it quite clean, expressive, and harmless.</p>
 <p>An assertion in this style is set as follows:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">null</span><span class="p">;</span>
 
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">something</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="kc">null</span><span class="p">;</span></p>
-
-<p><span class="nx">something</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
+<span class="nx">something</span> <span class="o">=</span> <span class="mi">5</span><span class="p">;</span>
 <span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">5</span><span class="p">);</span>
 <span class="nx">expect</span> <span class="p">(</span><span class="nx">something</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Error</span><span class="p">);</span></code></pre></figure></p>
-
+<span class="nx">expect</span> <span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Error</span><span class="p">);</span></code></pre>
+</figure>
 <p>And (with chai-as-promised) it works great with promises, such as:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
 
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span></p>
+<span class="c1">// Assert that the promise is not rejected</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">;</span>
 
-<p><span class="c1">// Assert that the promise is not rejected</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">fulfilled</span><span class="p">;</span></p>
-
-<p><span class="c1">// Assert things about the result given in the promise</span>
+<span class="c1">// Assert things about the result given in the promise</span>
 <span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="k">typeof</span> <span class="p">(</span><span class="s1">'number'</span><span class="p">);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span></p>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">equal</span> <span class="p">(</span><span class="mi">42</span><span class="p">);</span>
 
-<p><span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">([]);</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'slice'</span><span class="p">);</span></p>
+<span class="kd">var</span> <span class="nx">promise</span> <span class="o">=</span> <span class="nx">when</span> <span class="p">([]);</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nx">promise</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">eventually</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'slice'</span><span class="p">);</span>
 
-<p><span class="c1">// Assert properties about objects created from a specified constructor</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span> <span class="p">(</span><span class="s1">'prototype'</span><span class="p">);</span></p>
+<span class="c1">// Assert properties about objects created from a specified constructor</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">to</span><span class="p">.</span><span class="nx">have</span><span class="p">.</span><span class="nx">property</span> <span class="p">(</span><span class="s1">'prototype'</span><span class="p">);</span>
 
-<p><span class="c1">// Use on constructors themselves, not on created objects:</span>
-<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">itself</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'create'</span><span class="p">);</span></code></pre></figure></p>
+<span class="c1">// Use on constructors themselves, not on created objects:</span>
+<span class="nx">expect</span> <span class="p">(</span><span class="nb">Object</span><span class="p">).</span><span class="nx">itself</span><span class="p">.</span><span class="nx">to</span><span class="p">.</span><span class="nx">respondTo</span> <span class="p">(</span><span class="s1">'create'</span><span class="p">);</span></code></pre>
+</figure>
+<p>Don’t you find it expressive?</p>
+<p>There’s another flavour, called “should” which would go like this:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="nx">something</span> <span class="o">=</span> <span class="p">[];</span>
 
-<p>Don't you find it expressive?</p>
+<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
+<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">empty</span><span class="p">;</span>
 
-<p>There's another flavour, called "should" which would go like this:</p>
-
-<p><figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">something</span> <span class="o">=</span> <span class="p">[];</span></p>
-
-<p><span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">an</span><span class="p">.</span><span class="k">instanceof</span> <span class="p">(</span><span class="nb">Array</span><span class="p">);</span>
-<span class="nx">something</span><span class="p">.</span><span class="nx">should</span><span class="p">.</span><span class="nx">be</span><span class="p">.</span><span class="nx">empty</span><span class="p">;</span></p>
-
-<p><span class="c1">// And so on</span></code></pre></figure></p>
-
-<p>But I like that approach less because it pollutes the global namespace
-(making should a property of everything), and I am enlisted against
-the Global-Namespace Warming, for which the Global-Namespace Pollution
-and their greenhouse effect are quite to blame :)</p>
-
-<p>Anyway, I still think that polluting the namespaces in the tests is
-still less troublesome than using Vows. But yeah, there might be
-caveats, and that's why you should use expect instead ;)</p>
-
+<span class="c1">// And so on</span></code></pre>
+</figure>
+<p>But I like that approach less because it pollutes the global namespace (making should a property of everything), and I am enlisted against the Global-Namespace Warming, for which the Global-Namespace Pollution and their greenhouse effect are quite to blame :)</p>
+<p>Anyway, I still think that polluting the namespaces in the tests is still less troublesome than using Vows. But yeah, there might be caveats, and that’s why you should use expect instead ;)</p>
 <p>End of the rant.</p>
-
-<p>I really hope (seriously) for these words to be nonsense on some
-day. I hope vows gets more mature, bugs cleaned and features provided
-so that it can be used by people in my situation, who have not enough
-time to deal with the project plus the test framework at the same
-time; but currently this is how I felt when I tried to use it
-properly, and asynchronous.</p>
-
+<p>I really hope (seriously) for these words to be nonsense on some day. I hope vows gets more mature, bugs cleaned and features provided so that it can be used by people in my situation, who have not enough time to deal with the project plus the test framework at the same time; but currently this is how I felt when I tried to use it properly, and asynchronous.</p>
 <p>Cheers!</p>
 
 		</article>
