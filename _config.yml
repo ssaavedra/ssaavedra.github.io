@@ -9,7 +9,7 @@ markdown: Pandoc
 
 pandoc:
   format: html5
-  extensions: [smart, mathjax]
+  extensions: [mathjax]
 
 title: Synthetic Silice
 
