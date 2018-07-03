@@ -144,13 +144,43 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    rdf:id="self">
 <p>
-  My name is <foaf:name>Santiago Saavedra</foaf:name> (aka <foaf:nick>ssaavedra</foaf:nick> in <a rel="me" href="https://github.com/ssaavedra">GitHub</a> and <foaf:nick>ssice</foaf:nick> in <a rel="me" href="https://twitter.com/ssice">Twitter</a>). I'm a <foaf:interest><rdf:Description rdf:about="http://acm.org" rdfs:label="Computer Science" />Computer Scientist</foaf:interest> graduated at <foaf:schoolHomepage><a href="http://www.udc.es">University of A Coruña</a></foaf:schoolHomepage>.
+  My name is <foaf:name>Santiago Saavedra</foaf:name> (aka <foaf:nick>ssaavedra</foaf:nick> in <a rel="me" href="https://github.com/ssaavedra">GitHub</a> and <foaf:nick>ssice</foaf:nick> in <a rel="me" href="https://twitter.com/ssice">Twitter</a>). I'm a <foaf:interest><rdf:Description rdf:about="http://acm.org" rdfs:label="Computer Science" />Computer Scientist</foaf:interest> graduated from <foaf:schoolHomepage><a href="http://www.udc.es">University of A Coruña</a></foaf:schoolHomepage>.
 </p>
 
 <foaf:currentProject>
+  <foaf:Project>
+    <foaf:Organization>
+      <p>I am currently a Software Engineer
+	at
+	<foaf:workplaceHome rdf:resource="https://openshine.com">
+	  <a href="https://openshine.com">
+	    OpenShine, S.L.</a></foaf:workplaceHome>.  We work with
+	technologies in the playground of Kubernetes, Spark, Scala,
+	Kafka, ELK and the such. I usually do things from Scala and
+	Python 3, but I also fancy Go and Haskell.
+	
+    </foaf:Organization>
+  </foaf:Project>
+</foaf:currentProject>
+<foaf:pastProject>
+<foaf:Project>
+<foaf:Organization>
+<p>
+I am currently an employee of <foaf:workplaceHomepage rdf:resource="https://openshine.com"><a href="https://openshine.com">OpenShine SL</a>,
+a small software engineering shop based in Spain.
+We work with technologies in the playground of Kubernetes, Spark, Scala, Kafka, ELK and the such. I usually do things from Scala and Python 3, but I also fancy Go and Haskell. 
+</p>
+</foaf:Organization>
+</foaf:Project>
+<foaf:Project>
+<p>
+I also co-authored <a href="https://trackula.org"><foaf:name>Trackula</foaf:name></a> as part of my enthusiasm for advocating towards privacy and against surveillance on the Internet.
+</p>
+</foaf:Project>
+</foaf:currentProject>
 <foaf:Project>
     <foaf:Organization>
-      <p>I'm currently a Research Assistant
+      <p>I was previously (2016) a Research Assistant
 	at
 	<foaf:workplaceHomepage rdf:resource="http://gdp.sip.ucm.es">
 	  <a href="http://gpd.sip.ucm.es">
@@ -159,28 +189,30 @@
 	</foaf:workplaceHomepage>
 
 	for a project called
-	<foaf:name>CAVI-ART</foaf:name>, where I work on a validation
+	<foaf:name>CAVI-ART</foaf:name>, where I worked on a validation
 	assistant for formally proving programs.
       </p>
     </foaf:Organization>
 </foaf:Project>
-
+</foaf:pastProject>
+<foaf:pastProject>
 <foaf:Project>
   <p>
-    I'm also the President of the
+    I have also been President of the
     <foaf:Organization>
       <foaf:name>
 	<a href="https://gpul.org">Group of Linux Users and Programmers (GPUL)</a>
       </foaf:name>
-      <foaf:workpaceHomepage rdf:resource="https://gpul.org" /> , a
+      <foaf:workpaceHomepage rdf:resource="https://gpul.org" /> for four years, a
       non-profit based in A Coruña where we try to educate and
-      promote free software and free culture initiatives. Our latest
-      project is <a href="https://labs.gpul.org">GPUL Labs</a>, a space to
+      promote free software and free culture initiatives. One of our successful
+      projects is <a href="https://labs.gpul.org">GPUL Labs</a>, a space to
       foster collective imagination and incubate free software projects.
     </foaf:Organization>
   </p>
 </foaf:Project>
-</foaf:currentProject>
+</foaf:pastProject>
+
 </foaf:Person>
 
 
@@ -188,7 +220,7 @@
 I have a passion for computer science, technology, instrumental music
 and information.</p>
 
-<p>My favourite text editor is GNU Emacs.</p>
+<p>My favourite text editor since 2012 is GNU Emacs.</p>
 
 <p>
   My friends with blogs are these:
@@ -375,7 +407,8 @@ affiliate advertising programme designed to provide a means for sites
 
 
   <script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    function launchA() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -384,6 +417,50 @@ affiliate advertising programme designed to provide a means for sites
 	ga('require', 'linkid', 'linkid.js');
 	ga('require', 'displayfeatures');
 	ga('send', 'pageview');
+  }
+    (function(){
+    if(window.localStorage['ga-consent'] == "1") {
+    launchA();
+    } else if(window.localStorage['ga-consent'] == "opt-out") {
+    console.log("You won't find G-Analytics here")
+    } else {
+    // Ask for it
+    let d = document.createElement('div')
+    d.className = "footer-tab"
+    d.innerHTML = "<p>I'd like to use Google Analytics in order to know about the impact of this website. In the near future I'll migrate to my own Matomo instance. " +
+      "Meanwhile, I've instructed Google not to aggregate usages on this page to third-party usages in the analytics control panel. If you are using a blocker in your browser this setting has no effect.<p><p id=\"cbtn\"></p>"
+
+    if(navigator.doNotTrack == "1") {
+    d.innerHTML = "<p>You have enabled Do Not Track in your browser. Google Analytics won't be loaded on this page unless you opt-in.</p>"
+    }
+    
+    let acceptBtn = document.createElement('button')
+    acceptBtn.addEventListener('click', function(e) { e.preventDefault(); window.localStorage['ga-consent'] = '1'; launchA(); document.body.removeChild(d) })
+    acceptBtn.innerHTML = "Opt-in"
+    acceptBtn.style.marginRight = "5px"
+    let denyBtn = document.createElement('button')
+    denyBtn.addEventListener('click', function(e) { e.preventDefault(); window.localStorage['ga-consent'] = 'opt-out'; document.body.removeChild(d) })
+    denyBtn.innerHTML = "Dismiss (keep opted out)"
+    denyBtn.style.marginLeft = "5px"
+    let z = document.createElement('div')
+    z.style.textAlign = "center"
+    z.appendChild(acceptBtn)
+    z.appendChild(denyBtn)
+    d.appendChild(z)
+    d.style.height = "92px"
+    d.style.padding = "10px"
+    d.style.display = "block"
+    d.style.position = "fixed"
+    d.style.background = "white"
+    d.style.bottom = "0"
+    d.style.left = 0
+    d.style.right = 0
+    d.style.paddingLeft = "25px"
+    d.style.paddingRight = "25px"
+    document.body.appendChild(d)
+    }
+    })()
+
   </script>
 
 

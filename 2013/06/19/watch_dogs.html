@@ -382,7 +382,8 @@
 
 
   <script type="text/javascript">
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    function launchA() {
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
 	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
 	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
@@ -391,6 +392,50 @@
 	ga('require', 'linkid', 'linkid.js');
 	ga('require', 'displayfeatures');
 	ga('send', 'pageview');
+  }
+    (function(){
+    if(window.localStorage['ga-consent'] == "1") {
+    launchA();
+    } else if(window.localStorage['ga-consent'] == "opt-out") {
+    console.log("You won't find G-Analytics here")
+    } else {
+    // Ask for it
+    let d = document.createElement('div')
+    d.className = "footer-tab"
+    d.innerHTML = "<p>I'd like to use Google Analytics in order to know about the impact of this website. In the near future I'll migrate to my own Matomo instance. " +
+      "Meanwhile, I've instructed Google not to aggregate usages on this page to third-party usages in the analytics control panel. If you are using a blocker in your browser this setting has no effect.<p><p id=\"cbtn\"></p>"
+
+    if(navigator.doNotTrack == "1") {
+    d.innerHTML = "<p>You have enabled Do Not Track in your browser. Google Analytics won't be loaded on this page unless you opt-in.</p>"
+    }
+    
+    let acceptBtn = document.createElement('button')
+    acceptBtn.addEventListener('click', function(e) { e.preventDefault(); window.localStorage['ga-consent'] = '1'; launchA(); document.body.removeChild(d) })
+    acceptBtn.innerHTML = "Opt-in"
+    acceptBtn.style.marginRight = "5px"
+    let denyBtn = document.createElement('button')
+    denyBtn.addEventListener('click', function(e) { e.preventDefault(); window.localStorage['ga-consent'] = 'opt-out'; document.body.removeChild(d) })
+    denyBtn.innerHTML = "Dismiss (keep opted out)"
+    denyBtn.style.marginLeft = "5px"
+    let z = document.createElement('div')
+    z.style.textAlign = "center"
+    z.appendChild(acceptBtn)
+    z.appendChild(denyBtn)
+    d.appendChild(z)
+    d.style.height = "92px"
+    d.style.padding = "10px"
+    d.style.display = "block"
+    d.style.position = "fixed"
+    d.style.background = "white"
+    d.style.bottom = "0"
+    d.style.left = 0
+    d.style.right = 0
+    d.style.paddingLeft = "25px"
+    d.style.paddingRight = "25px"
+    document.body.appendChild(d)
+    }
+    })()
+
   </script>
 
 
