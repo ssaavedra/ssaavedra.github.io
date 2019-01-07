@@ -204,19 +204,19 @@ which will create 10, 5 and 4 folders, nested, and then 100 files on
 each of ~5kb, all text.
 
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="k">for </span>f <span class="k">in</span> <span class="sb">`</span>seq 1 10<span class="sb">`</span>; <span class="k">do </span>mkdir <span class="nv">$f</span>;
-        <span class="k">for </span>ff <span class="k">in</span> <span class="sb">`</span>seq 1 100<span class="sb">`</span>; <span class="k">do
-            </span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>.txt
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="k">for </span>f <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 10<span class="sb">`</span><span class="p">;</span> <span class="k">do </span><span class="nb">mkdir</span> <span class="nv">$f</span><span class="p">;</span>
+        <span class="k">for </span>ff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+            </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>.txt
         <span class="k">done
-        for </span>ff <span class="k">in</span> <span class="sb">`</span>seq 1 5<span class="sb">`</span>; <span class="k">do
-            </span>mkdir <span class="nv">$f</span>/<span class="nv">$ff</span>
-            <span class="k">for </span>fff <span class="k">in</span> <span class="sb">`</span>seq 1 100<span class="sb">`</span>; <span class="k">do
-                </span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>.txt
+        for </span>ff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 5<span class="sb">`</span><span class="p">;</span> <span class="k">do
+            </span><span class="nb">mkdir</span> <span class="nv">$f</span>/<span class="nv">$ff</span>
+            <span class="k">for </span>fff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>.txt
             <span class="k">done
-            for </span>fff <span class="k">in</span> <span class="sb">`</span>seq 1 4<span class="sb">`</span>; <span class="k">do
-                </span>mkdir <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>
-                <span class="k">for </span>ffff <span class="k">in</span> <span class="sb">`</span>seq 1 100<span class="sb">`</span>; <span class="k">do
-                    </span>dd <span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | base64 &gt; <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>/<span class="nv">$ffff</span>.txt
+            for </span>fff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 4<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                </span><span class="nb">mkdir</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>
+                <span class="k">for </span>ffff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                    </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>/<span class="nv">$ffff</span>.txt
                 <span class="k">done
             done
         done
@@ -312,8 +312,8 @@ once, saving even more space.
   <p><small>
       <i class="glyphicon glyphicon-barcode"></i> SHA Hash:
       <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
-         href="http://github.com/ssaavedra/ssaavedra.github.io/commit//_posts/2014-04-05-git-packs.md"
-         ></a>
+         href="http://github.com/ssaavedra/ssaavedra.github.io/commit/526e42f89d6d9bd427ebf0032d1a65de3c0b1531/_posts/2014-04-05-git-packs.md"
+         >526e42f8</a>
       |
       <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
          href="http://github.com/ssaavedra/ssaavedra.github.io/commits/source/_posts/2014-04-05-git-packs.md">
