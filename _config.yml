@@ -11,6 +11,12 @@ pandoc:
   format: html5
   extensions: [mathjax]
 
+plugins:
+  - jekyll-feed
+
+feed:
+  path: /atom.xml
+
 title: Synthetic Silice
 
 author:
