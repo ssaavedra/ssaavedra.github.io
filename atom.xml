@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="/atom.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2024-09-16T08:33:59+00:00</updated><id>/atom.xml</id><title type="html">Synthetic Silice</title><author><name>Santiago Saavedra</name></author><entry><title type="html">What is wrong with (economics in) FLOSS?</title><link href="/2019/08/25/what-is-wrong-with-open-source.html" rel="alternate" type="text/html" title="What is wrong with (economics in) FLOSS?" /><published>2019-08-25T00:00:00+00:00</published><updated>2019-08-25T00:00:00+00:00</updated><id>/2019/08/25/what-is-wrong-with-open-source</id><content type="html" xml:base="/2019/08/25/what-is-wrong-with-open-source.html"><![CDATA[<p>There is currently an interesting debate on the JavaScript community, centered around the <code>standard/standard</code> project on GitHub. Some people are interested on the economics of free software and trying to explore different avenues for getting back money for contributing to open source.</p>
+<p>You can see the full thread <a href="https://github.com/feross/funding/issues/10">here</a>, and I invite you to read my thoughts on the issue (which I have replied in the original thread, and may later see comments on it).</p>
+<hr />
+<p>Forefront: if you are currently maintaining a FLOSS project and feel <em>entitled</em> to someone paying you for doing volunteer work, I humbly invite you to revise your thoughts, or otherwise step down and leave the FLOSS community. We’ll do fine without you. Yeah, maybe you can wreak havoc for a couple of versions on some dependencies and create a bit of history of “what shouldn’t happen”, but that will be it. We’ll fork your stuff, fix it and move on.</p>
+<p>But then, there are those that, without feeling entitled to it, may think that <em>it would be nice if</em> Free Software projects could have people working full-time on them in order to increase their value over proprietary alternatives. And here, I do sympathise with you, <em>completely</em>.</p>
+<p>First of all, I think there’s a problem with the discourse between Free Software and Proprietary Software at a fundamental level if we can even think that only in general proprietary software can be a source of sustenance/income, a thought some folks here are seemingly supportive of.</p>
+<p>While I don’t think that Free Software developers are entitled to a sustained income, I don’t disagree on the general point that such contributions can be valuable and should be fairily rewarded, and encouraged to continue participating with more valuable contributions, and thus, achieve such an income.</p>
+<p>In particular, if we want to create <em>more</em> high-quality free software to, essentially, compete against proprietary software for the freedoms and guarantees it gives us, then, somehow, in an abstract way, the Free Software Movement is competing for labor against for-profit corporations. This doesn’t necessarily mean that all free software should be monetized, and of course it does not say anything about how and from who should that money come from. I do agree with <span class="citation" data-cites="traverseda">@traverseda</span>’s point on value exchange: it’s tricky, and even more when we talk about something as intrincate as software, usually built from thousands of dependent pieces whose contribution to the whole is never easily calculated.</p>
+<p>The whole idea of Free Software and Open Source is an exercise on models about shared capital, and shared property (intellectual property, which is itself an amusing construct that we came up with to try to monetize off the press machine, since the cost of book-copying became obsolete at that point). This shared property, “the Commons”, is also infinitely redistributable at marginal costs, it’s not like a “community fund” where if take money for community expenses, it leaves the fund. Here, it stays for the rest of the community to also use it again in as many ways as imaginable.</p>
+<p>The thing is that, while all the intellectual works of a project are infinitely redistributable, the time of developers/maintainers committing their time to this “community fund” is definitely not. But then, what we are asking is <em>how can we fairily set a value for the work that the “intellectual workers” did, and who should pay that value?</em> In my opinion, the answer to this question has never been properly formulated throughout History.</p>
+<p>We have many mechanisms, like grants, patronage, royalties, patents…, but (again, in my opinion) all of them have some or other nuances that make them unfit in different circumstances.</p>
+<p>Cross-linking from https://github.com/feross/funding/issues/11#issuecomment-524609870, you can find most of these approaches applied to software on the <a href="https://github.com/nayafia/lemonade-stand">lemonade stand</a> repo.</p>
+<p>Personally, I’m fond of crowd-sourced bounties and encouraging users to pay consultants to develop the features they’d need (as they would pay on proprietary software). It has some frictions, and it’s not an easy encouragement (that’s why I’m mentioning it as part of <em>what’s wrong right now</em>), and the conflict may arise as to whether some candidate implementation actually fulfills what’s being asked, but by pooling money together on an issue you can get the attention of someone who may see value in implementing it.</p>
+<ul>
+<li>It gives users a loud voice on what’s important to them by voting with the same thing that gives them value</li>
+<li>It still gives a voice to those who can commit less money, because if the thing is relevant, it will be bountied further by others who may see the feature interesting too</li>
+<li>It is more transparent about who the money goes to, and what for</li>
+<li>It gives users an incentive to become contributors, and increase the long-term strength of the project, also giving the ability to core developers to step back if they wish to, without feeling they are irreplaceable</li>
+</ul>
+<p>However, - This has the risk of money taking control of the planning and long-term development of the project; but there the core developers may also decide if money provides more value to them than actually setting a long-term plan <em>pro bono</em>. - Having pledges linked to the “upstream” project prevents them from being vetted by the backers until upstream maintainers can review the task, reducing the value capture of forking the project and implementing missing features (e.g., on an unmaintained repo with a maintained fork)</p>
+<p>There is also the problem of reviewing/merging and how that value should be split, but before considering that, we should also put in the other hand if, instead of reviewing the changes the project was split into a fork, the loss of value created by the fragmentation of the ecosystem, which should not be dismissed either.</p>
+<p>Having bounties for performing work (or recurring patronage) gives back to the contributors the <em>labor-value</em> of their contributions (at least, it does if the contributors accept bounties according to the effort it requires for them), independently of the actual <em>use-value</em> of the project.</p>
+<p>However, the neoclassical-economy-aligned who read this that reject a labor theory of value may not find the former argumentation satisfactory, although I think they could find some alternate argumentation under their framework.</p>
+<p>These arguments probably work only for truly community efforts; I haven’t yet matured the thoughts enough to understand the implications on cooperating for-profit companies on open-source projects, although their current model doesn’t seem too problematic for them.</p>
+<p>On a side note, if you are a current maintainer of a project, and you think you don’t have the time (or money to avoid the need to rent your time) to continue contributing to a project, <em>maybe</em> you can also <strong>just step back</strong>, and advertise a <em>contributors wanted</em> notice, so that others understand the situation and pitch in. In the end, collaborating should be a gratifying business, and if it is not for you, maybe you can leave it to others who find it so and come back later.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Politics" /><category term="Philosophy" /><category term="FOSS" /><category term="Economy" /><summary type="html"><![CDATA[There is currently an interesting debate on the JavaScript community, centered around the standard/standard project on GitHub. Some people are interested on the economics of free software and trying to explore different avenues for getting back money for contributing to open source.]]></summary></entry><entry><title type="html">Thank you, FOSDEM 2019</title><link href="/2019/02/06/fosdem.html" rel="alternate" type="text/html" title="Thank you, FOSDEM 2019" /><published>2019-02-06T00:00:00+00:00</published><updated>2019-02-06T00:00:00+00:00</updated><id>/2019/02/06/fosdem</id><content type="html" xml:base="/2019/02/06/fosdem.html"><![CDATA[<p>This year was my fifth at FOSDEM, and it was peculiarly different from other years. Foremost, because it was the first time I ever presented something there. And I was selected to present <strong>two</strong> talks (of unrelated content), which was amazing.</p>
+<p>It was also the first year I took a free day to do some tourism the day before, so I went to Brugge, which I liked even though it was freezing :)</p>
+<p>I wished I had received more feedback than I did. However, it’s true that we didn’t provide any easily accessible feedback-gathering interface.</p>
+<p>But for “Watching them watching us” we did not want to provide a Google Forms, so here is a Framaforms for giving <a href="https://framaforms.org/feedback-on-watching-them-watching-us-1549447917">feedback on Watching Them Watching Us</a>.</p>
+<p>Since I was already at Framafroms, here is a form for giving <a href="https://framaforms.org/feedback-on-escova-at-fosdem-2019-1549449447">feedback on ESCOVA</a> too.</p>
+<p>I learnt some things this year at FOSDEM which I was not as much aware of last years:</p>
+<ul>
+<li><p>Many people finish their slides on the last minute/hour/day. Seen a couple of presenters with their laptops giving the finishing touches to many talks :)</p></li>
+<li><p>It is useful to have some cards with contact information, but people is cool with just putting your email in their phone and emailing you right away (which I think is even better).</p></li>
+<li><p>Giving talks is surprisingly an interesting way of getting asked to do more talks.</p></li>
+<li><p>Hoodies do not last very much; T-shirts vary.</p></li>
+<li><p>Every year the Decentralized Internet and Privacy Devroom gets bigger and every gear it gets more people inside. Great to see so many people concerned about these issues.</p></li>
+</ul>
+<p>I’ll probably update this list with more stuff, when it comes to my mind again :)</p>
+<p><span class="citation" data-cites="FOSDEM">@FOSDEM</span>: Great organization, and thank you so much for staying there all these years.</p>
+<p>By the way, next year is FOSDEM’s 20th aniversary, so let’s all mark that weekend on our agendas already!</p>
+<p>Hope to see you next year!</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Programming" /><category term="FOSS" /><summary type="html"><![CDATA[This year was my fifth at FOSDEM, and it was peculiarly different from other years. Foremost, because it was the first time I ever presented something there. And I was selected to present two talks (of unrelated content), which was amazing.]]></summary></entry><entry><title type="html">Recapping a Year…</title><link href="/2019/01/07/new-year.html" rel="alternate" type="text/html" title="Recapping a Year…" /><published>2019-01-07T00:00:00+00:00</published><updated>2019-01-07T00:00:00+00:00</updated><id>/2019/01/07/new-year</id><content type="html" xml:base="/2019/01/07/new-year.html"><![CDATA[<p>This year begun, as most years do, as an extension over the days and projects over the previous one. At least, that’s what it was for me. But it amplified the previous one in so many ways. Personal projects have become more amplified, and I hope 2019 to be the natural consequence of publishing some results soon.</p>
+<!--more-->
+<p>There are so many things that deserve a post here that don’t still have got one that I’m a bit ashamed of the poor care that I’ve taken on my blogsite.</p>
+<p>I have never been a great carer for a blog, and this is actually my fourth attempt, but it’s always been due to different reasons, so I hope I can finally begin to adapt now.</p>
+<p>But let’s first recap the year (and eventually bring full posts for the relevant issues, but at least let’s get the summaries!):</p>
+<h2 id="trackula">Trackula</h2>
+<p>There are so many things this year related to Trackula that I must present something from 2017 that I haven’t yet posted about in this blog.</p>
+<p>But I have recently set up its own blog so that its roadmap can be seen there (soon). You can visit https://trackula.org and the staging site is at https://trackula.gitlab.io/blog.trackula.org while we migrate.</p>
+<h2 id="fosdem-2018">FOSDEM 2018</h2>
+<p>As most years, I attended FOSDEM last year. Curiously enough, being based in Madrid, that I had to travel circa 4000km to meet some other <em>madrileños</em> that were also attending. And this was the first time that I was together with people from GPUL and OpenShine both since GUADEC 2012. Vegan food as delicious as always, and the FOSDEM team still making one of the best FOSS-related events that I’ve assisted to, this was just another memorable FOSDEM edition.</p>
+<h2 id="spanish-data-protection-agency-awards-trackula">Spanish Data Protection Agency awards Trackula</h2>
+<p>We received a research award from the Spanish Data Protection Agency for our work on Trackula and a memoir we wrote stating the state of the art in technology and its relationship with Law in the months prior to the GDPR coming to full effect. A corrected copy of this report will also be soon released.</p>
+<h2 id="hirikilabs-privacy-the-gdpr-mass-surveillance">Hirikilabs: Privacy, the GDPR, mass surveillance…</h2>
+<p>From our work on Trackula (which I still owe at least a full post about the process at Medialab Prado and another one about our work for the Spanish Control Authority), we came to meet some great guys from Donostia that run a citizen’s laboratory (that’s what Hirikilabs is in Euskera) in a great space for creativity. They hosted a series of talks about privacy, and Sofia and I came to talk about the GDPR and advocate for regulating privacy and raising awareness over the state of the issue. A much interesting story that ended up with an invitation for…</p>
+<h2 id="summerlab-2018-at-hirikilabs">Summerlab 2018 at Hirikilabs</h2>
+<p>We were invited to participate in the Summerlab with other groups. Our workshop was titled “Cookifying the Real World”, and we created some real-world tracking devices from ESP8266 hardware and LiPo cells, which we used to track the assistants through the building and present them the results at the end of the workshop, in order to experiment with the feeling of being watched. It was a complete success for what was expected, and our experiment generated great engagement from the audience. We will soon publish a series of posts in the trackula blog over how everything came to place, the code, the STL files, the email templates we used, and everything in general needed to replicate the experience. Thanks to everyone that made this possible!</p>
+<h2 id="pycones2018---málaga">PyConES2018 - Málaga</h2>
+<p>OpenShine is a long time sponsor of PyConES, and this year we went to Malaga to the event. This was my worst FOSS event experience so far, and by far. The organization has no fucking idea and won’t listen to feedback from last years. This is inadmissible when you see it’s the same people running it this year and making even worse mistakes. But I won’t rant in this short space, I’ll hope to have a post eventually on that.</p>
+<h2 id="open-source-contributions">Open source contributions</h2>
+<p>Last year I managed to fix streaming on Spark-on-k8s internally for a project I was leading at OpenShine, but since the rebases on top of Apache Spark were already in progress, I was asked by the spark-on-k8s community to put the fix to the community on hold until this was already sorted out. So I finally made the contribution this year after sitting on it for over ~400 days (unfortunate timing, I guess, but I had streaming before you did).</p>
+<p>We also open-sourced some work I led on Kafka Streams for Scala (which I would love to turn into a KIP) and on Elasticsearch query cost measurements (we needed to symbolically estimate the cost of queries before running them, because the product needed to expose parts of the query interface to an “untrusted user”).</p>
+<p>I will entertain a talk on this cost analyzer, dubbed <a href="https://github.com/openshine/escova">escova</a> at FOSDEM 2019 in the Search devroom.</p>
+<h1 id="new-years-wishes">New Year’s wishes</h1>
+<p>This year I’ll be attending FOSDEM as a speaker for the first time, so first of all, I hope everything goes alright!</p>
+<p>Given the state of things with <a href="https://www.reddit.com/r/StallmanWasRight/comments/acuct5/facebook_2018_year_in_review/">Facebook last year</a> I sincerely hope this year is a bit better for privacy and regulation on that. I hope Trackula can help with all of that, and we have incorporated an Association with that purpose.</p>
+<p>I hope to have more time to write on the awesome things that happen near me, and to give time and value to those issues that really matter.</p>
+<p>Have a great one,</p>
+<p>Santiago</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Summary" /><summary type="html"><![CDATA[This year begun, as most years do, as an extension over the days and projects over the previous one. At least, that’s what it was for me. But it amplified the previous one in so many ways. Personal projects have become more amplified, and I hope 2019 to be the natural consequence of publishing some results soon.]]></summary></entry><entry><title type="html">En España no hay partidos democráticos</title><link href="/2016/07/22/spain-has-no-democratic-leaders.html" rel="alternate" type="text/html" title="En España no hay partidos democráticos" /><published>2016-07-22T08:00:00+00:00</published><updated>2016-07-22T08:00:00+00:00</updated><id>/2016/07/22/spain-has-no-democratic-leaders</id><content type="html" xml:base="/2016/07/22/spain-has-no-democratic-leaders.html"><![CDATA[<div class="alert alert-info" xml:lang="en" lang="en">
+This post is written in Spanish because it concerns mainly spanish politics. I can translate it to English if there is an interested audience.
+</div>
+<p>Bajo esta premisa que defiendo existe, al menos, desde la transición española, abordaré a continuación la razón por la que nos ha tocado repetir elecciones y por qué el proceso electoral en España es tan poco responsable con los ciudadanos.</p>
+<p>Esto lleva siendo cierto, como digo, desde la transición, pero ahora es inconmensurablemente más evidente con la rotura del aparente bipartidismo.</p>
+<p>Hasta ahora, todos los partidos han luchado en sus elecciones por la presidencia de la nación, cosa que, en un primer orden de cosas sería absurda si nuestros partidos fuesen democráticos, ya que nuestro proceso electoral sólo permite a los ciudadanos votar la Legislatura, no al órgano ejecutivo. Por si no puedo esperar una reflexión por parte del lector, aquí le dejo una: democráticamente, el poder ejecutivo debería de ser elegido, no impuesto por aquel que “gane” las elecciones (¿que es ganar, en cualquier caso? ¿llegar al 34%?).</p>
+<p>Continuemos.</p>
+<p>Si tuviésemos partidos con un espíritu democrático, no se habrían repetido elecciones. Y menos teniendo en cuenta de dónde han surgido estos colores nuevos. Recordemos que Podemos salió de un movimiento popular socialista y Ciudadanos de la respuesta empresarial a un interés en el liberalismo (en oposición al interés intervencionista del Partido Popular). Pero a pesar de la contradicción aparente, ambos partidos surgieron y recabaron apoyos significativos por una razón fundamental: el descontento general con la gestión ejecutiva y las proposiciones legislativas del Partido Popular.</p>
+<p>Todos ellos hablaban en la primera campaña de un enemigo común y de por qué ellos eran los indicados y mejores para un cambio.</p>
+<p>Pero ninguno obtuvo un apoyo suficiente para legitimizar esa cruzada particular. Unos y otros, por diferentes razones individuales de estrategia pero que colectivamente y sin perder generalidad llamaré Ego, conllevaron a un bloqueo para la formación de gobierno, que culminó en una necesidad de repetir elecciones. A pesar o tal vez debido a la expectación al respecto, los segundos resultados no mejoran a los primeros salvo los de ese partido contra el que todos estaban.</p>
+<p>Es muy fácil proponer lecturas a posteri de lo ocurrido, pero si fuesen tan lógicas estas lecturas, significaría que habrían sido previsibles y no habríamos llegado a esto.</p>
+<p>En cualquier caso, aquí estamos. Podríamos haber achacado esta repetición a la necesidad de Ego de cada partido: determinar que su programa, su ideología y su líder es el mejor, más guapo y más representativo de los españoles. Y eso es una forma de pensar muy propia de los madrileños, y de los individuos que acaban asentándose en la capital del Estado, por razones que son meritorias de otro artículo entero, y que no voy a profundizar aquí.</p>
+<p>Vemos que, <strong>a pesar de tener una meta última superior: desalojar al actual gobierno en funciones del poder ejecutivo</strong>, ahora lo que <strong>están es decidiendo</strong> entre telares quién tiene que abstenerse para que pueda <strong>postergar su mandato</strong>, con el que los ciudadanos (recordemos, interés general, bla bla) han expresado su descontento.</p>
+<p>Lamentablemente para Podemos, no han conseguido el incremento en votos que esperaban y que era su estrategia de base para unas mejores condiciones de negociación. Lamentablemente para el PSOE, ha reducido aún más su capacidad de maniobra (aunque se empeñen en decir “y tú más” cuando les hablan de los votos perdidos).</p>
+<p>Y lamentablemente para Ciudadanos, sus negocios con el PP por los sillones deslegitimizan en parte su discurso de “no vamos a negociar sillones”. Qué putada. Partidos nuevos haciendo vieja política. Menuda novedad.</p>
+<p>Perdón, que me descentro. Quería dirigir la conversación hacia las posibilidades de gobernar democráticamente. Lo voy a repetir, para no dejar dudas de lo que he escrito, y entender lo que va a venir a continuación: gobernar democráticamente.</p>
+<h2 id="qué-significa-esto">¿Qué significa esto?</h2>
+<p>Significa <strong>no pactar para que uno se coma el rosco</strong> mientras los demás miran. Significa <strong>ponerse de acuerdo</strong>, no puntualmente, sino <strong>en el marco general del poder Ejecutivo</strong>. Significa entender también que <strong>Oposición, en la Legislatura, no significa</strong>, como podría pensar el que solo lea el significado etimológico, <strong>oponerse</strong> a todo lo que presente el gobierno y presentar iniciativas populistas que el gobierno solo pueda oponer en la coyuntura actual. <strong>Significa dar otra opinión</strong>, un contrapunto, y <strong>velar por el interés general</strong>. Y a veces, <strong>transigir</strong> es más razonable que otra cosa.</p>
+<h2 id="cómo-podrían-comerse-el-rosco-todos">¿Cómo podrían comerse el rosco todos?</h2>
+<p>– Pero con esos programas tan distintos…</p>
+<p>Se ve que usted no se ha leído los programas. En primer lugar, tendría que decir que sería razonable que cualquiera de los partidos iniciase este diálogo (aunque pueda ser más legítimo que lo haga el PSOE por tener la mayoría de la oposición; pero cualquier otro encontraría razones que lo legitimizasen, y que dejo como ejercicio al lector afiliado a cada uno de ellos).</p>
+<p>Una vez tengamos un moderador, que haga una lectura rápida de los programas de cada uno, podrá ver, de forma consistente con lo que cualquiera hayamos podido leer o escuchar de sus respectivas campañas: los tres partidos están de acuerdo en diversas cosas. Y en las que no, al menos dos sí (recordemos: transigir).</p>
+<p>Por ejemplo, y sin que este análisis simplista empobrezca el resto del texto:</p>
+<p>Suponiendo un PSOE que organizase este consenso, podría ser razonable que Ciudadanos tuviese control sobre el Ministerio de Hacienda, al final, son ellos los que más han explorado esta vía en campaña, y los que defienden más a menudo que en sus filas sus estatutos prohiben que haya ningún imputado por corrupción. Unidos Podemos no debería de tener un problema en conceder este ministerio a un partido que ha luchado más activamente por él que ellos. Sin embargo, a estos últimos sería razonable ofrececerles Cultura y Educación: no solo porque haya que derogar la LOMCE, que eso lo puede hacer cualquiera; sino porque tienen más personal que ha salido de la universidad y, por ello, podemos pensar que están más cerca del sector educativo que los otros partidos, y de las necesidades reales de la educación de nuestra gente pequeña. En aquellos lugares en donde hubiese un conflicto, por ejemplo, en Economía, tenemos dos posibilidades.</p>
+<p>Por supuesto, en primer lugar, está la visión utópica, e irrealizable, de pensar que podría llegarse a un acuerdo, poniendo a un ministro de un color, pero a asesores y jefes de sección de otros colores. Por supuesto, esto podría hincar negativamente en el ego de cada uno tanto que es en mi opinión impensable que suceda (¿pero a que estaría bien?).</p>
+<p>La otra posibilidad es que alguien acabe consiguiéndolo (e.g., todos tienen que votar a uno de los tres y no pueden votarse a si mismos), y que los demás se desvinculen de lo que ocurra públicamente en ese ministerio y sea todo culpa de aquel que lo ostente (un arma de doble filo muy jugosa para todos en política).</p>
+<p>En cualquier caso, salvo eventualidades puntuales (como la irracionalidad de vincular Inteligencia a la Vicepresidencia del Gobierno: un movimiento bastante evidente para evitar un pacto y conseguir llegar a unas segundas elecciones), cualquier acuerdo al que se llegase al respecto, y que llevase a una pluralidad de colores en el Ejecutivo sería más razonable que lo que hemos tenido hasta ahora.</p>
+<h2 id="por-qué">¿Por qué?</h2>
+<p>Porque <strong>tener un poder ejecutivo monocromo, como resultado de un poder legislativo monocromo implica una nefasta separación de poderes</strong>. Podríamos verla como <strong>una dictadura en la que el dictador es votado</strong> por sufragio universal <strong>cada cuatro años</strong>. Pero tiene <strong>carta blanca para legislar y ejecutar</strong>, así como realizar acuerdos internacionales. Si queremos entrar en democracia, hablar con propiedad de cuestiones como el Estado de Derecho, o poder empezar a quitarle este olor a muerto que tienen los partidos del gobierno central, este año es un buen año para empezar. Todavía hay mucho que limpiar transición: hace falta un espectro de partidos que deje de repetirse en el “y tú peor/y yo mejor”, sobre todo con el ambiente funesto y xenófobo que se está tejiendo en Europa y el mundo.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Politics" /><category term="Philosophy" /><summary type="html"><![CDATA[This post is written in Spanish because it concerns mainly spanish politics. I can translate it to English if there is an interested audience. Bajo esta premisa que defiendo existe, al menos, desde la transición española, abordaré a continuación la razón por la que nos ha tocado repetir elecciones y por qué el proceso electoral en España es tan poco responsable con los ciudadanos.]]></summary></entry><entry><title type="html">Pokémon Go Considered Harmful</title><link href="/2016/07/15/pokemon-go-considered-harmful.html" rel="alternate" type="text/html" title="Pokémon Go Considered Harmful" /><published>2016-07-15T09:00:00+00:00</published><updated>2016-07-15T09:00:00+00:00</updated><id>/2016/07/15/pokemon-go-considered-harmful</id><content type="html" xml:base="/2016/07/15/pokemon-go-considered-harmful.html"><![CDATA[<p>These days I raise up from bed knowing that Pokémon Go is one of the most download mobile apps, and that is probably wrong.</p>
+<p>Having been born in the 90’s, it’s an interesting proposal from Nintendo to try and have us live like Ash in the most vivid experience that today’s Augmented Reality technology can provide for the masses.</p>
+<p>It’s also probably the most massive virtual overlay reality that has been deployed yet, and it reminds me a bit about <a href="http://www.amazon.es/dp/B000W9180A?tag=ss-gh-21">Halting State</a> (C. Stross). However, now that this is no longer fiction, we must think again about where are we leading our ways into.</p>
+<p>For one, Nintendo has managed to engage a large demographic in their experiment. A demographic mostly from the 90’s, where the original games were launched, so they are hypercommunicated, and are now also hopefully employed, and used to micropayments and a lack of privacy. Which makes the strategy of having this as a Free to Play/Pay to Win very attractive. It is from a corporate standpoint, marvelously created. But let’s think on the information that may leak.</p>
+<p>From a more privacy-concerned viewpoint, in order to participate in this virtual world you must tell it where you are and what do you see. Of course, there is no other way to bind your flesh and eyes to both realities of your location cannot be pinpointed. But that is indeed a point of concern, because you are now giving your location to another company besides your cellphone OS provider (Google or Apple). You are also disclosing continuously where you are on order to pin captured Pokémon to places, those places linking back to you.</p>
+<p>Also, as playing the game and getting to these hot locations may trigger your brain’s reward center, many people will try and go to them. Which means Nintendo has the power to artificially create crowds. Think about that alone for a second. But that’s not all, they can also know which places are more busier just by randomly placing objects in the world and measuring the time it takes to have them redeemed. But in a more active schema, in a world of Mr. Robot, and fsociety, where corporations can be, and actually are, attacked by crackers and hacktivists, and where employees may go rogue, let’s imagine the world could be a bit more malleable.</p>
+<p>In such a world, protestors could put high-reward items in off-limit regions, and if the reward was high enough, it is not much difficult to imagine riots, physically violence, trespassing, breaking and entering… The list of possible criminal rewarding could grow by forcing some interactions with the real world. We have already seen these in fiction, most recently in Person of Interest, in the Samaritan agent early recruiting episodes. But this could just today become a reality, and it would be just as unnoticeable as it was there.</p>
+<p>Bottom line, you better think twice on how you trigger your brain’s reward center, and let’s hope you don’t do it for some piece of immaterial intangible virtual asset.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Philosophy" /><category term="Opinion-based" /><category term="virtual reality" /><category term="dystopia" /><summary type="html"><![CDATA[These days I raise up from bed knowing that Pokémon Go is one of the most download mobile apps, and that is probably wrong.]]></summary></entry><entry><title type="html">What makes Common Lisp so great a language?</title><link href="/2016/05/08/what-makes-common-lisp-so-great.html" rel="alternate" type="text/html" title="What makes Common Lisp so great a language?" /><published>2016-05-08T00:00:00+00:00</published><updated>2016-05-08T00:00:00+00:00</updated><id>/2016/05/08/what-makes-common-lisp-so-great</id><content type="html" xml:base="/2016/05/08/what-makes-common-lisp-so-great.html"><![CDATA[<p>I’ve recently come to a somewhat real use of Common Lisp for a project I work on. I’ve always been attracted to somewhat esoterical and not-so-commonly-used languages, because they have always given me insights on programming that are so hard to realize anywhere else.</p>
+<p>You don’t usually understand functional programming until you are forced out of side effects, and you may not fully comprehend side effects until you meet Haskell’s Monads, or the importance of referencial transparency until you write a functional language compiler.</p>
+<p>With Common Lisp, it’s all about <a href="https://en.wikipedia.org/wiki/Homoiconicity">homoiconicity</a> <sup>(from Greek: homo=same + icon=representation)</sup>. Briefly, this refers to the fact that in lisp dialects code is first-order.</p>
+<p>Well, in Common Lisp there are so many first order things, but let’s start with code.</p>
+<h1 id="homoiconicity">Homoiconicity</h1>
+<p>As said before, code and data homoiconicity refer to the property that they are represented the same. Both are represented in a syntax called Symbolic expressions (S-expressions or sexps for short). Sexps are very simple pieces of syntax: they are either symbols, or they are lists.</p>
+<ul>
+<li>
+symbol
+</li>
+<li>
+(sub-sexp1 sub-sexp2 …)
+</li>
+</ul>
+<p>So, the symbolic expression:</p>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</figure>
+<p>Is the list of three elements, which are the symbols <code>floor</code>, <code>5</code> and <code>2</code>. That is data. But that data is also code.</p>
+<h2 id="data-as-code">Data as code</h2>
+<p>If we evaluate that previous expression, it returns two values (because, yes, Common Lisp can return multiple values, and that is not the same as returning tuples), the first one being the division 5/2 and the second one being the remainder.</p>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<span class="mi">2</span>
+<span class="nv">1</span></code></pre>
+</figure>
+<p>That list can be generated from the following code:</p>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="nb">&gt;</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span>
+<span class="p">(</span><span class="nb">floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+</figure>
+<p>That function, list, builds a list with the rest of the elements. As CL is a call-by-value language, the quote in floor will avoid it being evaluated as a variable.</p>
+<p>However, entering the first value directly on the REPL (how the interactive loop is called) will compute 5/2, so it is fundamentally code.</p>
+<p>But lisp data can be turned into lisp code easily, via eval.</p>
+<figure class="highlight">
+<pre><code class="language-common-lisp" data-lang="common-lisp"><span class="p">(</span><span class="nb">eval</span> <span class="p">(</span><span class="nb">list</span> <span class="ss">'floor</span> <span class="mi">5</span> <span class="mi">2</span><span class="p">))</span>
+<span class="mi">2</span>
+<span class="nv">1</span></code></pre>
+</figure>
+<p>Not only that, lisp code can be manipulated as if it were lisp data, by using macros.</p>
+<blockquote>
+<p>Macros in lisp have nothing to do with C macros.</p>
+</blockquote>
+<h2 id="code-as-data">Code as data</h2>
+<p>That’s the other part of the equation. Fortunately, it is a quite symmetric relationship: code can be manipulated as if it were a regular sexp.</p>
+How so? Well, in Common Lisp, when a file is loaded into the evaluator, three stages happen:
+<dl class="dl-horizontal">
+<dt>
+read
+</dt>
+<dd>
+The file is read into s-expressions, and several intricate things may happen, due to something called reader-macros
+</dd>
+<dt>
+compile
+</dt>
+<dd>
+The read expressions are macroexpand-ed and compiled into a bytecode or object code for later evaluation
+</dd>
+<dt>
+evaluation
+</dt>
+<dd>
+The compiled expressions are evaluated
+</dd>
+</dl>
+<p>In the first stage, the environment makes sense of the input stream data (e.g., characters) as s-expressions, so here we can influence the lexer (i.e., the reader algorithm) in order to extend our syntax beyond s-expressions.</p>
+<p>But it is the second stage the one that allows code to be manipulated as data. As we already have read the file, we now have s-expressions representing our code which are in their way to being compiled.</p>
+<p>Thus, macros in lisp can be <em>semantic macros</em>, and not just <em>lexical macros</em>, e.g., the textual substitutions that happen with the C Preprocessor and similar.</p>
+<p>Besides, the Common Lisp compiler is first-order itself, which means that during compilation, <strong>the full Common Lisp runtime is accessible</strong>. That means that regular functions can be called inside macros, therefore a macro is a compile-time run function operating on your program’s AST, and which should return another AST for compilation. Effectively, by using macros in Common Lisp, you are writing <em>programs that write other programs at compile time</em>.</p>
+<p>This macro mechanism is so flexible and extensible that the language continuously encourages you to write your own mini-DSLs<sup>Domain-Specific Language</sup> for every problem. Because it is so easy and straightforward.</p>
+<h2 id="the-meta-level">The meta level</h2>
+<p>The project I’m using Common Lisp with at the time involves writing some code that can mean two different things, depending on how the code is reached. As I can introduce definitions for a DSL on-demand, I can give different semantics to my data by directly writing macros for each case, instead of me manually interpreting the code. That is, instead of writing my own two interpreters for the code, I leverage the existing Common Lisp EVAL function, and I just introduce the needed definitions into the EVAL environment in each case.</p>
+<h1 id="why-is-lisp-still-useful-when-we-have-x">Why is Lisp still useful when we have X?</h1>
+<p>Well, consider the language features of your recent X.</p>
+<p>Let’s consider if it is up to par with a language designed in the late 1950s.</p>
+<ul>
+<li>Does it have a function type? (i.e., functions as first-class objects)</li>
+<li>recursion? (how about tail-call optimization?)</li>
+<li>garbage collection?</li>
+<li>programs composed of expressions? (i.e., no distinction with statements?)</li>
+<li>a symbol type? (symbols are not strings, and can be tested for equality by comparing pointers)</li>
+<li>a notation for code using trees for symbols?</li>
+<li>the whole language always available? (at read-time/compile-time/eval-time?)</li>
+<li>a multiple-inheritance multiple-dispatch class-based object oriented mechanism? (Common Lisp has the CLOS, or Common Lisp Object System)</li>
+<li>A MetaObject Protocol (MOP)?</li>
+<li>First-order continuations?</li>
+<li>Non-local exits?</li>
+<li>Constructors and destructors?</li>
+<li>dynamic variables?</li>
+</ul>
+<p>I’m going to leave this post here, but if you have some time and curiosity, give Common Lisp a look. I have yet to encounter a more expressive language.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="Programming" /><category term="Opinion-based" /><summary type="html"><![CDATA[I’ve recently come to a somewhat real use of Common Lisp for a project I work on. I’ve always been attracted to somewhat esoterical and not-so-commonly-used languages, because they have always given me insights on programming that are so hard to realize anywhere else.]]></summary></entry><entry><title type="html">Akademy 2015 to be held in A Coruña</title><link href="/2015/07/16/on-organizing-the-akademy.html" rel="alternate" type="text/html" title="Akademy 2015 to be held in A Coruña" /><published>2015-07-16T00:38:00+00:00</published><updated>2015-07-16T00:38:00+00:00</updated><id>/2015/07/16/on-organizing-the-akademy</id><content type="html" xml:base="/2015/07/16/on-organizing-the-akademy.html"><![CDATA[<p>Hi, fellows! I’m proud to say that this year <a href="https://gpul.org">GPUL</a> is honoured to host the Akademy 2015 with the <a href="http://www.fic.udc.es">Faculty of Computer Science in A Coruña</a> as our venue.</p>
+<p>So, if you’ll be in A Coruña, I’ll be delighted to see you in the venue and maybe buying us a T-shirt!</p>
+<p>The entrance is free, but you should register at <a href="https://conf.kde.org" class="uri">https://conf.kde.org</a> so that you are granted a badge to enter during the weekend.</p>
+<p>This year I’m commited to handling volunteers, so you will most probably see me a lot in the InfoDesk that we’ll set up in the ground floor, where all our team magic happens :P</p>
+<p>It’s been difficult at times, and arguing with people over the IRC on whether things are OK or not are not always ideal, but I must say about KDE that they’re highly organized, and that they have lots of tools already set up to aid us in mundane stuff, such as an etherpad instance (which we use internally for storing todo lists and agendas), a kanboard instance which holds our sort of “master” todo-list, and of course, the prevalent wikis and mailing lists.</p>
+<p>We were hoping to take the <a href="https://github.com/jrial/fosdem-volunteers">fosdem-volunteers</a> app and give it a shot for volunteer handling, but that’s not happening for this edition (ooooh), we’ll have to do with the wiki and the IRC.</p>
+<p>There are ideas on creating a Telegram group, although I still find the IRC a bit more amenable. Shouldn’t I?</p>
+<p>I hope we have interesting things to tell once this is over ;)</p>
+<p>Cheers, Santiago.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="GPUL" /><category term="Akademy" /><category term="FOSS" /><category term="KDE" /><summary type="html"><![CDATA[Hi, fellows! I’m proud to say that this year GPUL is honoured to host the Akademy 2015 with the Faculty of Computer Science in A Coruña as our venue.]]></summary></entry><entry><title type="html">What we do in the shadows</title><link href="/2015/07/16/what-we-do-in-the-shadows.html" rel="alternate" type="text/html" title="What we do in the shadows" /><published>2015-07-16T00:38:00+00:00</published><updated>2015-07-16T00:38:00+00:00</updated><id>/2015/07/16/what-we-do-in-the-shadows</id><content type="html" xml:base="/2015/07/16/what-we-do-in-the-shadows.html"><![CDATA[<p>Hi there! Long time since my last blog update.</p>
+<p>I’d rather be asleep, but I think I should note this before I sleep it away. Today I’ve gone to the cinema and see <a href="http://trakt.tv/movies/what-we-do-in-the-shadows-2014">What We Do in the Shadows</a>.</p>
+<p>I have to say I come to consider it a really well filmed and scripted film among the vampire world. Sincerely.</p>
+<p>Although the comedy itself is not that particularly brilliant (for my taste, a friend of mine couldn’t stop laughing anyway), I have to say that the vampirism/lycanthropism folklore has been kept almost intact and quite in sync with pieces I find very canonical, such as Vampire: The Masquerade (the role playing game books).</p>
+<p>The only exception to what I consider canonical is the fact that inside the film the vampires can be photographed with cell phones. However, I think that is absolutely coherent with the sprit of the film, and I think it’s awesome they realized that too.</p>
+<p>If you think that should not happen, then consider this:</p>
+<p>How do you film a vampire film (where the vampires are actually shown) in a world where you cannot record vampires?</p>
+<p>Besides, as the film itself is written with the cameramen being part of the story being told, so are the cameras. Therefore, in order to manufacture such a film, this license is absolutely compulsory. I did not realize that before going to the cinema, but I think it is impossible to be more coherent.</p>
+<p>I hope I’ll be updating this blog a bit more often from now on ;)</p>
+<p>Till then, cheers!</p>]]></content><author><name>Santiago Saavedra</name></author><category term="movies" /><category term="movie" /><category term="review" /><summary type="html"><![CDATA[Hi there! Long time since my last blog update.]]></summary></entry><entry><title type="html">How to deal with amdefine if something breaks</title><link href="/2014/08/07/no-problem-amdefine.html" rel="alternate" type="text/html" title="How to deal with amdefine if something breaks" /><published>2014-08-07T19:01:00+00:00</published><updated>2014-08-07T19:01:00+00:00</updated><id>/2014/08/07/no-problem-amdefine</id><content type="html" xml:base="/2014/08/07/no-problem-amdefine.html"><![CDATA[<p>In JavaScript there are many ways of loading modules. But not taking care of small details on how the JS standard is written can create funny side effects that will prevent your app from running. And you can fix the situation, but you may not know how you did it.</p>
+<p>This post is about how to work with <code>amdefine</code> and how a module can break your other hybrid browser/node-require nicely-created packages.</p>
+<!-- more -->
+<p>Hi again. It’s been awhile since my last update. I’ve been working on the same project for the time being (coalesced with other work to do), and I’ve come to use lots of JavaScript tools. Many of them I didn’t hear about until this year. The JS community is getting crazy. And some of them aren’t properly crazy, but let’s let it be that way. Today’s post is about how to solve an issue, not a rant :)</p>
+<p>As some of you, in the JavaScript world, may know, there are lots of ways of loading and requiring modules within your applications. Node.js has its own, and other standards were created to allow more flexibility and to port that practice to the browser, where most of JavaScript presence happens still, anyway.</p>
+<p>Having package loaders is great, but having different standards for loading is not so much. Fortunately, node’s way and AMD (short of <em>Asynchronous Module Definition</em>) are not incompatible.</p>
+<p>In fact, many packages distributed through npm nowadays offer support for both loading mechanisms. Although AMD was developed for the browser, there are implementations to use it in Node, most prominently, the <code>amdefine</code> package.</p>
+<p>However, using AMD for your modules would require amdefine as a dependency on your package, which is actually not needed if you can provide both interfaces. And that’s actually quite simple.</p>
+<p>That’s what modules such as cujojs’s <code>when</code> Promises/A+ implementation does, precisely. In short, let’s assume you were developing node-style. The following could be a module.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nf">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span> <span class="p">};</span>
+<span class="cm">/* more code */</span>
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span></code></pre>
+</figure>
+<p>Well, this module could be written in AMD style, this way:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">amdefine</span><span class="dl">'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nf">define</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nf">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span> <span class="p">};</span>
+    <span class="cm">/* more code */</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
+<span class="p">});</span></code></pre>
+</figure>
+<p>Easy enough. In short, you wrap all of your code inside a closure, which gets as an argument your usual “require” function.</p>
+<p>In order to work, you must ensure that you are loading the amdefine module loader before, with the if clause provided in the beginning of the code. This must be present in all your files, and this way, your code <strong>does</strong> depend on amdefine to work.</p>
+<p>However, if you wanted to be flexible in terms of the AMD loader, or any module loader that you wish to work with, you could wrap your code, instead, with a function such as the following.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">define</span><span class="p">)</span> <span class="p">{</span>
+<span class="nf">define</span><span class="p">(</span><span class="nf">function </span><span class="p">(</span><span class="nx">require</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nf">code</span><span class="p">()</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">fs</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">fs</span><span class="dl">'</span><span class="p">);</span> <span class="p">};</span>
+    <span class="cm">/* more code */</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="na">spaghetti</span><span class="p">:</span> <span class="nx">code</span> <span class="p">};</span>
+<span class="p">});</span>
+<span class="p">})(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">===</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span> <span class="o">&amp;&amp;</span> <span class="nx">define</span><span class="p">.</span><span class="nx">amd</span>
+    <span class="p">?</span> <span class="nx">define</span>
+    <span class="p">:</span> <span class="nf">function </span><span class="p">(</span><span class="nx">factory</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="nf">factory </span><span class="p">(</span><span class="nx">require</span><span class="p">);</span>
+    <span class="p">});</span></code></pre>
+</figure>
+<p>Ok, what this does is immediately on requiring of the module, the latest line is evaluated, and if <em>define</em> is already a function, then we can assume that an AMD-style loader is in place and we can pass on define to our closure, and if it’s not, we can place ad-hoc our own loader for node: just making our <em>define</em> function to be a wrapper so that the result of the callback we get (on <code>define(callback)</code>) is assigned to <code>module.exports</code>, and thus, exported.</p>
+<p>Seems easy, huh?</p>
+<p>Well, there’s a caveat with this approach.</p>
+<p>You must trust all your modules <strong>not to pollute</strong> the <em>Globals</em> namespace.</p>
+<p>Yeah, that should never happen. But sometimes it does. There are malformed packages, and due to the way some things in JavaScript are standarized, it may not be completely trivial to know what happened.</p>
+<p>Now that I have introduced you to how stuff works, let’s expose the problem I faced.</p>
+<p>I was using an Inversion-of-Control (IOC) module, called <code>inverted</code>, which in turn uses amdefine, because this way it works both in the browser and server. However, there is a typo in the latest published version (0.2.4 at the time of this writing, although I’ve already sent a pull-request for a fix) in the first conditional, that you have just read a few paragraphs above.</p>
+<p>I will reproduce the above code, and then I’ll reproduce inverted’s conditional.</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="c1">// Sample amdefine code</span>
+<span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">define</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">amdefine</span><span class="dl">'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+</figure>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="c1">// inverted's conditional</span>
+<span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span><span class="nx">define</span> <span class="o">=</span> <span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">amdefine</span><span class="dl">'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span></code></pre>
+</figure>
+<p>You may have required several attempts to find the missing <code>var</code> before <code>define =</code>.</p>
+<p>Does this affect us?</p>
+<p>You may imagine that it doesn’t because node must have a way of capturing all non-declared vars before polluting the global namespace between modules… but it doesn’t.</p>
+<p>The author of this –and any other modules– could do (and should) have written their code as <strong>strict</strong>, by using the ‘use strict’ pragma at the beginning of the file. This would have told them that a variable was not being defined and it would crash their program. But people does not still use strict mode as extensively as we might want. And there are cross-browser compatibility issues with strict mode, and if you want to support older browsers, well, it’s all a mess.</p>
+<p>Anyway, this little problem would deal no harm on other modules that <strong>require</strong> amdefine’s behaviour, and that use the second form of writing modules that we introduced earlier in the post. However, if you use code that is adapted to both cases of the story, and as node is not the browser and AMD has no way of supporting a double definition in the same module, it will break with an error saying <strong>amdefine with no module ID cannot be called more than once per file</strong> will appear, because we will be referring in the next files to this old define.</p>
+<p>That is, you <strong>cannot</strong>, in the same file, do this:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="dl">'</span><span class="s1">function</span><span class="dl">'</span><span class="p">)</span> <span class="p">{</span><span class="kd">var</span> <span class="nx">define</span><span class="o">=</span><span class="nf">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">amdefine</span><span class="dl">'</span><span class="p">)(</span><span class="nx">module</span><span class="p">);}</span>
+<span class="nf">define</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">magic</span><span class="p">:</span> <span class="dl">'</span><span class="s1">code</span><span class="dl">'</span> <span class="p">};</span> <span class="p">});</span>
+<span class="nf">define</span><span class="p">(</span><span class="nf">function </span><span class="p">()</span> <span class="p">{</span> <span class="k">return</span> <span class="p">{</span> <span class="na">nonmagic</span><span class="p">:</span> <span class="kc">null</span> <span class="p">};});</span></code></pre>
+</figure>
+<p>That is because <em>in node</em>, you declare and define the <code>define</code> function <strong>in each module</strong>, independently. You don’t reuse define. That’s why node modules, if they want to be AMD compliant, they must have this test. Because amdefine can only know <em>who</em> called him by giving it the current <code>module</code> instance. The <code>module</code> variable in Node contains information such as the filename loaded, which amdefine uses to plug the appropriate loaded code in the required statements; that is, when you do <code>define(function (require) {a = require('./smth'); /* more code */ })</code>.</p>
+<p>I first avoided this issue by using an experimental feature in amdefine, called <code>amdefine/interceptor</code>.</p>
+<p>The interceptor mangles Node’s require hook for JavaScript files, so that all of them are prepended as the first line the correct conditional written above on this post. That is great news, because you don’t have to do it in every file; but if you do it manually in every file it will work anyway. This is just a faster lane.</p>
+<p>However, you should not touch other people’s modules, or you won’t be able to deploy your work safely with npm, and then you’d have a lot of pain for maintenance. So, in order to save kittens from being killed whilst doing maintenance later, it’s clear we should not touch other people’s modules –unless we fork them, carefully.</p>
+<p>Then, I would like to propose the reader what would happen if after loading inverted one was to load a module which used the third approach?</p>
+<p>I’d rather remind here that the third, hybrid approach does not have a defining if.</p>
+<p>The answer is that it would break. Define would be introduced before, and it would have an outdated module definition, so the later <code>define(cb)</code> would fail because it has already been called before.</p>
+<p>We already knew it because I told you a while earlier.</p>
+<p>But then, a more interesting question is <strong>why does it not fail on AMD modules</strong>?</p>
+<p>There is a conditional stating that <code>if (typeof define !== "function") {...}</code>. As per hybrid modules, we <em>know</em> that in that particular moment, <code>define</code> should be a function. But the sentence inside the if clause gets executed shamelessly anyway.</p>
+<p>How?</p>
+<p>I’d like it to be an exercise to the reader, but here’s the answer anyway. If you’d like to think about it, don’t continue reading yet.</p>
+<p>It happens that in JavaScript, the <code>if</code> clause <em>does not</em> create a scope. So all <em>var</em> declarations <em>actually happen</em> in the same scope. As <em>var</em> declarations in JavaScript are independent of position (that is, all vars could be declared at the beginning of their respective scope and produce an equivalent program, the previous conditional is equivalent to:</p>
+<figure class="highlight">
+<pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">define</span><span class="p">;</span>
+<span class="k">if </span><span class="p">(</span><span class="k">typeof</span> <span class="nx">define</span> <span class="o">!==</span> <span class="dl">"</span><span class="s2">function</span><span class="dl">"</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">};</span></code></pre>
+</figure>
+<p>And that magically performs two things:</p>
+<p>If define was already a var, declared within the same scope, then nothing happens: var declarations are idempotent.</p>
+<p>However, if define was a global variable, declaring a var in this restricted scope will shadow the global variable. The new var has been declared but not yet defined, so it has type (and value) of <code>undefined</code>, which is definitely not <em>function</em>. Thus, the code execution gets inside the conditional clause and requires the module loader, as expected.</p>
+<p>I hope this can enlighten your JavaScript-fu.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="pfc" /><category term="javascript" /><category term="nodejs" /><summary type="html"><![CDATA[In JavaScript there are many ways of loading modules. But not taking care of small details on how the JS standard is written can create funny side effects that will prevent your app from running. And you can fix the situation, but you may not know how you did it.]]></summary></entry><entry><title type="html">Why packs make git even greater</title><link href="/2014/04/05/git-packs.html" rel="alternate" type="text/html" title="Why packs make git even greater" /><published>2014-04-05T16:01:00+00:00</published><updated>2014-04-05T16:01:00+00:00</updated><id>/2014/04/05/git-packs</id><content type="html" xml:base="/2014/04/05/git-packs.html"><![CDATA[<p>Ok, so Git is an astounding version control system, and there’s no doubt about is speed, but what’s beneath the trunk so that it can get so fast?</p>
+<p>Well, many things are greatly optimized, starting with the object structure, but today let’s talk about git packs.</p>
+<!-- more -->
+<p>Git packs are files that are automatically created by git in order to reduce space and I/O bandwidth in ways that should be very notorious in any large-history project, but also in some other edge cases.</p>
+<p>To understand where do git packs fit let’s first look at how are changes in git tracked in the first place.</p>
+<p>Plainly, git’s backing store for content itself is a folder structure in <code>.git/objects</code>.</p>
+<p>Git stores mainly 3 kinds of objects: <code>commit</code>s, <code>blob</code>s, and <code>tree</code>s.</p>
+<p>Let’s explain each a little bit:</p>
+<dl>
+<dt>
+commit
+</dt>
+<dd>
+A commit is a type of object containing the author, date, the commit message, the parent (or parents, in case of a merge), and one or more <code>tree</code>s, which represent folders of changes.
+</dd>
+<dt>
+tree
+</dt>
+<dd>
+There’s at least one tree per non-empty commit, and a tree is a structure used to group more trees and blobs. Think of trees as git’s representation of folders. Trees contain hash references to other trees and blobs, as well as the subtree/blob name and its access mode (i.e., if it is a symlink, an executable file, a regular file…)
+</dd>
+<dt>
+blob
+</dt>
+<dd>
+A blob represents a non-structured content. Git expects files’ contents to be saved as blobs.
+</dd>
+</dl>
+<p>So, given these definitions, and a repository such as this:</p>
+<figure class="highlight">
+<pre><code class="language-text" data-lang="text">% ls -a
+
+.  ..  .git  file1 file2 file3
+%</code></pre>
+</figure>
+<p>Let’s suppose we have just done a <code>git init .</code>, but we haven’t done anything yet.</p>
+<p>Now you can ask yourself what will happen to git’s object store if you do <code>git add . &amp;&amp; git commit -m "Initial commit"</code>.</p>
+<p>Well, some objects will be created, namely:</p>
+<ul>
+<li>Three blobs, one per file, with the contents of each file</li>
+<li>A tree for the <code>/</code> folder of the repository, which will encapsulate the three former blobs</li>
+<li>One commit with the “Initial commit” message, date, author and an entry to the tree</li>
+</ul>
+<p>Now, git will seem to be fast enough, becase our computers are actually quite fast, but it’s not the best way of tracking files.</p>
+<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit -m "file1 mod"</code>, we would be storing both versions of file1 fully.</p>
+<p>But modifications usually don’t alter much the file completely, so that’s a waste of space!</p>
+<p>Git can perform a lot better in this.</p>
+<p>Each time we add a file git computes the blob object that corresponds to that file, as well as the necessary tree to keep the staging area consistent (the staging area has the “root tree” of the next commit).</p>
+<p>When the files are stored in that way, we say they are “loose objects”, because they are not packed.</p>
+<p>But then, there would be a waste, both of physical space and bandwidth whenever we pushed some refs, because transfering files involves a lot of metadata which isn’t important for the commit.</p>
+<p>So there are git packs, which is a format that can store several objects in a single file, and index it by object in a separate index file.</p>
+<p>Packs can be computed either for references missing from a repo (when pushing, so that only missing references are transmitted, and that’s done in a way that at the receiving end the packs can be more efficiently repacked), or for existing references, in order to save space.</p>
+<p>Part of the packing mechanics also split the blobs in deltas, in a way such that a blob can be resolved as <em>baseblob</em> + <em>delta</em>. Then, a single-line change in a 10KB source file will just result in a line-change blob plus one 10KB blob, and not two 10KB blob.</p>
+<p>Git can also apply deltas to already-deltaified blobs, with a depth chain that is customizable, but that is usually limited by default to 50 when running <code>git repack</code> by default so that the unpacking side is not too hard.</p>
+<p>Oh, and besides, the packs are compressed with zlib, so text gets <strong>really</strong> compressed.</p>
+<!--
+
+For the sake of a better demonstration, I'll lend you here a script
+which will create 10, 5 and 4 folders, nested, and then 100 files on
+each of ~5kb, all text.
+
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">    <span class="k">for </span>f <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 10<span class="sb">`</span><span class="p">;</span> <span class="k">do </span><span class="nb">mkdir</span> <span class="nv">$f</span><span class="p">;</span>
+        <span class="k">for </span>ff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+            </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>.txt
+        <span class="k">done
+        for </span>ff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 5<span class="sb">`</span><span class="p">;</span> <span class="k">do
+            </span><span class="nb">mkdir</span> <span class="nv">$f</span>/<span class="nv">$ff</span>
+            <span class="k">for </span>fff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>.txt
+            <span class="k">done
+            for </span>fff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 4<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                </span><span class="nb">mkdir</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>
+                <span class="k">for </span>ffff <span class="k">in</span> <span class="sb">`</span><span class="nb">seq </span>1 100<span class="sb">`</span><span class="p">;</span> <span class="k">do
+                    </span><span class="nb">dd </span><span class="k">if</span><span class="o">=</span>/dev/urandom <span class="nv">bs</span><span class="o">=</span>1k <span class="nv">count</span><span class="o">=</span>2 | <span class="nb">base64</span> <span class="o">&gt;</span> <span class="nv">$f</span>/<span class="nv">$ff</span>/<span class="nv">$fff</span>/<span class="nv">$ffff</span>.txt
+                <span class="k">done
+            done
+        done
+    done</span></code></pre></figure>
+
+
+A structure such as this will be of a rough 100 MB.
+
+Let's create a repo with this. Git add . will take a painful
+lot. Well, because it's 100MB to read from disk and in tiny bits, so
+lot's of blocks to read, which can be allocated over the surface of
+the plates.
+
+Let's commit it. The commit is fairly quick, because the changes are already created in the index.
+
+Let's look at git's object database size:
+
+    % du -hs .git/objects
+    103M     .git/objects
+    %
+
+Ok, so it's mostly a 1:1 size.
+
+Why?
+
+Well, because we actually have one tree per folder and one blob per file, with the full contents of each.
+
+Let's pack it all in the efficient's way.
+
+    % git repack -a -d -f -F
+    Counting objects: 26262, done.
+    Delta compression using up to 2 threads.
+    Compressing objects: 100% (26262/26262), done.
+    Writing objects: 100% (26262/26262), done.
+    Total 26262 (delta 0), reused 0 (delta 0)
+    % du -hs .git/objects
+    55M      .git/objects
+    %
+
+Woah.
+
+So, yes. Git can in some cases actually save *all* the history and
+your whole files while using *less* space than the single working copy
+you have; i.e., git can pack its files in an efficient, lossless, and
+equally safe way.
+
+How can git do such magic?
+
+Well, it's not *so* magic, in fact, if you tar and gz the repo files
+that's roughly the size you'd get, because that's part of what git
+does behind the scenes. However, with multiple commits git does even
+more than gz. It's more like gz + incremental-tar in steroids.
+
+We happened to have generated our files in a random fashion, which
+will usually not happen (i.e., variable names will repeat, the
+licensing block at the top of the code will repeat and so on). In
+those cases, the blob which creates those headers can be only put
+once, saving even more space.
+
+-->
+<p>So, what makes packs fast?</p>
+<ol type="1">
+<li>Space. As they use less space than uncompressed blobs, they are read from disk much faster.</li>
+<li>Indexing. Packs consist on two files (X.pack and X.idx), and the index file allows for random-access to the pack as if it were a list of files in the filesystem, except the index is already computed, so no jumping between inodes.</li>
+<li>Deduplication. Changes that can be reduced as deltas to other changes are arranged in that way, so that the base change is not duplicated, and thus improving file space.</li>
+</ol>
+<p>For most operations in git, the worst part of it is traversing the object store and finding the related links. With packs, most of that can be random-accessed much faster due to the index.</p>
+<p>Besides, there’s a lot less space wasted in internal fragmentation due to filesystem’s block size (even if ext4 and company help with that in some cases with their inline extents), but by using a single file for the whole pack, a 50MB pack file is a lot more efficient than 15000 random-size-not-multiple-of-4kb objects.</p>]]></content><author><name>Santiago Saavedra</name></author><category term="vcs" /><category term="git" /><category term="internals" /><summary type="html"><![CDATA[Ok, so Git is an astounding version control system, and there’s no doubt about is speed, but what’s beneath the trunk so that it can get so fast?]]></summary></entry></feed>

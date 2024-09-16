@@ -34,7 +34,7 @@
 <!-- RDFa Metadata (in DublinCore) -->
 <meta property="dc:title" content="Why packs make git even greater" />
 <meta property="dc:creator" content="Santiago Saavedra" />
-<meta property="dc:date" content="2014-04-05T18:01:00+02:00" />
+<meta property="dc:date" content="2014-04-05T16:01:00+00:00" />
 <meta property="dc:format" content="text/html" />
 <meta property="dc:language" content="en" />
 <meta property="dc:identifier" content="/2014/04/05/git-packs.html" />
@@ -47,7 +47,7 @@
 <meta property="og:author" content="/index.html#me" />  <!-- Should be Liquid? URI? -->
 <meta property="http://ogp.me/ns/profile#first_name" content="Santiago"/>
 <meta property="http://ogp.me/ns/profile#last_name" content="Saavedra"/>
-<meta property="http://ogp.me/ns/article#published_time" content="2014-04-05T18:01:00+02:00" />
+<meta property="http://ogp.me/ns/article#published_time" content="2014-04-05T16:01:00+00:00" />
 <meta property="og:site_name" content="Synthetic Silice" /> <!-- Same as dc:source? -->
 <meta property="og:url" content="/2014/04/05/git-packs.html" />
 <meta property="og:type" content="website" />
@@ -178,7 +178,7 @@ A blob represents a non-structured content. Git expects files’ contents to be 
 %</code></pre>
 </figure>
 <p>Let’s suppose we have just done a <code>git init .</code>, but we haven’t done anything yet.</p>
-<p>Now you can ask yourself what will happen to git’s object store if you do <code>git add . &amp;&amp; git commit -m &quot;Initial commit&quot;</code>.</p>
+<p>Now you can ask yourself what will happen to git’s object store if you do <code>git add . &amp;&amp; git commit -m "Initial commit"</code>.</p>
 <p>Well, some objects will be created, namely:</p>
 <ul>
 <li>Three blobs, one per file, with the contents of each file</li>
@@ -186,7 +186,7 @@ A blob represents a non-structured content. Git expects files’ contents to be 
 <li>One commit with the “Initial commit” message, date, author and an entry to the tree</li>
 </ul>
 <p>Now, git will seem to be fast enough, becase our computers are actually quite fast, but it’s not the best way of tracking files.</p>
-<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit -m &quot;file1 mod&quot;</code>, we would be storing both versions of file1 fully.</p>
+<p>That is, if we modified file1 and did another <code>git add . &amp;&amp; git commit -m "file1 mod"</code>, we would be storing both versions of file1 fully.</p>
 <p>But modifications usually don’t alter much the file completely, so that’s a waste of space!</p>
 <p>Git can perform a lot better in this.</p>
 <p>Each time we add a file git computes the blob object that corresponds to that file, as well as the necessary tree to keep the staging area consistent (the staging area has the “root tree” of the next commit).</p>
@@ -292,10 +292,10 @@ once, saving even more space.
 		<div class="sidebar">
 			<aside xmlns:og="http://ogp.me/ns/article#">
   <p> <i class="icon-calendar"></i>
-    <time datetime="2014-04-05T18:01:00+02:00"
+    <time datetime="2014-04-05T16:01:00+00:00"
           property="dc:created">05 Apr 2014</time></p>
   <p><small> modified: <time
-                          datetime="2014-04-05T00:00:00+02:00"
+                          datetime="2014-04-05T00:00:00+00:00"
                           property="dc:modified">05 Apr 2014</time></small></p>
 
   <br />
@@ -312,8 +312,8 @@ once, saving even more space.
   <p><small>
       <i class="glyphicon glyphicon-barcode"></i> SHA Hash:
       <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
-         href="http://github.com/ssaavedra/ssaavedra.github.io/commit/526e42f89d6d9bd427ebf0032d1a65de3c0b1531/_posts/2014-04-05-git-packs.md"
-         >526e42f8</a>
+         href="http://github.com/ssaavedra/ssaavedra.github.io/commit//_posts/2014-04-05-git-packs.md"
+         ></a>
       |
       <a onclick="recordOutboundLink(this, 'Outbound Links', 'history'); return false;"
          href="http://github.com/ssaavedra/ssaavedra.github.io/commits/source/_posts/2014-04-05-git-packs.md">
